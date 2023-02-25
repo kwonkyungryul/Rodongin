@@ -1,0 +1,29 @@
+@charset 'utf-8';
+
+.my_nav li {
+    position: relative;
+    top: 5px;
+}
+
+.my_nav li a {
+    color: rgb(94, 94, 94);
+    border-radius: 15px 15px 0 0;
+}
+
+.my_nav li a:hover {
+    background-color: #fff;
+    /* color: #000; */
+}
+
+.active {
+    background-color: #fff;
+    border-radius: 15px 15px 0 0;
+}
+
+.header-top a {
+    color: #000;
+}
+
+.header-top a:hover {
+    color: rgba(0, 0, 0, .5);
+}
