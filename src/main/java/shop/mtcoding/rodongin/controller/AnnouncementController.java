@@ -10,4 +10,9 @@ public class AnnouncementController {
     public String announcement(){
         return "announcement/announcement";
     }
+
+    @GetMapping("announcement/announcementDetail")
+    public String announcementDetail(){
+        return "announcement/announcementDetail";
+    }
 }
