@@ -15,4 +15,9 @@ public class AnnouncementController {
     public String announcementDetail(){
         return "announcement/announcementDetail";
     }
+
+    @GetMapping("announcementSaveForm/announcementSaveForm")
+    public String announcementSaveForm(){
+        return "announcement/announcementSaveForm";
+    }
 }
