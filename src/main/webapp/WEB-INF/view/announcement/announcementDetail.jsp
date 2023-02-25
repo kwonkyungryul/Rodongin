@@ -20,7 +20,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
             </div>
             <div class="my_buttonsize">
               <button type="button" class="btn btn-outline-primary">
-                홈페이지 지원
+                지원하기
               </button>
             </div>
           </div>
