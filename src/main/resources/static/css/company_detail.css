@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+.company_detail_container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.cate_box {
+    width:800px;
+    margin:0 auto;
+}
+
+.cate a {
+    color: #666;
+}
