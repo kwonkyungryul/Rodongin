@@ -10,4 +10,9 @@ public class EmployeeController {
     public String login() {
         return "loginForm";
     }
+
+    @GetMapping("/employee/joinForm")
+    public String employeejoin() {
+        return "employee/employeeJoinForm";
+    }
 }
