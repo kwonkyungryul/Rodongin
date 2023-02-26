@@ -15,4 +15,9 @@ public class CompanyController {
     public String detail() {
         return "company/companyDetail";
     }
+
+    @GetMapping("/company/joinForm")
+    public String companyjoin() {
+        return "company/companyJoinForm";
+    }
 }
