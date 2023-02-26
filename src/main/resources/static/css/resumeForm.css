@@ -99,17 +99,13 @@
   border: 1px solid #ccc;
   border-radius: 7px;
   color: #000;
-  width: 190px;
+  width: 140px;
 }
 
 .my_tek {
   border: 1px solid #ccc;
   border-radius: 7px;
   color: #000;
-}
-
-.my_util {
-  width: 500px;
 }
 
 .my_arrow_box {
