@@ -13,11 +13,11 @@ public class CompanyController {
 
     @GetMapping("/company/1")
     public String detail() {
-        return "company/companyDetail";
+        return "company/detail";
     }
 
     @GetMapping("/company/joinForm")
     public String companyjoin() {
-        return "company/companyJoinForm";
+        return "company/joinForm";
     }
 }

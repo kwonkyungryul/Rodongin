@@ -13,6 +13,6 @@ public class EmployeeController {
 
     @GetMapping("/employee/joinForm")
     public String employeejoin() {
-        return "employee/employeeJoinForm";
+        return "employee/joinForm";
     }
 }

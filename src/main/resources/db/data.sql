@@ -111,18 +111,17 @@ VALUES
 ('line', '1234', '주식회사 라인', '김삿갓', '123-45-67890', '02-1234-5678', '서울특별시 송파구 석촌호수로 94 (잠실동)', 'contact@linecorp.com', 'https://www.logolynx.com/images/logolynx/15/15daaa7ee1ccbf5ec8c5b937eab40ca7.png', '2010-09-01', 220000, 2531, '라인은 전 세계 42개국에서 2억 7천만 명이 사용하는 모바일 메신저 및 인터넷 서비스를 제공하는 기업입니다.', '2011년 6월 23일, NHN이 라인사업부를 묶어 라인을 설립하였습니다. 초기에는 라인사업부에서 NHN Japan이 일본에서만 서비스를 제공하던 네이버 라인, 라인 게임즈(현재 줄여서 라인 게임스)가 있었습니다.', '최고의 모바일 플랫폼 기업이 되기 위해 지속적으로 새로운 서비스를 출시하고 기술적 혁신을 추구합니다.', NOW());
 
 -- 이력서 테이블
-INSERT INTO resume (employee_id, stack_id, resume_title, salary, CV, created_at)
-VALUES
-(1, 1, 'Junior Developer Position', '3000', '안녕하세요. 개발자 지망생입니다. 적극적으로 열심히 일하겠습니다.', NOW()),
-(1, 2, 'Senior Developer Position', '5000', '저는 개발자로써 다양한 경험을 쌓았습니다. 지속적인 성장을 위해 노력하겠습니다.', NOW()),
-(2, 3, 'Data Analyst Position', '4000', '데이터 분석을 통해 유의미한 결과를 도출하는 것이 목표입니다. 책임감 있는 업무수행을 약속드립니다.', NOW()),
-(2, 4, 'Machine Learning Engineer Position', '6000', '인공지능 및 머신러닝 분야에 대한 전문 지식과 기술을 보유하고 있습니다. 끊임없는 자기 개발로 발전을 이어갈 것입니다.', NOW()),
-(3, 1, 'Frontend Developer Position', '3500', '프론트엔드 개발에 대한 열정과 경험을 가지고 있습니다. 좋은 결과물을 만들어내기 위해 노력하겠습니다.', NOW()),
-(3, 2, 'Backend Developer Position', '4500', '백엔드 개발 분야에서 다양한 프로젝트 경험을 가지고 있습니다. 빠르게 변화하는 환경에서도 적응할 수 있습니다.', NOW()),
-(4, 3, 'Data Engineer Position', '4200', '데이터 엔지니어로써 다양한 데이터 플랫폼과 기술을 다룰 수 있습니다. 창의적인 문제해결을 위해 최선을 다할 것입니다.', NOW()),
-(4, 4, 'AI Researcher Position', '7000', '인공지능 분야에서 선도적인 연구를 하고 싶습니다. 끊임없는 탐구와 도전으로 혁신을 이끌어 나갈 것입니다.', NOW()),
-(5, 1, 'Full Stack Developer Position', '4000', '풀스택 개발자로써 다양한 분야에 대한 이해와 경험을 가지고 있습니다. 유연하게 일할 수 있는 능력을 가지고 있습니다.', NOW()),
-(5, 2, 'DevOps Engineer Position', '5500', '빠르게 변화하는 환경에서도 안정적인 서비스를 제공하기 위해 노력하겠습니다. 자동화와 효율화를 위해 끊임없이 연구하고 개선하겠습니다.', NOW());
+INSERT INTO resume (employee_id, resume_title, salary, CV, created_at) VALUES
+(1, '개발자 이력서', '5000', '저는 개발자로서 5년 경력이 있습니다...', NOW()),
+(1, '마케터 이력서', '4000', '저는 광고 마케팅 분야에서 3년 경력이 있습니다...', NOW()),
+(2, '디자이너 이력서', '4500', '저는 UI/UX 디자인 분야에서 4년 경력이 있습니다...', NOW()),
+(3, '개발자 이력서', '5500', '저는 자바 개발자로서 7년 경력이 있습니다...', NOW()),
+(3, '데이터 분석가 이력서', '5000', '저는 데이터 분석가로서 6년 경력이 있습니다...', NOW()),
+(4, '마케터 이력서', '4500', '저는 SNS 마케팅 분야에서 4년 경력이 있습니다...', NOW()),
+(5, '디자이너 이력서', '4000', '저는 그래픽 디자인 분야에서 3년 경력이 있습니다...', NOW()),
+(6, '개발자 이력서', '6000', '저는 스프링 프레임워크를 이용한 개발 경험이 5년 있습니다...', NOW()),
+(7, '데이터 분석가 이력서', '5500', '저는 기업 데이터를 분석하고 시각화하는 경험이 6년 있습니다...', NOW()),
+(8, '디자이너 이력서', '4500', '저는 반응형 웹사이트 디자인 분야에서 4년 경력이 있습니다...', NOW());
 
 -- 공고 테이블
 INSERT INTO announcement (company_id, stack_id, announcement_title, announcement_content, announcement_carrer, announcement_hire_type, announcement_rec_num, announcement_salary, announcement_area, created_at)

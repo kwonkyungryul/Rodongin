@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AnnouncementController {
     
     @GetMapping({"/","/announcement"})
-    public String announcement(){
-        return "announcement/announcement";
+    public String list(){
+        return "announcement/list";
     }
 
-    @GetMapping("announcement/announcementDetail")
-    public String announcementDetail(){
-        return "announcement/announcementDetail";
+    @GetMapping("announcement/1")
+    public String detail(){
+        return "announcement/detail";
     }
 
-    @GetMapping("announcementSaveForm/announcementSaveForm")
-    public String announcementSaveForm(){
-        return "announcement/announcementSaveForm";
+    @GetMapping("announcement/saveForm")
+    public String saveForm(){
+        return "announcement/saveForm";
     }
 }

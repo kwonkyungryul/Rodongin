@@ -96,17 +96,55 @@ CREATE TABLE company(
 CREATE TABLE resume(
 	id int primary key auto_increment,
     employee_id int not null,
-    stack_id int not null,
     resume_title varchar(100) not null,
     salary varchar(10) not null,
     CV longtext not null,
     created_at timestamp
 );
 
+--------------------------------이력서의 최종학력, 경력사항, 자격증, 기술스택 ---------------
+
+CREATE TABLE resume_graduate (
+	id int primary key auto_increment,
+    resume_id int not null,
+    school_id int not null,
+    school_graduate varchar(20) not null,
+    created_at timestamp not null
+);
+
+-- 경력사항 테이블
+CREATE TABLE resume_career (
+	id int primary key auto_increment,
+    resume_id int not null,
+    career_company varchar(50) not null,
+    career_start date not null,
+    career_end date not null,
+    created_at timestamp not null
+);
+
+-- employee의 자격증 테이블
+CREATE TABLE resume_license (
+	id int primary key auto_increment,
+    resume_id int not null,
+    license_id int not null,
+    license_issuer varchar(20), -- 발행처
+    created_at timestamp not null
+);
+
+CREATE TABLE resume_stack (
+	id int primary key auto_increment,
+    resume_id int not null,
+    stack_id int not null,
+    stack_acquisition varchar(20) not null,
+    created_at timestamp not null
+);
+-------------------------------------------------------------------------
+
+-- master 테이블을 바라봐야함.
 CREATE TABLE announcement (
 	id int primary key auto_increment,
     company_id int not null,
-    stack_id int not null,
+    stack_id int not null, -- stack_master id
     announcement_title varchar(100) not null,
     announcement_content longtext not null,
     announcement_carrer varchar(10) not null,
