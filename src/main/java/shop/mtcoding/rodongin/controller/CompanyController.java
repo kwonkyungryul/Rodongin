@@ -20,4 +20,9 @@ public class CompanyController {
     public String companyjoin() {
         return "company/joinForm";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "loginForm";
+    }
 }
