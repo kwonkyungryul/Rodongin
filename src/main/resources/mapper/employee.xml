@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.rodongin.model.EmployeeRepository">
+    <select id="findAll" resultType="shop.mtcoding.rodongin.model.Employee">
+        SELECT * FROM Employee
+    </select>
+
+    <select id="findByID" resultType="shop.mtcoding.rodongin.model.Employee">
+        SELECT * FROM Employee WHERE id = #{id}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO employee (
+            employee_name, employee_password, employee_fullname, employee_email,
+            employee_tel, employee_gender, employee_birth, employee_address,
+            employee_info_thumbnail, created_at
+        ) VALUES (
+            #{employeeName}, #{employeePassword}, #{employeeFullname}, #{employeeEmail},
+            #{employeeTel}, #{employeeGender}, #{employeeBirth}, #{employeeAddress},
+            #{employeeInfoThumbnail}, now()
+            )
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM Employee WHERE id = #{id}
+    </delete>
+
+    <update id="updateById">
+        UPDATE employee SET
+            employee_name = #{employeeName},
+            employee_password = #{employeePassword},
+            employee_fullname = #{employeeFullname},
+            employee_email = #{employeeEmail},
+            employee_tel = #{employeeTel},
+            employee_gender = #{employeeGender},
+            employee_birth = #{employeeBirth},
+            employee_address = #{employeeAddress},
+            employee_info_thumbnail = #{employeeInfoThumbnail},
+            created_at = now()
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateToQty">
+        UPDATE employee WHERE id = #{id}
+    </update>
+
+</mapper>

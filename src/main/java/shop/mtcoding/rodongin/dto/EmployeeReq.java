@@ -1,5 +1,10 @@
 package shop.mtcoding.rodongin.dto;
 
+import java.sql.Date;
+
+import lombok.Getter;
+import lombok.Setter;
+
 public class EmployeeReq {
 
     @Setter
