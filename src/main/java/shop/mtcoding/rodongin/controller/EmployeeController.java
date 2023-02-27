@@ -23,6 +23,12 @@ public class EmployeeController {
     @Autowired
     private HttpSession session;
 
+    @PostMapping("/employee/joinForm")
+    public String join() {
+        return "employee/joinForm";
+
+    }
+
     // employee 로그인요청
     @PostMapping("/login")
     public String login(EmployeeLoginReqDto employeeLoginReqDto) {

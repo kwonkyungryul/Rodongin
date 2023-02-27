@@ -15,14 +15,14 @@
                             <div class="my_login_nav mb-4 px-4">
                                 <div class="mt-3 me-2">
                                     <button class="nav-link active" id="employee_tabs" data-bs-toggle="tab"
-                                        data-bs-target="#employee_username" href="./employee/joinForm"
+                                        data-bs-target="#employee_username"
                                         style="border: none; background-color: transparent;">
                                         <h3 class="me-1">개인</h3>
                                     </button>
                                 </div>
                                 <div class="md-1 mt-3">
                                     <button class="nav-link col" id="company_tabs" data-bs-toggle="tab"
-                                        data-bs-target="#company_username" href="/company/joinForm"
+                                        data-bs-target="#company_username"
                                         style="border: none; background-color: transparent;">
                                         <h3>기업</h3>
                                     </button>
@@ -46,7 +46,7 @@
 
                             <div class="my_tab_content px-4" style="height: 250px">
                                 <!-- 개인 로그인 시작 -->
-                                <form action="/employee/login">
+                                <form action="/employee/1/login">
                                     <div id="employee_login_box">
 
                                         <div class="tab-pane fade show active mb-2" id="employee_username"
@@ -68,8 +68,7 @@
                                                 </label>
                                             </div>
                                             <div class="my_employee_container d-flex justify-content-end">
-                                                <button type="submit" class="btn"
-                                                    style="background-color: rgb(255, 230, 104); border: none">로그인</button>
+                                                <button type="submit" class="btn main_yellow_label">로그인</button>
                                             </div>
                                         </div>
                                     </div>
