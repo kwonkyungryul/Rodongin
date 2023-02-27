@@ -73,7 +73,7 @@
                                                     placeholder="아이디를 입력해주세요">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="password"><b></b>비밀번호</label>
+                                                <label for="password"><b>비밀번호</b></label>
                                                 <input type="password" class="form-control" name="companyPassword"
                                                     placeholder="비밀번호를 입력해주세요">
                                             </div>
