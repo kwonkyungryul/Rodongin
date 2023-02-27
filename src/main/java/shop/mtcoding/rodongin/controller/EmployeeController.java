@@ -1,6 +1,7 @@
 package shop.mtcoding.rodongin.controller;
 
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
+import shop.mtcoding.rodongin.model.master.LicenseMaster;
+import shop.mtcoding.rodongin.model.master.LicenseMasterRepository;
+import shop.mtcoding.rodongin.model.master.SchoolMaster;
+import shop.mtcoding.rodongin.model.master.SchoolMasterRepository;
+import shop.mtcoding.rodongin.model.master.StackMaster;
+import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.service.EmployeeService;
 
 @Controller
@@ -28,6 +34,15 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private SchoolMasterRepository schoolMasterRepository;
+
+    @Autowired
+    private LicenseMasterRepository licenseMasterRepository;
+
+    @Autowired
+    private StackMasterRepository stackMasterRepository;
 
     @Autowired
     HttpSession session;
@@ -77,7 +92,14 @@ public class EmployeeController {
 
     @GetMapping("/employee/{id}/updateForm")
     public String infoUpdateForm(@PathVariable int id, Model model) {
+        List<SchoolMaster> schools = schoolMasterRepository.findAll();
+        List<LicenseMaster> licenses = licenseMasterRepository.findAll();
+        List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("empInfo", employeeRepository.findById(id));
+        model.addAttribute("schools", schools);
+        model.addAttribute("licenses", licenses);
+        model.addAttribute("stacks", stacks);
+
         return "employee/updateForm";
     }
 

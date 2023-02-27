@@ -78,10 +78,10 @@
           <span class="main_yellow_label mb-2">최종학력</span>
         </div>
         <div class="d-flex">
-          <select name="" id="" class="main_select_box_school">
-            <option value="">학교이름</option>
-            <option value="">몰라</option>
-            <option value="">몰라</option>
+          <select name="schoolId" id="" class="main_select_box_school">
+          <c:forEach items="${schools}" var="school">
+            <option value="${school.id}">${school.schoolName}</option>
+          </c:forEach>
           </select>
           <div>
             <select name="" id="" class="main_select_box p-2">
@@ -97,12 +97,7 @@
         <div class="d-flex mb-2">
           <span class="main_yellow_label">경력사항</span>
           <div class="form-check my_check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckDefault"
-            />
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
           </div>
         </div>
         <div class="align-items-center d-flex mb-2">
@@ -136,9 +131,9 @@
                 <div class="AA"></div>
                 <span class="my_list">자격증명</span>
                 <select name="" id="" class="main_select_box_title">
-                  <option value="">자격증명 입력</option>
-                  <option value="">아무거나</option>
-                  <option value="">아무거나</option>
+                <c:forEach items="${licenses}" var="license">
+                  <option value="${license.id}">${license.licenseName}</option>
+                </c:forEach>
                 </select>
               </div>
             </div>
@@ -151,28 +146,7 @@
             </div>
           </div>
         </div>
-        <div class="mb-1">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="d-flex align-items-center mb-2">
-                <div class="AA"></div>
-                <span class="my_list">자격증명</span>
-                <select name="" id="" class="main_select_box_title">
-                  <option value="">자격증명 입력</option>
-                  <option value="">아무거나</option>
-                  <option value="">아무거나</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-6 col-md-8">
-              <div class="d-flex align-items-center">
-                <div class="AA"></div>
-                <span class="my_list">발행처</span>
-                <input class="form-control my_util" type="text" />
-              </div>
-            </div>
-          </div>
-        </div>
+     
 
         <div>
           <div class="d-flex mb-2">
@@ -193,9 +167,9 @@
                   <div class="AA"></div>
                   <span class="my_list">기술명</span>
                   <select name="" id="" class="main_select_box_title">
-                    <option value="">기술명 입력</option>
-                    <option value="">아무거나</option>
-                    <option value="">아무거나</option>
+                  <c:forEach items="${stacks}" var="stack">
+                    <option value="${stack.id}">${stack.stackName}</option>
+                  </c:forEach>
                   </select>
                 </div>
               </div>
@@ -208,28 +182,7 @@
               </div>
             </div>
           </div>
-          <div class="mb-1">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="d-flex align-items-center mb-2">
-                  <div class="AA"></div>
-                  <span class="my_list">기술명</span>
-                  <select name="" id="" class="main_select_box_title">
-                    <option value="">기술명 입력</option>
-                    <option value="">아무거나</option>
-                    <option value="">아무거나</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-6 col-md-8">
-                <div class="d-flex align-items-center">
-                  <div class="AA"></div>
-                  <span class="my_list">활용도</span>
-                  <input class="form-control my_util" type="text" />
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
       <div class="button_center">
