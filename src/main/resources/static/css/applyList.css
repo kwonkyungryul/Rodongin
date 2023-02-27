@@ -1,0 +1,55 @@
+.my_title {
+  text-align: center;
+  margin: 2%;
+}
+.my_yellow_box {
+  margin-left: 25%;
+  margin-right: 25%;
+  border: 2px solid rgb(255, 230, 104);
+}
+.my_main_blue_btn {
+  display: inline-block;
+  padding: 8px 30px;
+  /* width: 60px; */
+  /* height: 30px; */
+  background-color: rgb(51, 80, 200);
+  border-radius: 7px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 60%;
+}
+.my_main_yellow_btn {
+  display: inline-block;
+  padding: 8px 30px;
+  /* width: 60px; */
+  /* height: 30px; */
+  background-color: rgb(255, 230, 104);
+  border-radius: 7px;
+  color: rgb(51, 80, 200);
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.my_margin {
+  margin: 20px;
+}
+.my_info_thumbnail {
+  border: 1px solid rgb(255, 230, 104);
+  width: 60px;
+  height: 80px;
+  /* margin-top: 5px; */
+  margin-bottom: 5px;
+  float: right;
+}
+.my_yellow_box_margin {
+  margin: 2%;
+}
+.my_po {
+  align-content: space-between;
+}
+.my_btn_margin {
+  align-items: flex-end;
+  flex-direction: column-reverse;
+}
