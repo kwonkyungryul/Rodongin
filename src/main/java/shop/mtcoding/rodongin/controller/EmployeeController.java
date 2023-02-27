@@ -10,7 +10,7 @@ public class EmployeeController {
     public String info() {
         return "employee/detail";
     }
-    
+
     @GetMapping("/employee/updateForm")
     public String infoUpdateForm() {
         return "employee/updateForm";
