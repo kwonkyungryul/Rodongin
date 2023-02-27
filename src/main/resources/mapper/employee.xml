@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.rodongin.model.employee.EmployeeRepository">
+    <select id="findAll" resultType="shop.mtcoding.rodongin.model.employee.Employee">
+        SELECT * FROM employee
+    </select>
+
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.employee.Employee">
+        SELECT * FROM employee WHERE id = #{id}
+    </select>
+
+    <insert id="insert">
+
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM Employee WHERE id = #{id}
+    </delete>
+
+    <update id="updateById">
+        update employee
+        set employee_password = #{employeeUpdatdReq.employeePassword}
+        ,employee_email = #{employeeUpdatdReq.employeeEmail}
+        ,employee_birth = #{employeeUpdatdReq.employeeBirth}
+        ,employee_tel = #{employeeUpdatdReq.employeeTel}
+        ,employee_address= #{employeeUpdatdReq.employeeAddress} where id = #{id}
+    </update>
+
+
+</mapper>

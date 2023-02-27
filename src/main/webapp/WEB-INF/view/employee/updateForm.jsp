@@ -11,63 +11,32 @@
         <div>
           <div class="mb-2 d-flex align-items-center">
             <span class="my_info_update_span">아이디</span>
-            <input
-              class="form-control my_info_update_input"
-              type="text"
-              placeholder="Enter username"
-              value="wldus671514"
-              readonly
-            />
+            <input class="form-control my_info_update_input" type="text" placeholder="Enter username" value="${empInfo.employeeName}" readonly/>
           </div>
           <div class="mb-2 d-flex align-items-center">
             <span class="my_info_update_span">비밀번호</span>
-            <input
-              class="form-control my_info_update_input"
-              type="password"
-              placeholder="Enter password"
-              id="password"
-            />
+            <input class="form-control my_info_update_input" type="password" value="${empInfo.employeePassword}" id="employeePassword"/>
           </div>
           <div class="mb-2 d-flex align-items-center">
             <span class="my_info_update_span">이메일</span>
-            <input class="form-control my_info_update_input" type="email"
-            placeholder="Enter email" id=""">
+            <input class="form-control my_info_update_input" type="email" value="${empInfo.employeeEmail}" id="employeeEmail"/>
           </div>
           <div class="mb-2 d-flex align-items-center">
             <span class="my_info_update_span">생년월일</span>
-            <input
-              class="form-control my_info_update_input"
-              type="text"
-              placeholder="Enter birthday"
-              id=""
-            />
+            <input class="form-control my_info_update_input" type="date" value="${empInfo.employeeBirth}" id="employeeBirth"/>
           </div>
           <div class="mb-2 d-flex align-items-center">
             <span class="my_info_update_span">연락처</span>
-            <input
-              class="form-control my_info_update_input"
-              type="text"
-              placeholder="Enter phone number"
-              id=""
-            />
+            <input class="form-control my_info_update_input" type="text" value="${empInfo.employeeTel}" id="employeeTel"/>
           </div>
           <div class="d-flex align-items-center">
             <span class="my_info_update_span">주소</span>
-            <input
-              class="form-control my_info_update_input"
-              type="text"
-              placeholder="Enter address"
-              id=""
-            />
+            <input class="form-control my_info_update_input" type="text" value="${empInfo.employeeAddress}" id="employeeAddress"/>
           </div>
         </div>
         <div class="d-flex align-items-center">
           <div class="my_info_thumbnail me-4">
-            <img
-              class="card-img-top"
-              src="images/profile.jfif"
-              alt="Card image"
-            />
+            <img class="card-img-top" src="images/profile.jfif" alt="Card image"/>
           </div>
         </div>
       </div>
@@ -75,8 +44,33 @@
 
     <div class="button_center">
       <a href=""></a>
-      <a href="" class="main_blue_btn" type="submit">수정</a>
+      <a onClick="updateById(${empInfo.id})" class="main_blue_btn" type="submit">수정</a>
     </div>
+    <script>
+
+    function updateById(id) {
+        let data = {
+            employeePassword: $("#employeePassword").val(),
+            employeeEmail: $("#employeeEmail").val(),
+            employeeBirth: $("#employeeBirth").val(),
+            employeeTel: $("#employeeTel").val(),
+            employeeAddress: $("#employeeAddress").val()
+        };
+        console.log(data.employeeBirth);
+        $.ajax({
+            type: "put",
+            url: "/employee/" + id,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json" // default : 응답의 mime 타입으로 유추함
+        }).done((res) => { // 20X 일때
+            alert(res.msg);
+            location.href = "/employee/" + id + "/updateForm";
+        }).fail((err) => { // 40X, 50X 일때
+            alert(err.responseJSON.msg);
+        });
+    }
+</script>
 
     <div class="my_info_insert">
       <div class="mb-3">
