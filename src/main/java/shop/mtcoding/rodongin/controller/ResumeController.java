@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ResumeController {
     
-@GetMapping("/resume/1")
+    @GetMapping("/resume/1")
     public String resume() {
         return "resume/detail";
     }
-    @GetMapping("/resume/resumeForm")
+
+    @GetMapping("/resume/saveForm")
     public String resumeForm() {
-        return "resume/resumeForm";
+        return "resume/saveForm";
     }
 }
