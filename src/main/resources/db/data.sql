@@ -111,7 +111,7 @@ VALUES
 ('line', '1234', '주식회사 라인', '김삿갓', '123-45-67890', '02-1234-5678', '서울특별시 송파구 석촌호수로 94 (잠실동)', 'contact@linecorp.com', 'https://www.logolynx.com/images/logolynx/15/15daaa7ee1ccbf5ec8c5b937eab40ca7.png', '2010-09-01', 220000, 2531, '라인은 전 세계 42개국에서 2억 7천만 명이 사용하는 모바일 메신저 및 인터넷 서비스를 제공하는 기업입니다.', '2011년 6월 23일, NHN이 라인사업부를 묶어 라인을 설립하였습니다. 초기에는 라인사업부에서 NHN Japan이 일본에서만 서비스를 제공하던 네이버 라인, 라인 게임즈(현재 줄여서 라인 게임스)가 있었습니다.', '최고의 모바일 플랫폼 기업이 되기 위해 지속적으로 새로운 서비스를 출시하고 기술적 혁신을 추구합니다.', NOW());
 
 -- 이력서 테이블
-INSERT INTO resume (employee_id, resume_title, salary, CV, created_at) VALUES
+INSERT INTO resume (employee_id, resume_title, resume_salary, CV, created_at) VALUES
 (1, '개발자 이력서', '5000', '저는 개발자로서 5년 경력이 있습니다...', NOW()),
 (1, '마케터 이력서', '4000', '저는 광고 마케팅 분야에서 3년 경력이 있습니다...', NOW()),
 (2, '디자이너 이력서', '4500', '저는 UI/UX 디자인 분야에서 4년 경력이 있습니다...', NOW()),
