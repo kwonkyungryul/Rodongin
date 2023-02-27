@@ -15,14 +15,14 @@
                             <div class="my_login_nav mb-4 px-4">
                                 <div class="mt-3 me-2">
                                     <button class="nav-link active" id="employee_tabs" data-bs-toggle="tab"
-                                        data-bs-target="#employee_username"
+                                        data-bs-target="#employee_username" href=""
                                         style="border: none; background-color: transparent;">
                                         <h3 class="me-1">개인</h3>
                                     </button>
                                 </div>
                                 <div class="md-1 mt-3">
                                     <button class="nav-link col" id="company_tabs" data-bs-toggle="tab"
-                                        data-bs-target="#company_username"
+                                        data-bs-target="#company_username" href=""
                                         style="border: none; background-color: transparent;">
                                         <h3>기업</h3>
                                     </button>

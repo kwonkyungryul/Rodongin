@@ -11,6 +11,9 @@ import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
 
 @Mapper
 public interface EmployeeRepository {
+
+    public Employee findByEmployeeNameAndPassword(EmployeeLoginReqDto employeeLoginReqDto);
+
     public List<Employee> findAll();
 
     public Employee findById(int id);
