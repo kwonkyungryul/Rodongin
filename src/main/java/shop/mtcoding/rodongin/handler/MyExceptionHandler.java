@@ -9,7 +9,7 @@ import shop.mtcoding.rodongin.handler.ex.CustomException;
 public class MyExceptionHandler {
 
     @ExceptionHandler(CustomException.class)
-    public String basicException(Exception e) {
+    public String customException(Exception e) {
         StringBuilder sb = new StringBuilder();
         sb.append("<script>");
         sb.append("alert('" + e.getMessage() + "');");
