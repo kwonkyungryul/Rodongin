@@ -3,12 +3,12 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="shop.mtcoding.rodongin.model.EmployeeRepository">
-    <select id="findAll" resultType="shop.mtcoding.rodongin.model.Employee">
+<mapper namespace="shop.mtcoding.rodongin.model.employee.EmployeeRepository">
+    <select id="findAll" resultType="shop.mtcoding.rodongin.model.employee.Employee">
         SELECT * FROM employee
     </select>
 
-    <select id="findByID" resultType="shop.mtcoding.rodongin.model.Employee">
+    <select id="findByID" resultType="shop.mtcoding.rodongin.model.employee.Employee">
         SELECT * FROM employee WHERE id = #{id}
     </select>
 

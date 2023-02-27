@@ -54,8 +54,8 @@ public class EmployeeController {
         return "employee/updateForm";
     }
 
-    @GetMapping("/login")
-    public String login() {
+    @GetMapping("/loginForm")
+    public String loginForm() {
         return "loginForm";
     }
 
