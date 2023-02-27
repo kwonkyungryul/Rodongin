@@ -1,13 +1,14 @@
 package shop.mtcoding.rodongin.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class EmployeeController {
 
-    @GetMapping("/employee/1")
-    public String info() {
+    @GetMapping("/employee/{id}")
+    public String detail(Model model) {
         return "employee/detail";
     }
     
