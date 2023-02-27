@@ -97,7 +97,7 @@ CREATE TABLE resume(
 	id int primary key auto_increment,
     employee_id int not null,
     resume_title varchar(100) not null,
-    salary varchar(10) not null,
+    resume_salary varchar(10) not null,
     CV longtext not null,
     created_at timestamp
 );
