@@ -5,11 +5,11 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.EmployeeRepository">
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.Employee">
-        SELECT * FROM Employee
+        SELECT * FROM employee
     </select>
 
     <select id="findByID" resultType="shop.mtcoding.rodongin.model.Employee">
-        SELECT * FROM Employee WHERE id = #{id}
+        SELECT * FROM employee WHERE id = #{id}
     </select>
 
     <insert id="insert">
@@ -25,7 +25,7 @@
     </insert>
 
     <delete id="deleteById">
-        DELETE FROM Employee WHERE id = #{id}
+        DELETE FROM employee WHERE id = #{id}
     </delete>
 
     <update id="updateById">
