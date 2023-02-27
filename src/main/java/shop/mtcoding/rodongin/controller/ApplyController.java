@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ApplyController {
-    
-   @GetMapping("/apply/list")
+    // employeeFullname, employee_address, resume_title, 
+    @GetMapping("/apply/list")
     public String applyList() {
         return "apply/list";
     }

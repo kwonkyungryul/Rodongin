@@ -13,7 +13,7 @@
                     <div>
                         <div class="d-flex">
                             <div class="my_info_thumbnail m-2">
-                                <img class="card-img-top" src="images/profile.jfif" alt="Card image">
+                                <img class="card-img-top" src="/images/profile.png" alt="Card image">
                             </div>
                             <div class="m-2">
                                 <div class="mb-3">
