@@ -8,6 +8,6 @@ public class ApplyController {
     
    @GetMapping("/apply/applyList")
     public String applyList() {
-        return "apply/applyList";
+        return "apply/list";
     }
 }
