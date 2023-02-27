@@ -46,59 +46,62 @@
 
                             <div class="my_tab_content px-4" style="height: 250px">
                                 <!-- 개인 로그인 시작 -->
-                                <div id="employee_login_box">
+                                <form action="/employee/login" method="post">
+                                    <div id="employee_login_box">
 
-                                    <div class="tab-pane fade show active mb-2" id="employee_username"
-                                        aria-labelledby="employee_tab">
-                                        <div class="my_employee_container mb-3">
-                                            <label for="employee_id"><b>개인아이디</b></label>
-                                            <input type="text" class="form-control" name="employee_id"
-                                                placeholder="아이디를 입력해주세요">
-                                        </div>
-                                        <div class="my_employee_container mb-3">
-                                            <label for="password"><b>비밀번호</b></label>
-                                            <input type="password" class="form-control" name="employee_password"
-                                                placeholder="비밀번호를 입력해주세요">
-                                        </div>
-                                        <div class="my_employee_container mb-3">
-                                            <input class="form-check-input" type="checkbox" id="employee-remember">
-                                            <label class="form-check-label" for="employee-remember">
-                                                아이디 저장
-                                            </label>
-                                        </div>
-                                        <div class="my_employee_container d-flex justify-content-end">
-                                            <button type="submit" class="btn"
-                                                style="background-color: rgb(255, 230, 104); border: none">로그인</button>
+                                        <div class="tab-pane fade show active mb-2" id=""
+                                            aria-labelledby="employee_tab">
+                                            <div class="my_employee_container mb-3">
+                                                <label for="employee_id"><b>개인아이디</b></label>
+                                                <input type="text" class="form-control" name="employeeName"
+                                                    placeholder="아이디를 입력해주세요">
+                                            </div>
+                                            <div class="my_employee_container mb-3">
+                                                <label for="password"><b>비밀번호</b></label>
+                                                <input type="password" class="form-control" name="employeePassword"
+                                                    placeholder="비밀번호를 입력해주세요">
+                                            </div>
+                                            <div class="my_employee_container mb-3">
+                                                <input class="form-check-input" type="checkbox" id="employee-remember">
+                                                <label class="form-check-label" for="employee-remember">
+                                                    아이디 저장
+                                                </label>
+                                            </div>
+                                            <div class="my_employee_container d-flex justify-content-end">
+                                                <button type="submit" class="btn main_yellow_label">로그인</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                                 <!-- 개인 로그인 종료 -->
 
                                 <!-- 기업 로그인 시작 -->
-                                <div id="company_login_box">
-                                    <div class="tab-pane" id="company_username" aria-labelledby="company_tab">
-                                        <div class="my_company_container">
-                                            <label for="company_id">기업아이디</label>
-                                            <input type="text" class="form-control" id="company_id"
-                                                placeholder="아이디를 입력해주세요">
+                                <form action="/company/login">
+                                    <div id="company_login_box">
+                                        <div class="tab-pane" id="company_username" aria-labelledby="company_tab">
+                                            <div class="my_company_container">
+                                                <label for="company_id">기업아이디</label>
+                                                <input type="text" class="form-control" id="company_id"
+                                                    placeholder="아이디를 입력해주세요">
+                                            </div>
+                                            <div class="my_company_container">
+                                                <label for="company_password">비밀번호</label>
+                                                <input type="password" class="form-control" id="company_password"
+                                                    placeholder="비밀번호를 입력해주세요">
+                                            </div>
+                                            <div class="my_company_container mb-3">
+                                                <input class="form-check-input" type="checkbox" id="company-remember">
+                                                <label class="form-check-label" for="company-remember">
+                                                    아이디 저장
+                                                </label>
+                                            </div>
+                                            <div class=" d-flex justify-content-end">
+                                                <button type="submit" class="btn main_yellow_label">로그인</button>
+                                            </div>
                                         </div>
-                                        <div class="my_company_container">
-                                            <label for="company_password">비밀번호</label>
-                                            <input type="password" class="form-control" id="company_password"
-                                                placeholder="비밀번호를 입력해주세요">
-                                        </div>
-                                        <div class="my_company_container mb-3">
-                                            <input class="form-check-input" type="checkbox" id="company-remember">
-                                            <label class="form-check-label" for="company-remember">
-                                                아이디 저장
-                                            </label>
-                                        </div>
-                                        <div class=" d-flex justify-content-end">
-                                            <button type="submit" class="btn main_yellow_label">로그인</button>
-                                        </div>
-                                    </div>
 
-                                </div>
+                                    </div>
+                                </form>
                                 <!-- 기업 로그인 종료 -->
                             </div>
 
