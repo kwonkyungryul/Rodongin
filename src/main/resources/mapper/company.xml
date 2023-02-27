@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.rodongin.model.company.CompanyRepository">
+
+    <select id="findByCompanyNameAndPassword" resultType="shop.mtcoding.rodongin.model.company.Company">
+        SELECT * FROM company WHERE company_username = #{companyUsername} and company_password = #{companyPassword}
+    </select>
+
+    <select id="findAll" resultType="shop.mtcoding.rodongin.model.company.Company">
+        SELECT * FROM company
+    </select>
+
+    <select id="findByID" resultType="shop.mtcoding.rodongin.model.company.Company">
+        SELECT * FROM company WHERE id = #{id}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO company (
+            company_username, company_password, company_fullname, company_ceoName,
+            company_licenseNumber, company_tel, company_address, company_email,
+            company_thumbnail, company_establish, company_sales, company_employeesNumber,
+            company_introduction, company_history, company_vision, created_at
+        ) VALUES (
+            #{companyUsername}, #{companyPassword}, #{employeeFullname}, #{companyCeoName},
+            #{companyLicenseNumber}, #{companyTel}, #{companyAddress}, #{companyEmail},
+            #{companyThumbnail}, #{companyEstablish}, #{companySales}, #{companyEmployeesNumber},
+            #{companyIntroduction}, #{companyHistory}, #{companyVision}, now()
+            )
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM company WHERE id = #{id}
+    </delete>
+
+    <update id="updateById">
+        UPDATE company SET
+            company_username = #{employeeName},
+            company_password = #{employeePassword},
+            company_fullname = #{employeeFullname},
+            company_ceoName = #{employeeEmail},
+            company_licenseNumber = #{employeeTel},
+            company_tel = #{employeeGender},
+            company_address = #{employeeBirth},
+            company_email = #{employeeAddress},
+            company_thumbnail = #{employeeAddress},
+            company_establish = #{employeeAddress},
+            company_sales = #{employeeAddress},
+            company_employeesNumber = #{employeeAddress},
+            company_introduction = #{employeeAddress},
+            company_history = #{employeeInfoThumbnail},
+            company_vision = #{employeeInfoThumbnail},
+            created_at = now()
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateToQty">
+        UPDATE employee WHERE id = #{id}
+    </update>
+
+</mapper>
