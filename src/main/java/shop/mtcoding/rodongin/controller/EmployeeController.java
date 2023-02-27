@@ -30,7 +30,7 @@ public class EmployeeController {
     }
 
     // employee 로그인요청
-    @PostMapping("/login")
+    @PostMapping("/employee/login")
     public String login(EmployeeLoginReqDto employeeLoginReqDto) {
         if (employeeLoginReqDto.getEmployeeName() == null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
             throw new CustomException("username을 입력해주세요", HttpStatus.BAD_REQUEST);

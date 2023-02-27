@@ -46,19 +46,19 @@
 
                             <div class="my_tab_content px-4" style="height: 250px">
                                 <!-- 개인 로그인 시작 -->
-                                <form action="/employee/1/login">
+                                <form action="/employee/login" method="post">
                                     <div id="employee_login_box">
 
-                                        <div class="tab-pane fade show active mb-2" id="employee_username"
+                                        <div class="tab-pane fade show active mb-2" id=""
                                             aria-labelledby="employee_tab">
                                             <div class="my_employee_container mb-3">
                                                 <label for="employee_id"><b>개인아이디</b></label>
-                                                <input type="text" class="form-control" name="employee_id"
+                                                <input type="text" class="form-control" name="employeeName"
                                                     placeholder="아이디를 입력해주세요">
                                             </div>
                                             <div class="my_employee_container mb-3">
                                                 <label for="password"><b>비밀번호</b></label>
-                                                <input type="password" class="form-control" name="employee_password"
+                                                <input type="password" class="form-control" name="employeePassword"
                                                     placeholder="비밀번호를 입력해주세요">
                                             </div>
                                             <div class="my_employee_container mb-3">
