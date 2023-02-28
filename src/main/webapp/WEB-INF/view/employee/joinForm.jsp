@@ -38,14 +38,14 @@
                         <div class="">
                             <div class="main_yellow_label mb-1">이메일</div>
                             <div class="my_flex mb-2">
-                                <input class="form-control d-inline-flex" style="width: 60%;" type="email"
+                                <input class="form-control d-inline-flex" style="width: 60%;" type="text"
                                     id="employee_email" placeholder="이메일을 입력하세요" name="employee_email" required>
-                                <select id="email_class" class="main_select_box" style="width: 38.8%">
-                                    <option value="naver">naver.com</option>
-                                    <option value="naver">nate.com</option>
-                                    <option value="naver">gmail.com</option>
-                                    <option value="naver">daum.net</option>
-                                    <option value="naver">naver.com</option>
+                                <select id="email_class" class="main_select_box p-1" style="width: 38.8%">
+                                    <option value="@naver.com">naver.com</option>
+                                    <option value="@nate.com">nate.com</option>
+                                    <option value="@gmail.com">gmail.com</option>
+                                    <option value="@daum.net">daum.net</option>
+                                    <option value="@naver.com">naver.com</option>
                                 </select>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="mb-1">
                             <div class="main_yellow_label mb-1">연락처</div><br />
-                            <select id="employee_tel_first" class="main_select_box me-1" style="width: 25%">
+                            <select id="employee_tel_first" class="main_select_box me-1 p-1" style="width: 25%">
                                 <option value="010">010</option>
                                 <option value="016">016</option>
                                 <option value="011">011</option>
