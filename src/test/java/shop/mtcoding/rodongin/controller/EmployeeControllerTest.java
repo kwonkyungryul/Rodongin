@@ -80,24 +80,4 @@ public class EmployeeControllerTest {
         // resultActions.andExpect(jsonPath("$.code").value(1));
     }
 
-    @Test
-    public void save_test() throws Exception {
-        // given
-        String title = "";
-        for (int i = 0; i < 99; i++) {
-            title += "가";
-        }
-
-        String requestBody = "title=" + title + "&content=내용1";
-        // when
-        ResultActions resultActions = mvc.perform(
-                post("/board")
-                        .content(requestBody)
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                        .session(mockSession));
-
-        // then
-        resultActions.andExpect(status().is3xxRedirection());
-
-    }
 }

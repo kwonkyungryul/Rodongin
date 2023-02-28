@@ -44,10 +44,10 @@
           <div class="my_info_thumbnail me-4">
             <div class="form-group">
               <img
-                src="${employee.employeeThumbnail == null ? '/images/KakaoTalk_20230104_161540633_02.jpg' : employee.employeeThumbnail}"
+                src="${empInfo.employeeThumbnail == null ? '/images/KakaoTalk_20230104_161540633_02.jpg' : empInfo.employeeThumbnail}"
                 alt="Current Photo" class="img-fluid" id="imagePreview">
             </div>
-            <input type="file" class="card-img-top" id="profile" name="profile" onchange="chooseImage(this)">
+            <%-- <input type="file" class="card-img-top" id="profile" name="profile" onchange="chooseImage(this)"> --%>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
     <div class="mb-3">
       <div class="d-flex mb-2">
         <span class="main_yellow_label">경력사항</span>
-        <div class="form-check my_check">
+        <div class="form-check my_check" id="isCareerCheck">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
         </div>
       </div>
@@ -139,8 +139,8 @@
         <div class="AA"></div>
         <span class="my_list">재직기간</span>
         <div class="d-flex my_career_input">
-          <input name="careerStart" id="careerStart" class="form-control" type="date" />
-          <input name="careerEnd" id="careerEnd" class="form-control" type="date" />
+          <input name="careerStart" id="careerStart" class="form-control" type="date" value="0001-01-01" />
+          <input name="careerEnd" id="careerEnd" class="form-control" type="date" value="0001-01-01"/>
         </div>
       </div>
     </div>

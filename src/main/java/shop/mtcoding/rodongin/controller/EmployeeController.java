@@ -1,5 +1,7 @@
 package shop.mtcoding.rodongin.controller;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
+import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.employee.EmployeeCareer;
 import shop.mtcoding.rodongin.model.employee.EmployeeGraduate;
@@ -60,9 +63,15 @@ public class EmployeeController {
         Employee principal = MySession.MyPrincipal(session);
 
         if (principal == null) {
-            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
         employeeService.개인정보추가(employeeGraduate, employeeCareer, employeeLicense, employeeStack, principal.getId());
+        if (employeeCareer.getCareerStart().toString().equals("0001-01-01")) {
+            employeeCareer.setCareerStart(null);
+        }
+        if (employeeCareer.getCareerEnd().toString().equals("0001-01-01")) {
+            employeeCareer.setCareerEnd(null);
+        }
 
         return "redirect:/employee/" + id;
     }

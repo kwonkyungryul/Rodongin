@@ -54,6 +54,7 @@ public class EmployeeService {
         if (result != 1) {
             throw new CustomException("최종학력 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
         int result2 = employeeCareerRepository.insert(employeeCareer, principalId);
         if (result2 != 1) {
             throw new CustomException("경력 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
