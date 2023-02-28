@@ -9,14 +9,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeJoinReqDto;
-import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeLoginReqDto;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
+import shop.mtcoding.rodongin.service.employee.EmployeeService;
 
 @Controller
 public class EmployeeController {
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -65,12 +69,10 @@ public class EmployeeController {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
 
-        Employee principal = employeeRepository.findByEmployeeNameAndPassword(employeeLoginReqDto);
-
-        if (principal == null) {
-            throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
-        }
-
+        // if (principal == null) {
+        // throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
+        // }
+        Employee principal = employeeService.로그인(employeeLoginReqDto);
         session.setAttribute("principal", principal);
 
         return "redirect:/";

@@ -5,8 +5,12 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.employee.EmployeeRepository">
 
+    <select id="findByEmployeeName" resultType="shop.mtcoding.rodongin.model.employee.Employee">
+        SELECT * FROM EMPLOYEE WHERE employee_name = #{employeeName}
+    </select>
+
     <select id="findByEmployeeNameAndPassword" resultType="shop.mtcoding.rodongin.model.employee.Employee">
-        SELECT * FROM EMPLOYEE WHERE employee_name = #{employeeName} and employee_password = #{employeePassword}
+        SELECT * FROM EMPLOYEE WHERE employee_name = #{employeeLoginReqDto.employeeName} and employee_password = #{employeeLoginReqDto.employeePassword}
     </select>
 
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.employee.Employee">

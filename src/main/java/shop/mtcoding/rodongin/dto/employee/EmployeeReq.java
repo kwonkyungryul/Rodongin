@@ -1,4 +1,4 @@
-package shop.mtcoding.rodongin.dto;
+package shop.mtcoding.rodongin.dto.employee;
 
 import java.sql.Date;
 

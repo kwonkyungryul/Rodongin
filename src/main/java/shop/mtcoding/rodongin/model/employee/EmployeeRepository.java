@@ -7,10 +7,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeLoginReqDto;
 
 @Mapper
 public interface EmployeeRepository {
+    public Employee findByEmployeeName(String employeeName);
 
     public Employee findByEmployeeNameAndPassword(EmployeeLoginReqDto employeeLoginReqDto);
 
@@ -18,7 +20,7 @@ public interface EmployeeRepository {
 
     public Employee findById(int id);
 
-    public int insert(EmployeeLoginReqDto employeeLoginReqDto);
+    public int insert(EmployeeJoinReqDto employeejoinReqDto);
 
     // public int insert(@Param("employeeName") String employeeName,
     // @Param("employeePassword") String employeePassword,
