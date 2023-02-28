@@ -35,10 +35,11 @@ public class EmployeeService {
 
     @Transactional
     public void 회원정보수정(EmployeeUpdatdReq employeeUpdatdReq, int principalId) {
-        String thumbnail = HtmlParser.getThumbnail(employeeUpdatdReq.getEmployeeInfoThumbnail());
+        // String thumbnail =
+        // HtmlParser.getThumbnail(employeeUpdatdReq.getEmployeeInfoThumbnail());
 
         try {
-            employeeRepository.updateById(principalId, employeeUpdatdReq, thumbnail);
+            employeeRepository.updateById(principalId, employeeUpdatdReq);
 
         } catch (Exception e) {
             throw new CustomApiException("회원정보 수정에 실패하였습니다", HttpStatus.INTERNAL_SERVER_ERROR);

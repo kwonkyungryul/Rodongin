@@ -16,8 +16,7 @@ public interface EmployeeRepository {
 
     public int insert();
 
-    public int updateById(@Param("id") int id, @Param("employeeUpdatdReq") EmployeeUpdatdReq employeeUpdatdReq,
-            @Param("employeeInfoThumbnail") String employeeInfoThumbnail);
+    public int updateById(@Param("id") int id, @Param("employeeUpdatdReq") EmployeeUpdatdReq employeeUpdatdReq);
 
     public int deleteById(int id);
 }

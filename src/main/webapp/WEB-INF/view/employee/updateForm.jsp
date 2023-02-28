@@ -81,23 +81,24 @@
           alert(err.responseJSON.msg);
         });
       }
-      function chooseImage(obj) {
-        //console.log(obj);
-        //console.log(obj.files);
-        let f = obj.files[0];
-        if (!f.type.match("image.*")) {
-          alert("이미지를 등록해야 합니다.");
-          return;
-        }
-        let reader = new FileReader();
-        reader.readAsDataURL(f);
-        // 콜스택이 다 비워지고, 이벤트 루프로 가서 readAsDataURL 이벤트가 끝나면 콜백시켜주는 함수
-        reader.onload = function (e) {
-          console.log(e);
-          console.log(e.target.result);
-          $("#imagePreview").attr("src", e.target.result);
-        }
-      }
+      // }
+      // function chooseImage(obj) {
+      //   //console.log(obj);
+      //   //console.log(obj.files);
+      //   let f = obj.files[0];
+      //   if (!f.type.match("image.*")) {
+      //     alert("이미지를 등록해야 합니다.");
+      //     return;
+      //   }
+      //   let reader = new FileReader();
+      //   reader.readAsDataURL(f);
+      //   // 콜스택이 다 비워지고, 이벤트 루프로 가서 readAsDataURL 이벤트가 끝나면 콜백시켜주는 함수
+      //   reader.onload = function (e) {
+      //     console.log(e);
+      //     console.log(e.target.result);
+      //     $("#imagePreview").attr("src", e.target.result);
+      //   }
+      // }
     </script>
 
     <form action="/employee/${id}/save" method="post">
