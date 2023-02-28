@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
+import shop.mtcoding.rodongin.util.HtmlParser;
 
 @Service
 public class EmployeeService {
@@ -15,12 +16,13 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
     public void 회원정보수정(EmployeeUpdatdReq employeeUpdatdReq, int principalId) {
+        String thumbnail = HtmlParser.getThumbnail(employeeUpdatdReq.getEmployeeInfoThumbnail());
 
         try {
-            employeeRepository.updateById(principalId, employeeUpdatdReq);
+            employeeRepository.updateById(principalId, employeeUpdatdReq, thumbnail);
 
         } catch (Exception e) {
-            throw new CustomApiException("게시글을 수정에 실패하였습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomApiException("회원정보 수정에 실패하였습니다", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

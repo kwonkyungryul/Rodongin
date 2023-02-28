@@ -26,6 +26,7 @@ import shop.mtcoding.rodongin.model.master.SchoolMasterRepository;
 import shop.mtcoding.rodongin.model.master.StackMaster;
 import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.service.EmployeeService;
+import shop.mtcoding.rodongin.util.MySession;
 
 @Controller
 public class EmployeeController {
@@ -50,13 +51,8 @@ public class EmployeeController {
     @PutMapping("/employee/{id}")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody EmployeeUpdatdReq employeeUpdateReq) {
 
-        Employee emp = new Employee();
-        emp.setId(1);
-        emp.setEmployeeName("ssar");
-        emp.setEmployeePassword("1234");
-        session.setAttribute("principal", emp);
+        Employee principal = MySession.MyPrincipal(session);
 
-        Employee principal = (Employee) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }

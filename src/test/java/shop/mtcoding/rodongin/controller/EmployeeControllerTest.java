@@ -61,8 +61,8 @@ public class EmployeeControllerTest {
         employeeUpdatdReq.setEmployeePassword("1234");
         employeeUpdatdReq.setEmployeeEmail("ssar@nate.com");
         employeeUpdatdReq.setEmployeeBirth(date);
-        employeeUpdatdReq.setEmployeeTel("01011awd11");
-        employeeUpdatdReq.setEmployeeAddress("서울특별시sdfsdfsdfadf 강남구");
+        employeeUpdatdReq.setEmployeeTel("01022222222");
+        employeeUpdatdReq.setEmployeeAddress("부산 진구 부전동");
 
         String requestBody = om.writeValueAsString(employeeUpdatdReq);
         System.out.println("테스트 : " + requestBody);

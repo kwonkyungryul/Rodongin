@@ -15,5 +15,6 @@ public class EmployeeReq {
         private Date employeeBirth;
         private String employeeTel;
         private String employeeAddress;
+        private String employeeInfoThumbnail;
     }
 }
