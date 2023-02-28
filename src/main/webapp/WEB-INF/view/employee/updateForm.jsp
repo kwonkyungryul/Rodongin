@@ -43,8 +43,9 @@
         <div class="d-flex align-items-center">
           <div class="my_info_thumbnail me-4">
             <div class="form-group">
-              <img src="${employee.employeeThumbnail == null ? '/images/KakaoTalk_20230104_161540633_02.jpg' : employee.employeeThumbnail}" alt="Current Photo"
-                class="img-fluid" id="imagePreview">
+              <img
+                src="${employee.employeeThumbnail == null ? '/images/KakaoTalk_20230104_161540633_02.jpg' : employee.employeeThumbnail}"
+                alt="Current Photo" class="img-fluid" id="imagePreview">
             </div>
             <input type="file" class="card-img-top" id="profile" name="profile" onchange="chooseImage(this)">
           </div>
@@ -99,51 +100,86 @@
       }
     </script>
 
-    <div class="my_info_insert">
-      <div class="mb-3">
-        <div>
-          <span class="main_yellow_label mb-2">최종학력</span>
-        </div>
-        <div class="d-flex">
-          <select name="schoolId" id="" class="main_select_box_school">
-            <c:forEach items="${schools}" var="school">
-              <option value="${school.id}">${school.schoolName}</option>
-            </c:forEach>
-          </select>
+    <form action="/employee/${id}/save" method="post">
+      <div class="my_info_insert">
+        <div class="mb-3">
           <div>
-            <select name="" id="" class="main_select_box p-2">
-              <option value="">고등학교 졸업</option>
-              <option value="">대학 (2,3년)</option>
-              <option value="">대학교 (4년)</option>
-            </select>
+            <span class="main_yellow_label mb-2">최종학력</span>
           </div>
+          <div class="d-flex">
+            <select name="schoolId" id="schoolId" class="main_select_box_school">
+              <c:forEach items="${schools}" var="school">
+                <option value="${school.id}">${school.schoolName}</option>
+              </c:forEach>
+            </select>
+            <div>
+              <select name="schoolGraduate" id="schoolGraduate" class="main_select_box p-2">
+                <option value="고등학교 졸업">고등학교 졸업</option>
+                <option value="대학 (2,3년)">대학 (2,3년)</option>
+                <option value="대학교 (4년)">대학교 (4년)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    </form>
+
+    <div class="mb-3">
+      <div class="d-flex mb-2">
+        <span class="main_yellow_label">경력사항</span>
+        <div class="form-check my_check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
         </div>
       </div>
+      <div class="align-items-center d-flex mb-2">
+        <div class="AA"></div>
+        <span class="my_list">회사명</span>
+        <input name="careerCompany" id="careerCompany" class="form-control my_career_input" type="text" />
+      </div>
+      <div class="align-items-center d-flex mb-2">
+        <div class="AA"></div>
+        <span class="my_list">재직기간</span>
+        <div class="d-flex my_career_input">
+          <input name="careerStart" id="careerStart" class="form-control" type="date" />
+          <input name="careerEnd" id="careerEnd" class="form-control" type="date" />
+        </div>
+      </div>
+    </div>
 
-      <div class="mb-3">
-        <div class="d-flex mb-2">
-          <span class="main_yellow_label">경력사항</span>
-          <div class="form-check my_check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+    <div>
+      <div class="d-flex mb-2">
+        <span class="main_yellow_label">자격증</span>
+        <div class="form-check my_check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+        </div>
+      </div>
+      <div class="mb-1">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="d-flex align-items-center mb-2">
+              <div class="AA"></div>
+              <span class="my_list">자격증명</span>
+              <select name="licenseId" id="licenseId" class="main_select_box_title">
+                <c:forEach items="${licenses}" var="license">
+                  <option value="${license.id}">${license.licenseName}</option>
+                </c:forEach>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="align-items-center d-flex mb-2">
-          <div class="AA"></div>
-          <span class="my_list">회사명</span>
-          <input class="form-control my_career_input" type="text" />
-        </div>
-        <div class="align-items-center d-flex mb-2">
-          <div class="AA"></div>
-          <span class="my_list">재직기간</span>
-          <input class="form-control my_career_input" type="text" />
+          <div class="col-6 col-md-8">
+            <div class="d-flex align-items-center">
+              <div class="AA"></div>
+              <span class="my_list">발행처</span>
+              <input name="licenseIssuer" id="licenseIssuer" class="form-control my_util" type="text" />
+            </div>
+          </div>
         </div>
       </div>
 
       <div>
         <div class="d-flex mb-2">
-          <span class="main_yellow_label">자격증</span>
+          <span class="main_yellow_label">기술스텍</span>
           <div class="form-check my_check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" />
           </div>
         </div>
         <div class="mb-1">
@@ -151,10 +187,10 @@
             <div class="col-md-4">
               <div class="d-flex align-items-center mb-2">
                 <div class="AA"></div>
-                <span class="my_list">자격증명</span>
-                <select name="" id="" class="main_select_box_title">
-                  <c:forEach items="${licenses}" var="license">
-                    <option value="${license.id}">${license.licenseName}</option>
+                <span class="my_list">기술명</span>
+                <select name="stackId" id="stackId" class="main_select_box_title">
+                  <c:forEach items="${stacks}" var="stack">
+                    <option value="${stack.id}">${stack.stackName}</option>
                   </c:forEach>
                 </select>
               </div>
@@ -162,50 +198,20 @@
             <div class="col-6 col-md-8">
               <div class="d-flex align-items-center">
                 <div class="AA"></div>
-                <span class="my_list">발행처</span>
-                <input class="form-control my_util" type="text" />
+                <span class="my_list">활용도</span>
+                <input name="stackAcquistion" id="stackAcquistion" class="form-control my_util" type="text" />
               </div>
             </div>
           </div>
         </div>
 
-
-        <div>
-          <div class="d-flex mb-2">
-            <span class="main_yellow_label">기술스텍</span>
-            <div class="form-check my_check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-            </div>
-          </div>
-          <div class="mb-1">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="d-flex align-items-center mb-2">
-                  <div class="AA"></div>
-                  <span class="my_list">기술명</span>
-                  <select name="" id="" class="main_select_box_title">
-                    <c:forEach items="${stacks}" var="stack">
-                      <option value="${stack.id}">${stack.stackName}</option>
-                    </c:forEach>
-                  </select>
-                </div>
-              </div>
-              <div class="col-6 col-md-8">
-                <div class="d-flex align-items-center">
-                  <div class="AA"></div>
-                  <span class="my_list">활용도</span>
-                  <input class="form-control my_util" type="text" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div class="button_center">
-        <a href=""></a>
-        <a href="" class="main_blue_btn" type="submit">등록</a>
       </div>
     </div>
+    <div class="button_center">
+      <button class="main_blue_btn" type="submit">등록</button>
+    </div>
+    </div>
+    </form>
+
 
     <%@ include file="../layout/footer.jsp" %>

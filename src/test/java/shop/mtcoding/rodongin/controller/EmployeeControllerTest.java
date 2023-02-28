@@ -1,5 +1,6 @@
 package shop.mtcoding.rodongin.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -77,5 +78,26 @@ public class EmployeeControllerTest {
         // then
         resultActions.andExpect(status().isOk());
         // resultActions.andExpect(jsonPath("$.code").value(1));
+    }
+
+    @Test
+    public void save_test() throws Exception {
+        // given
+        String title = "";
+        for (int i = 0; i < 99; i++) {
+            title += "가";
+        }
+
+        String requestBody = "title=" + title + "&content=내용1";
+        // when
+        ResultActions resultActions = mvc.perform(
+                post("/board")
+                        .content(requestBody)
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                        .session(mockSession));
+
+        // then
+        resultActions.andExpect(status().is3xxRedirection());
+
     }
 }

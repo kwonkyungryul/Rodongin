@@ -15,10 +15,11 @@ public class EmployeeGraduate {
     private Integer schoolId;
     private String schoolGraduate;
     private Timestamp createdAt;
+
     public EmployeeGraduate(Integer employeeId, Integer schoolId, String schoolGraduate) {
         this.employeeId = employeeId;
         this.schoolId = schoolId;
         this.schoolGraduate = schoolGraduate;
     }
-    
+
 }

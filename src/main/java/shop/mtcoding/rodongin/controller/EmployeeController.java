@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,7 +19,11 @@ import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.model.employee.Employee;
+import shop.mtcoding.rodongin.model.employee.EmployeeCareer;
+import shop.mtcoding.rodongin.model.employee.EmployeeGraduate;
+import shop.mtcoding.rodongin.model.employee.EmployeeLicense;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
+import shop.mtcoding.rodongin.model.employee.EmployeeStack;
 import shop.mtcoding.rodongin.model.master.LicenseMaster;
 import shop.mtcoding.rodongin.model.master.LicenseMasterRepository;
 import shop.mtcoding.rodongin.model.master.SchoolMaster;
@@ -47,6 +52,20 @@ public class EmployeeController {
 
     @Autowired
     HttpSession session;
+
+    @PostMapping("/employee/{id}/save")
+    public String save(@PathVariable int id, EmployeeGraduate employeeGraduate, EmployeeCareer employeeCareer,
+            EmployeeLicense employeeLicense, EmployeeStack employeeStack) {
+
+        Employee principal = MySession.MyPrincipal(session);
+
+        if (principal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        employeeService.개인정보추가(employeeGraduate, employeeCareer, employeeLicense, employeeStack, principal.getId());
+
+        return "redirect:/employee/" + id;
+    }
 
     @PutMapping("/employee/{id}")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody EmployeeUpdatdReq employeeUpdateReq) {
