@@ -29,14 +29,21 @@
             <div class="header-top d-flex justify-content-between align-items-center mt-1">
                 <div class="logo fs-1 fw-bold font_color_point"><img src="/images/Logo.png" alt="" style="width: 170px; height: 39px;"></div>
                 <div class="d-flex">
-                    <!-- <div class="buttons pe-3"><a href="#"><b>로그인</b></a></div>
-                    <div class="buttons"><a href="#"><b>회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></div> -->
+                    <c:choose>
+                       <c:when test="${principal == null}">
+                        <div class="buttons pe-3"><a href="/loginForm"><b>로그인</b></a></div>
+                        <div class="buttons"><a href="#"><b>회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></div>
+                       </c:when>
+                    
+                       <c:otherwise>
+                        <div class="buttons pe-2">
+                            <div class="" style="border-radius: 50%; width: 30px; height: 30px; background-color: #fff;"></div>
+                        </div>
+                        <div class="buttons pe-3">권경렬</div>
+                        <div class="buttons"><a href="/logout"><b>로그아웃</b></a></div>
+                       </c:otherwise>
+                    </c:choose>
 
-                    <div class="buttons pe-2">
-                        <div class="" style="border-radius: 50%; width: 30px; height: 30px; background-color: #fff;"></div>
-                    </div>
-                    <div class="buttons pe-3">권경렬</div>
-                    <div class="buttons"><a href="#"><b>로그아웃</b></a></div>
 
                 </div>
             </div>

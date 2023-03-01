@@ -25,7 +25,8 @@ public class EmployeeReq {
         private String employeeTel;
         private String employeeGender;
         private String employeeAddress;
-
+    }
+    
     @Getter
     @Setter
     public static class EmployeeUpdatdReq {

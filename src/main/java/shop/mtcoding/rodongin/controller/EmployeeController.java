@@ -1,13 +1,11 @@
 package shop.mtcoding.rodongin.controller;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,21 +15,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
+import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeLoginReqDto;
-import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
-import shop.mtcoding.rodongin.dto.ResponseDto;
+import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.employee.EmployeeCareer;
 import shop.mtcoding.rodongin.model.employee.EmployeeGraduate;
 import shop.mtcoding.rodongin.model.employee.EmployeeLicense;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
-
-
+import shop.mtcoding.rodongin.model.employee.EmployeeStack;
+import shop.mtcoding.rodongin.model.master.LicenseMaster;
+import shop.mtcoding.rodongin.model.master.LicenseMasterRepository;
+import shop.mtcoding.rodongin.model.master.SchoolMaster;
+import shop.mtcoding.rodongin.model.master.SchoolMasterRepository;
+import shop.mtcoding.rodongin.model.master.StackMaster;
+import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.service.employee.EmployeeService;
+import shop.mtcoding.rodongin.util.MySession;
 
 @Controller
 public class EmployeeController {
@@ -62,6 +65,7 @@ public class EmployeeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
+        
         employeeService.개인정보추가(employeeGraduate, employeeCareer, employeeLicense, employeeStack, principal.getId());
         if (employeeCareer.getCareerStart().toString().equals("0001-01-01")) {
             employeeCareer.setCareerStart(null);
@@ -105,15 +109,6 @@ public class EmployeeController {
 
         return new ResponseEntity<>(new ResponseDto<>(1, "회원정보 수정 완료!", null), HttpStatus.OK);
     }
-
-    @Autowired
-    private EmployeeService employeeService;
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    @Autowired
-    private HttpSession session;
 
     @PostMapping("/employee/join")
     public String join(EmployeeJoinReqDto employeeJoinReqDto) throws Exception {
