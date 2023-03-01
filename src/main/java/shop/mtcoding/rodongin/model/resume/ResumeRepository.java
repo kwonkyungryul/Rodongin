@@ -7,6 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ResumeRepository {
 
-    List<Resume> findById(int employeeId);
-    
+    public List<Resume> findByEmpId(int employeeId);
+
+    public Resume findById(int Id);
+
+    public int deleteById(int id);
+ 
 }

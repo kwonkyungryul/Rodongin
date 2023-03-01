@@ -5,8 +5,16 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.resume.ResumeRepository">
 
-    <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
+    <select id="findByEmpId" resultType="shop.mtcoding.rodongin.model.resume.Resume">
         SELECT * FROM RESUME where EMPLOYEE_ID = #{employeeId}
     </select>
+
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
+        SELECT * FROM RESUME where Id = #{Id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM resume WHERE id = #{id}
+    </delete>
 
 </mapper>

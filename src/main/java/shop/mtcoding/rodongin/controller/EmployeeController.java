@@ -79,6 +79,8 @@ public class EmployeeController {
     @Autowired
     private ResumeRepository resumeRepository;
 
+
+
     @PostMapping("/employee/{id}/save")
     public String save(@PathVariable int id, EmployeeGraduate employeeGraduate, EmployeeCareer employeeCareer,
             EmployeeLicense employeeLicense, EmployeeStack employeeStack) {
@@ -179,7 +181,7 @@ public class EmployeeController {
         List<StackRespDto> empStack = employeeStackRepository.findById(principal.getId());
         model.addAttribute("empStack", empStack);
 
-        List<Resume> resumes = resumeRepository.findById(principal.getId());
+        List<Resume> resumes = resumeRepository.findByEmpId(principal.getId());
         model.addAttribute("resumes", resumes);
 
     

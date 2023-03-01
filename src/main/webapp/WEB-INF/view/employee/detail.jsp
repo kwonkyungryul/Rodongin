@@ -158,19 +158,19 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
         </div>
     </div>
 
-    <c:forEach items="${resumes}" var="resumes">
-        <div class="my_yellow_box mb-3">
+    <c:forEach items="${resumes}" var="resume">
+        <div id="resume-${resume.id}" class="my_yellow_box mb-3">
             <div class="my_info_box_margin">
                 <div class="d-flex justify-content-between">
                     <div class="col-sm-9">
                         <div class="row my_end">
                             <div class="col-8 col-sm-6">
                                 <div class="my_name" style="display: inline-block">
-                                    <h4>${resumes.resumeTitle}</h4>
+                                    <h4>${resume.resumeTitle}</h4>
                                 </div>
                                 <div>
                                     <span class="my_info_title">희망연봉</span>
-                                    <span class="my_info">${resumes.resumeSalary} (만원)</span>
+                                    <span class="my_info">${resume.resumeSalary} (만원)</span>
                                 </div>
                                 <div>
                                     <span class="my_info_title">최종학력</span>
@@ -195,7 +195,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
                     </div>
                     <div class="col-sm-2">
                         <a href=""></a>
-                        <a href="" class="my_main_blue_btn" type="submit">삭제</a>
+                        <a href="" onClick="deleteByResumeId(${resume.id})"" class="my_main_blue_btn" type="submit">삭제</a>
                     </div>
                 </div>
             </div>
@@ -203,11 +203,28 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     </c:forEach>
     <div>
         <div class="button_center d-flex justify-content-center">
-            <a href="" class="main_blue_btn" type="submit">이력서 등록</a>
+            <button class="main_blue_btn" type="submit">이력서 등록</button>
         </div>
     </div>
     </div>
   </div>
   </div>
+
+<script>
+    function deleteByResumeId(resumeId) {
+        $.ajax({
+            type: "delete",
+            url: "/resume/" + resumeId,
+            dataType: "json",
+        })
+            done((res) => { // 20X일 때
+            alert(res.msg);
+            $("resume-${resume.id}").remove();
+        })
+            .fail((err) => { // 40X, 50X일 때
+            alert(err.responseJSON.msg);
+        })
+    }
+</script>
 
 <%@ include file="../layout/footer.jsp" %>
