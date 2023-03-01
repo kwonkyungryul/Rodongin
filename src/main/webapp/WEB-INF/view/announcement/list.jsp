@@ -114,7 +114,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
           <strong class="my_sstrong">${list.id}</strong>
         </div>
         <span class="my_span">${list.announcementTitle}</span>
-        <span class="my_span2">${list.companyFullname}</span> //!!
+        <span class="my_span2">${list.companyFullname}</span> 
       </button>
     </h2>
     <div
