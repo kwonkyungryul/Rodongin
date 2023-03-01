@@ -73,7 +73,7 @@ VALUES
 (6, 'SK 하이닉스', '2020-02-01', '2022-01-31', NOW());
 
 -- employee의 자격증 테이블
-INSERT INTO emp_license (employee_id, license_id, license_issuer, created_at)
+INSERT INTO employee_license (employee_id, license_id, license_issuer, created_at)
 VALUES
     (1, 1, '한국산업인력공단', NOW()),
     (1, 2, '한국산업인력공단', NOW()),
@@ -87,7 +87,7 @@ VALUES
     (5, 2, '한국산업인력공단', NOW());
 
 -- employee의 기술스택 테이블
-INSERT INTO emp_stack (employee_id, stack_id, stack_acquisition, created_at) VALUES 
+INSERT INTO employee_stack (employee_id, stack_id, stack_acquistion, created_at) VALUES 
 (1, 1, '2020-01-01', NOW()),
 (1, 2, '2019-05-01', NOW()),
 (2, 1, '2021-02-01', NOW()),

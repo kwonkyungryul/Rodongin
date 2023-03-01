@@ -25,5 +25,16 @@ public class EmployeeReq {
         private String employeeTel;
         private String employeeGender;
         private String employeeAddress;
+
+    @Getter
+    @Setter
+    public static class EmployeeUpdatdReq {
+        private String employeePassword;
+        private String employeeEmail;
+        private Date employeeBirth;
+        private String employeeTel;
+        private String employeeAddress;
+        private String employeeInfoThumbnail;
+
     }
 }

@@ -17,9 +17,10 @@
         SELECT * FROM employee
     </select>
 
-    <select id="findByID" resultType="shop.mtcoding.rodongin.model.employee.Employee">
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.employee.Employee">
         SELECT * FROM employee WHERE id = #{id}
     </select>
+
 
     <insert id="insert">
         INSERT INTO employee (
@@ -32,10 +33,16 @@
     </insert>
 
     <delete id="deleteById">
-        DELETE FROM employee WHERE id = #{id}
+        DELETE FROM Employee WHERE id = #{id}
     </delete>
 
-
-
-
+    <update id="updateById">
+        update employee
+        set employee_password = #{employeeUpdatdReq.employeePassword}
+        ,employee_email = #{employeeUpdatdReq.employeeEmail}
+        ,employee_birth = #{employeeUpdatdReq.employeeBirth}
+        ,employee_tel = #{employeeUpdatdReq.employeeTel}
+        ,employee_address= #{employeeUpdatdReq.employeeAddress}
+        where id = #{id}
+    </update>
 </mapper>
