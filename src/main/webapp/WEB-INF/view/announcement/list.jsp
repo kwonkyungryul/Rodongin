@@ -23,7 +23,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <div class="my_card">
   <div class="card">
     <img
-      src="${list[0].companyThumbnail}"
+      src="${listview[0].companyThumbnail}"
       class="card-img-top"
       alt="Card image"
     />
