@@ -28,8 +28,9 @@ public class EmployeeController {
     @Autowired
     private HttpSession session;
 
-    @PostMapping("/employee/joinForm")
+    @PostMapping("/employee/join")
     public String join(EmployeeJoinReqDto employeeJoinReqDto) throws Exception {
+
         if (employeeJoinReqDto.getEmployeeName() == null || employeeJoinReqDto.getEmployeeName().isEmpty()) {
             throw new CustomException("아이디를 작성해주세요");
         }
@@ -55,8 +56,18 @@ public class EmployeeController {
             throw new CustomException("주소를 작성해주세요");
         }
 
-        // employeeService.회원가입(employeeJoinReqDto)
-        return "employee/joinForm";
+        String email = employeeJoinReqDto.getEmployeeEmail().replaceAll(",", "");
+        // System.out.println(email);
+        employeeJoinReqDto.setEmployeeEmail(email);
+
+        String tel = employeeJoinReqDto.getEmployeeTel().replaceAll(",", "");
+        employeeJoinReqDto.setEmployeeTel(tel);
+
+        String address = employeeJoinReqDto.getEmployeeAddress().replaceAll(",", "");
+        employeeJoinReqDto.setEmployeeAddress(address);
+
+        employeeService.회원가입(employeeJoinReqDto);
+        return "redirect:/loginForm";
     }
 
     // employee 로그인요청

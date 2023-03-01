@@ -10,7 +10,7 @@
     </select>
 
     <select id="findByEmployeeNameAndPassword" resultType="shop.mtcoding.rodongin.model.employee.Employee">
-        SELECT * FROM EMPLOYEE WHERE employee_name = #{employeeLoginReqDto.employeeName} and employee_password = #{employeeLoginReqDto.employeePassword}
+        SELECT * FROM EMPLOYEE WHERE employee_name = #{employeeName} and employee_password = #{employeePassword}
     </select>
 
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.employee.Employee">
@@ -23,37 +23,19 @@
 
     <insert id="insert">
         INSERT INTO employee (
-            employee_name, employee_password, employee_fullname, employee_email,
-            employee_tel, employee_gender, employee_birth, employee_address,
-            employee_info_thumbnail, created_at
+            employee_name, employee_password, employee_email, employee_fullname,
+            employee_birth, employee_tel, employee_gender, employee_address, created_at
         ) VALUES (
-            #{employeeName}, #{employeePassword}, #{employeeFullname}, #{employeeEmail},
-            #{employeeTel}, #{employeeGender}, #{employeeBirth}, #{employeeAddress},
-            #{employeeInfoThumbnail}, now()
-            )
+            #{employeeName}, #{employeePassword}, #{employeeEmail}, #{employeeFullname},
+            #{employeeBirth}, #{employeeTel}, #{employeeGender}, #{employeeAddress}, now()
+        )
     </insert>
 
     <delete id="deleteById">
         DELETE FROM employee WHERE id = #{id}
     </delete>
 
-    <update id="updateById">
-        UPDATE employee SET
-            employee_name = #{employeeName},
-            employee_password = #{employeePassword},
-            employee_fullname = #{employeeFullname},
-            employee_email = #{employeeEmail},
-            employee_tel = #{employeeTel},
-            employee_gender = #{employeeGender},
-            employee_birth = #{employeeBirth},
-            employee_address = #{employeeAddress},
-            employee_info_thumbnail = #{employeeInfoThumbnail},
-            created_at = now()
-        WHERE id = #{id}
-    </update>
 
-    <update id="updateToQty">
-        UPDATE employee WHERE id = #{id}
-    </update>
+
 
 </mapper>

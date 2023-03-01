@@ -20,16 +20,8 @@ public class EmployeeService {
 
     @Transactional
     public void 회원가입(EmployeeJoinReqDto employeeJoinReqDto) {
+
         Employee sameEmployee = employeeRepository.findByEmployeeName(employeeJoinReqDto.getEmployeeName());
-
-        // if (sameEmployee != null) {
-        // throw new CustomException("동일한 아이디가 존재합니다");
-        // }
-        // int result = employeeRepository.insert(employeeJoinReqDto);
-
-        // if (result != 1) {
-        // throw new CustomException("회원가입실패");
-        // }
 
         if (sameEmployee != null) {
             throw new CustomException("동일한 username이 존재합니다");
@@ -42,12 +34,15 @@ public class EmployeeService {
             throw new CustomException("비밀번호 해싱 오류", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         employeeJoinReqDto.setEmployeePassword(encodedPassword);
+        // System.out.println("테스트");
 
+        employeeRepository.insert(employeeJoinReqDto);
         try {
-            employeeRepository.insert(new EmployeeJoinReqDto());
+
         } catch (Exception e) {
             throw new CustomException("일시적인 서버 에러입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
     }
 
     @Transactional

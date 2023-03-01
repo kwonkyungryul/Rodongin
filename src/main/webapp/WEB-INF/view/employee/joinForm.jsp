@@ -7,7 +7,7 @@
         <br />
         <div class="d-flex justify-content-center" style="width: 100%;">
             <div class="" style="width: 30%">
-                <form>
+                <form action="/employee/join" method="post">
                     <div class="mb-4">
                         <h3>
                             개인 회원가입
@@ -19,7 +19,7 @@
                             <div class="main_yellow_label mb-1">아이디</div>
                             <div class="mb-2">
                                 <input class="form-control" type="text" id="employee_username" placeholder="아이디를 입력하세요"
-                                    name="employee_username" required>
+                                    name="employeeName" required>
                             </div>
                         </div>
 
@@ -27,11 +27,11 @@
                             <div class="main_yellow_label mb-1">비밀번호</div>
                             <div class="mb-1">
                                 <input class="form-control" type="password" id="employee_password"
-                                    placeholder="비밀번호를 입력하세요" name="employee_password" required>
+                                    placeholder="비밀번호를 입력하세요" name="employeePassword" required>
                             </div>
                             <div class="mb-2">
                                 <input class="form-control" type="password" id="employee_repassword" placeholder="비밀번호 확인"
-                                    name="employee_repassword" required>
+                                    required>
                             </div>
                         </div>
 
@@ -39,29 +39,29 @@
                             <div class="main_yellow_label mb-1">이메일</div>
                             <div class="my_flex mb-2">
                                 <input class="form-control d-inline-flex" style="width: 60%;" type="text"
-                                    id="employee_email" placeholder="이메일을 입력하세요" name="employee_email" required>
-                                <select id="email_class" class="main_select_box p-1" style="width: 38.8%">
+                                    id="employeeEmail" placeholder="이메일을 입력하세요" name="employeeEmail" required>
+                                <select id="email_class" name="employeeEmail" class="main_select_box p-1" style="width: 38.8%">
                                     <option value="@naver.com">naver.com</option>
                                     <option value="@nate.com">nate.com</option>
                                     <option value="@gmail.com">gmail.com</option>
                                     <option value="@daum.net">daum.net</option>
-                                    <option value="@naver.com">naver.com</option>
+                                    <option value="@hanmail.net">hanmail.net</option>
                                 </select>
                             </div>
                         </div>
                         <div class="mb-1">
                             <div class="main_yellow_label mb-1">이름</div>
                             <input class="form-control mb-2" type="text" id="employee_fullname" placeholder="이름을 입력하세요"
-                                name="employee_fullname" required>
+                                name="employeeFullname" required>
                         </div>
 
                         <div class="mb-1">
                             <div class="main_yellow_label mb-1">생일</div>
-                            <input class="form-control mb-2" type="date" id="employee_birth" name="employee_birth"></label>
+                            <input class="form-control mb-2" type="date" id="employee_birth" name="employeeBirth"></label>
                         </div>
                         <div class="mb-1">
                             <div class="main_yellow_label mb-1">연락처</div><br />
-                            <select id="employee_tel_first" class="main_select_box me-1 p-1" style="width: 25%">
+                            <select name="employeeTel" id="employee_tel_first" class="main_select_box me-1 p-1" style="width: 25%">
                                 <option value="010">010</option>
                                 <option value="016">016</option>
                                 <option value="011">011</option>
@@ -74,16 +74,16 @@
                                 <option value="032">032</option>
                             </select>
                             <input class="form-control d-inline-flex mb-2" style="width: 72.5%;" type="tel"
-                                id="employee_tel_last" placeholder="'-'없이 입력해주세요" name="employee_tel_last" required>
+                                id="employee_tel_last" placeholder="'-'없이 입력해주세요" name="employeeTel" required>
                         </div>
                         <div class="mb-1">
                             <div class="main_yellow_label mb-2">성별</div>
                             <div class="d-flex justify-content-end">
                                 <label class="px-4">
-                                    <input type="radio" name="employee_gender" value="male" checked>남성
+                                    <input type="radio" name="employeeGender" value="M" checked>남성
                                 </label>
                                 <label>
-                                    <input type="radio" name="employee_gender" value="female">여성
+                                    <input type="radio" name="employeeGender" value="F">여성
                                 </label>
                             </div>
                         </div>
@@ -91,14 +91,14 @@
                             <div class="main_yellow_label mb-1">주소</div> <br />
                             <div>
                                 <input class="form-control mb-1 d-inline-flex" style="width: 73.5%;" type=" text"
-                                    id="employee_address" placeholder="주소를 입력하세요" name="employee_address" required>
-                                <button type="submit" class="main_gray_btn" style="width: 25%">주소찾기
+                                    id="employee_address" placeholder="주소를 입력하세요" name="employeeAddress" required>
+                                <button type="button" class="main_gray_btn" style="width: 25%">주소찾기
                                 </button>
                             </div>
 
                             <div>
                                 <input class=" form-control mb-2" type="text" id="employee_address_add"
-                                    placeholder="상세주소를 입력하세요" name="employtee_address_add" required>
+                                    placeholder="상세주소를 입력하세요" name="employeeAddress" required>
                             </div>
                         </div>
 

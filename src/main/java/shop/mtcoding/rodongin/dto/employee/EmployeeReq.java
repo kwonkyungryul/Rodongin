@@ -26,5 +26,4 @@ public class EmployeeReq {
         private String employeeGender;
         private String employeeAddress;
     }
-
 }
