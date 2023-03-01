@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyJoinReqDto;
+import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyLoginReqDto;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.company.Company;
 import shop.mtcoding.rodongin.model.company.CompanyRepository;
@@ -16,6 +17,30 @@ public class CompanyService {
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Transactional
+    public Company 로그인(CompanyLoginReqDto companyLoginReqDto) {
+        Company principalPS = companyRepository.findByCompanyUsername(companyLoginReqDto.getCompanyUsername());
+
+        boolean isCheck;
+        try {
+            isCheck = Encode.matches(companyLoginReqDto.getCompanyPassword(), principalPS.getCompanyPassword());
+        } catch (Exception e) {
+            throw new CustomException("???");
+        }
+
+        if (!isCheck) {
+            throw new CustomException("비밀번호가 다릅니다.");
+        }
+        companyLoginReqDto.setCompanyPassword(principalPS.getCompanyPassword());
+
+        Company principal = companyRepository.findByCompanyNameAndPassword(companyLoginReqDto);
+        if (principal == null) {
+            throw new CustomException("일치하는 회원정보가 없습니다.");
+        }
+        return principal;
+
+    }
 
     @Transactional
     public void 회원가입(CompanyJoinReqDto companyJoinReqDto) {

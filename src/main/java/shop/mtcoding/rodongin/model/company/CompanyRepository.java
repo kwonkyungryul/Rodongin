@@ -13,7 +13,7 @@ import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyLoginReqDto;
 @Mapper
 public interface CompanyRepository {
 
-    public Company findByCompanyUsername(String ConpanyUsername);
+    public Company findByCompanyUsername(String companyUsername);
 
     public Company findByCompanyNameAndPassword(CompanyLoginReqDto companyLoginReqDto);
 
