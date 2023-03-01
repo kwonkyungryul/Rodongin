@@ -5,6 +5,10 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.employee.EmployeeRepository">
 
+    <select id="findByEmployeeName" resultType="shop.mtcoding.rodongin.model.employee.Employee">
+        SELECT * FROM EMPLOYEE WHERE employee_name = #{employeeName}
+    </select>
+
     <select id="findByEmployeeNameAndPassword" resultType="shop.mtcoding.rodongin.model.employee.Employee">
         SELECT * FROM EMPLOYEE WHERE employee_name = #{employeeName} and employee_password = #{employeePassword}
     </select>
@@ -16,6 +20,17 @@
     <select id="findById" resultType="shop.mtcoding.rodongin.model.employee.Employee">
         SELECT * FROM employee WHERE id = #{id}
     </select>
+
+
+    <insert id="insert">
+        INSERT INTO employee (
+            employee_name, employee_password, employee_email, employee_fullname,
+            employee_birth, employee_tel, employee_gender, employee_address, created_at
+        ) VALUES (
+            #{employeeName}, #{employeePassword}, #{employeeEmail}, #{employeeFullname},
+            #{employeeBirth}, #{employeeTel}, #{employeeGender}, #{employeeAddress}, now()
+        )
+    </insert>
 
     <delete id="deleteById">
         DELETE FROM Employee WHERE id = #{id}
