@@ -37,7 +37,8 @@ public interface AnnouncementRepository {
                     @Param("announcementSalary") String announcementSalary,
                     @Param("announcementArea") String announcementArea);
                     
-                    public int updateById(AnnouncementUpdateReqDto announcementUpdateReqDto, int principalId);
+                    public int updateById(@Param("announcementUpdateReqDto")AnnouncementUpdateReqDto announcementUpdateReqDto,
+                                                    @Param("id") int id);
 
     public int deleteById(int id);
 }

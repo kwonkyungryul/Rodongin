@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.rodongin.dto.announcement.AnnouncementReq.AnnouncementSaveReqDto;
+import shop.mtcoding.rodongin.dto.announcement.AnnouncementReq.AnnouncementUpdateReqDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.model.announcement.Announcement;
 import shop.mtcoding.rodongin.model.announcement.AnnouncementRepository;
@@ -59,5 +60,26 @@ public class AnnouncementService {
             throw new CustomApiException("미안하오 서버에 문제가 있소");
         }
 
+}
+
+@Transactional
+public void 게시글수정(int id, AnnouncementUpdateReqDto announcementUpdateReqDto,int principalId) {
+   
+    Announcement announcementPS = announcementRepository.findById(id);
+    if (announcementPS == null) {
+        throw new CustomApiException("해당 게시글을 찾을 수 없당.");
+    }
+    if (announcementPS.getCompanyId() != principalId) {
+        throw new CustomApiException("게시글을 수정할 권한이 없습니다.", HttpStatus.FORBIDDEN);
+    }
+
+    int result = announcementRepository.updateById( 
+       announcementUpdateReqDto, id
+    );
+
+    if (result != 1) {
+        
+        throw new CustomApiException("게시글을 수정에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
 }
