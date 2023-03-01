@@ -49,7 +49,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
   </div>
   <div class="card">
     <img
-      src="${list[2].companyThumbnail}"
+      src="${listview[2].companyThumbnail}"
       class="card-img-top"
       alt="samsung"
     />
