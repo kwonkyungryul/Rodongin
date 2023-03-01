@@ -29,7 +29,6 @@ public class AnnouncementController {
     public String list(Model model){
         List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("stacks", stacks);
-        model.addAttribute("list", companyRepository.findAll());
        model.addAttribute("listview", announcementRepository.findAnnouncementlist());
       
        
