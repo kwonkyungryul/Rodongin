@@ -2,12 +2,12 @@
     <%@ include file="../layout/header.jsp" %>
 
         <link rel="stylesheet" href="/css/joinForm.css">
-        
+
         <br />
         <br />
         <div class="d-flex justify-content-center" style="width: 100%;">
             <div class="" style="width: 30%;">
-                <form>
+                <form action="/company/join" method="post">
                     <div class="mb-4">
                         <h3>
                             기업 회원가입
@@ -19,7 +19,7 @@
                             <div class="main_yellow_label mb-1">아이디</div>
                             <div class="mb-2">
                                 <input class="form-control" type="text" id="company_username" placeholder="아이디를 입력하세요"
-                                    name="company_username" required>
+                                    name="companyUsername" required>
                             </div>
                         </div>
 
@@ -27,11 +27,11 @@
                             <div class="main_yellow_label mb-1">비밀번호</div>
                             <div class="mb-1">
                                 <input class="form-control" type="password" id="company_password"
-                                    placeholder="비밀번호를 입력하세요" name="company_password" required>
+                                    placeholder="비밀번호를 입력하세요" name="companyPassword" required>
                             </div>
                             <div class="mb-2">
                                 <input class="form-control" type="password" id="company_repassword"
-                                    placeholder="비밀번호 확인" name="company_repassword" required>
+                                    placeholder="비밀번호 확인" name="" required>
                             </div>
                         </div>
 
@@ -39,7 +39,7 @@
                             <div class="main_yellow_label mb-1">사업자등록번호</div>
                             <div class=" mb-2">
                                 <input class="form-control" type="text" id="company_license_number"
-                                    placeholder="사업자 등록번호를 입력하세요" name="company_license_number" required>
+                                    placeholder="사업자 등록번호를 입력하세요" name="companyLicenseNumber" required>
                             </div>
                         </div>
 
@@ -47,7 +47,7 @@
                             <div class="main_yellow_label mb-1">대표자 성함</div>
                             <div class=" mb-2">
                                 <input class="form-control" type="text" id="company_ceo_name" placeholder="아이디를 입력하세요"
-                                    name="company_ceo_name" required>
+                                    name="companyCeoName" required>
                             </div>
                         </div>
 
@@ -55,13 +55,13 @@
                             <div class="main_yellow_label mb-1">기업명</div>
                             <div class="mb-2">
                                 <input class="form-control" type="text" id="company_fullname" placeholder="아이디를 입력하세요"
-                                    name="company_fullname" required>
+                                    name="companyFullname" required>
                             </div>
                         </div>
 
                         <div class="mb-1">
                             <div class="main_yellow_label mb-1">기업 연락처</div><br />
-                            <select id="employee_tel" class="main_select_box me-1" style="width: 25%;">
+                            <select id="employee_tel" class="main_select_box p-1" name="companyTel" style="width: 25%;">
                                 <option value="010">010</option>
                                 <option value="016">016</option>
                                 <option value="011">011</option>
@@ -74,42 +74,39 @@
                                 <option value="032">032</option>
                             </select>
                             <input class="form-control d-inline-flex mb-2" style="width: 72.5%;" type="tel"
-                                id="company_tel" placeholder="'-'없이 입력해주세요" name="company_tel" required>
+                                id="company_tel" placeholder="'-'없이 입력해주세요" name="companyTel" required>
                         </div>
-
                         <div class="">
                             <div class="main_yellow_label mb-1">기업 주소</div>
                             <div>
                                 <input class="form-control mb-2 d-inline-flex" style="width: 73.5%;" type=" text"
-                                    id="company_address" placeholder="주소를 입력하세요" name="company_address" required>
+                                    id="company_address" placeholder="주소를 입력하세요" name="companyAddress" required>
 
-                                <button type="submit" class="main_gray_btn" style="width: 25%">주소찾기
+                                <button type="button" class="main_gray_btn" style="width: 25%">주소찾기
                                 </button>
                             </div>
                             <div>
                                 <input class=" form-control mb-2" type="text" id="employee_address_add" rf
-                                    placeholder="상세주소를 입력하세요" name="employtee_address_add" required>
+                                    placeholder="상세주소를 입력하세요" name="companyAddress" required>
                             </div>
                         </div>
 
                         <div class="">
                             <div class="main_yellow_label mb-1">이메일</div>
                             <div class="my_flex mb-1">
-                                <input class="form-control d-inline-flex" style="width: 60%;" type="email"
-                                    id="emp_email" placeholder="이메일을 입력하세요" name="compay_email" required>
-                                <select id="email_class" class="main_select_box p-3" style="width: 38.8%;">
-                                    <option value="naver">naver.com</option>
-                                    <option value="naver">nate.com</option>
-                                    <option value="naver">gmail.com</option>
-                                    <option value="naver">daum.net</option>
-                                    <option value="naver">naver.com</option>
+                                <input class="form-control d-inline-flex" style="width: 60%;" type="text" id="emp_email"
+                                    placeholder="이메일을 입력하세요" name="companyEmail" required>
+                                <select id="email_class" class="main_select_box p-1 mb-2" name="companyEmail"
+                                    style="width: 38.8%;">
+                                    <option value="@naver.com">@naver.com</option>
+                                    <option value="@nate.com">@nate.com</option>
+                                    <option value="@gmail.com">@gmail.com</option>
+                                    <option value="@daum.net">@daum.net</option>
+                                    <option value="@hanmail.net">@hanmail.com</option>
                                 </select>
                             </div>
                         </div>
-                        <div>
-                            <input class=" form-control mb-2" type="text" id="employee_address_add"
-                                placeholder="상세주소를 입력하세요" name="employtee_address_add" required>
-                        </div>
+
                         <div class="">
                             <div class=" main_yellow_label mb-1">약&nbsp;관
                             </div>

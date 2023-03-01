@@ -40,7 +40,7 @@
                                             aria-labelledby="employee_tab">
                                             <div class="mb-3">
                                                 <label for="employee_id"><b>개인아이디</b></label>
-                                                <input type="text" class="form-control" name="employeeName"
+                                                <input type="text" class="form-control" name="employeeName" id=""
                                                     placeholder="아이디를 입력해주세요">
                                             </div>
                                             <div class="mb-3">
