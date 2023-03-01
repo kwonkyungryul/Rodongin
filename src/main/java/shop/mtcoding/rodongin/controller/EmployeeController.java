@@ -1,13 +1,11 @@
 package shop.mtcoding.rodongin.controller;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,30 +15,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
-import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeResp.GraduateRespDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeResp.LicenseRespDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeResp.StackRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.employee.EmployeeCareer;
+import shop.mtcoding.rodongin.model.employee.EmployeeCareerRepository;
 import shop.mtcoding.rodongin.model.employee.EmployeeGraduate;
+import shop.mtcoding.rodongin.model.employee.EmployeeGraduateRepository;
 import shop.mtcoding.rodongin.model.employee.EmployeeLicense;
+import shop.mtcoding.rodongin.model.employee.EmployeeLicenseRepository;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
 import shop.mtcoding.rodongin.model.employee.EmployeeStack;
+import shop.mtcoding.rodongin.model.employee.EmployeeStackRepository;
 import shop.mtcoding.rodongin.model.master.LicenseMaster;
 import shop.mtcoding.rodongin.model.master.LicenseMasterRepository;
 import shop.mtcoding.rodongin.model.master.SchoolMaster;
 import shop.mtcoding.rodongin.model.master.SchoolMasterRepository;
 import shop.mtcoding.rodongin.model.master.StackMaster;
 import shop.mtcoding.rodongin.model.master.StackMasterRepository;
+import shop.mtcoding.rodongin.model.resume.Resume;
+import shop.mtcoding.rodongin.model.resume.ResumeRepository;
 import shop.mtcoding.rodongin.service.EmployeeService;
 import shop.mtcoding.rodongin.util.MySession;
 
 @Controller
 public class EmployeeController {
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeRepository emploRepository;
 
     @Autowired
     private EmployeeService employeeService;
@@ -55,7 +62,22 @@ public class EmployeeController {
     private StackMasterRepository stackMasterRepository;
 
     @Autowired
-    HttpSession session;
+    private HttpSession session;
+
+    @Autowired
+    private EmployeeCareerRepository employeeCareerrRepository;
+
+    @Autowired
+    private EmployeeGraduateRepository employeeGraduateRepository;
+
+    @Autowired
+    private EmployeeLicenseRepository employeeLicenseRepository;
+
+    @Autowired
+    private EmployeeStackRepository employeeStackRepository;
+
+    @Autowired
+    private ResumeRepository resumeRepository;
 
     @PostMapping("/employee/{id}/save")
     public String save(@PathVariable int id, EmployeeGraduate employeeGraduate, EmployeeCareer employeeCareer,
@@ -110,12 +132,7 @@ public class EmployeeController {
         return new ResponseEntity<>(new ResponseDto<>(1, "회원정보 수정 완료!", null), HttpStatus.OK);
     }
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-    @Autowired
-    private HttpSession session;
-
+  
     @PostMapping("/employee/joinForm")
     public String join() {
         return "employee/joinForm";
@@ -132,7 +149,7 @@ public class EmployeeController {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
 
-        Employee principal = employeeRepository.findByEmployeeNameAndPassword(employeeLoginReqDto);
+        Employee principal = emploRepository.findByEmployeeNameAndPassword(employeeLoginReqDto);
 
         if (principal == null) {
             throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
@@ -145,11 +162,33 @@ public class EmployeeController {
 
     @GetMapping("/employee/{id}")
     public String detail(Model model) {
+
+        Employee principal = MySession.MyPrincipal(session);
+
+        model.addAttribute("empInfo", emploRepository.findById(principal.getId()));
+
+        List<EmployeeCareer> empCareers = employeeCareerrRepository.findById(principal.getId());
+        model.addAttribute("empCareer", empCareers);
+
+        List<GraduateRespDto> empGraduates = employeeGraduateRepository.findById(principal.getId());
+        model.addAttribute("empGraduates", empGraduates);
+
+        List<LicenseRespDto> empLicense = employeeLicenseRepository.findById(principal.getId());
+        model.addAttribute("empLicense", empLicense);
+
+        List<StackRespDto> empStack = employeeStackRepository.findById(principal.getId());
+        model.addAttribute("empStack", empStack);
+
+        List<Resume> resumes = resumeRepository.findById(principal.getId());
+        model.addAttribute("resumes", resumes);
+
+    
         return "employee/detail";
     }
 
     @GetMapping("/employee/updateForm")
     public String infoUpdateForm(Model model) {
+
         Employee principal = MySession.MyPrincipal(session);
 
         if (principal == null) {
@@ -159,7 +198,7 @@ public class EmployeeController {
         List<SchoolMaster> schools = schoolMasterRepository.findAll();
         List<LicenseMaster> licenses = licenseMasterRepository.findAll();
         List<StackMaster> stacks = stackMasterRepository.findAll();
-        model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
+        model.addAttribute("empInfo", emploRepository.findById(principal.getId()));
         model.addAttribute("schools", schools);
         model.addAttribute("licenses", licenses);
         model.addAttribute("stacks", stacks);
