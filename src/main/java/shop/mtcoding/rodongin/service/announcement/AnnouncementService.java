@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.rodongin.dto.announcement.AnnouncementReq.AnnouncementSaveReqDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
+import shop.mtcoding.rodongin.model.announcement.Announcement;
 import shop.mtcoding.rodongin.model.announcement.AnnouncementRepository;
 
 @Service
@@ -42,5 +43,21 @@ public class AnnouncementService {
   
     
     }
+    @Transactional
+    public void 게시글삭제(int id, int companyId){
+        Announcement announcementPS = announcementRepository.findById(id);
+        if (announcementPS == null) {
+            throw new CustomApiException("없는 게시글을 삭제할 수 없소이다.");
+        }
+        if (announcementPS.getCompanyId() != companyId) {
+            throw new CustomApiException("당신 회사의 글이 아니올시다.");
+        }
 
+        try {
+            announcementRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new CustomApiException("미안하오 서버에 문제가 있소");
+        }
+
+}
 }
