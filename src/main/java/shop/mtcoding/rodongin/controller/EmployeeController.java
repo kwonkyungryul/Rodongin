@@ -3,11 +3,11 @@ package shop.mtcoding.rodongin.controller;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
+import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
@@ -109,17 +110,56 @@ public class EmployeeController {
         return new ResponseEntity<>(new ResponseDto<>(1, "회원정보 수정 완료!", null), HttpStatus.OK);
     }
 
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private HttpSession session;
+
+    @PostMapping("/employee/joinForm")
+    public String join() {
+        return "employee/joinForm";
+
+    }
+
+    // employee 로그인요청
+    @PostMapping("/employee/login")
+    public String login(EmployeeLoginReqDto employeeLoginReqDto) {
+        if (employeeLoginReqDto.getEmployeeName() == null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
+            throw new CustomException("username을 입력해주세요", HttpStatus.BAD_REQUEST);
+        }
+        if (employeeLoginReqDto.getEmployeePassword() == null || employeeLoginReqDto.getEmployeePassword().isEmpty()) {
+            throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
+        }
+
+        Employee principal = employeeRepository.findByEmployeeNameAndPassword(employeeLoginReqDto);
+
+        if (principal == null) {
+            throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
+        }
+
+        session.setAttribute("principal", principal);
+
+        return "redirect:/";
+    }
+
     @GetMapping("/employee/{id}")
     public String detail(Model model) {
         return "employee/detail";
     }
 
-    @GetMapping("/employee/{id}/updateForm")
-    public String infoUpdateForm(@PathVariable int id, Model model) {
+    @GetMapping("/employee/updateForm")
+    public String infoUpdateForm(Model model) {
+        Employee principal = MySession.MyPrincipal(session);
+
+        if (principal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        
         List<SchoolMaster> schools = schoolMasterRepository.findAll();
         List<LicenseMaster> licenses = licenseMasterRepository.findAll();
         List<StackMaster> stacks = stackMasterRepository.findAll();
-        model.addAttribute("empInfo", employeeRepository.findById(id));
+        model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
         model.addAttribute("schools", schools);
         model.addAttribute("licenses", licenses);
         model.addAttribute("stacks", stacks);
@@ -127,8 +167,8 @@ public class EmployeeController {
         return "employee/updateForm";
     }
 
-    @GetMapping("/login")
-    public String login() {
+    @GetMapping("/loginForm")
+    public String loginForm() {
         return "loginForm";
     }
 
