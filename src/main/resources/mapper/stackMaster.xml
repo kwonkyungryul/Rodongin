@@ -9,4 +9,9 @@
         select * from stack_master
     </select>
 
+    
+      <select id="findById" resultType="shop.mtcoding.rodongin.model.master.StackMaster">
+        select * from stack_master where id = #{id}
+    </select>
+
 </mapper>
