@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -87,8 +89,13 @@ public @ResponseBody ResponseEntity<?> saveForm(@RequestBody AnnouncementSaveReq
        return "announcement/list";
     }
 
-    @GetMapping("announcement/1")
-    public String detail(){
+    @GetMapping("announcement/{id}")
+    public String detail(@PathVariable int id, Model model){
+        model.addAttribute("announcement", announcementRepository.findAnnouncementAndCompanyId(id));
+        model.addAttribute("tostack", stackMasterRepository.findById(id));
+        model.addAttribute("delete", announcementRepository.findById(id));
+        model.addAttribute("listview", announcementRepository.findAnnouncementlist());
+
         return "announcement/detail";
     }
 
@@ -98,4 +105,16 @@ public @ResponseBody ResponseEntity<?> saveForm(@RequestBody AnnouncementSaveReq
         model.addAttribute("stacks", stacks);
         return "announcement/saveForm";
     }
+
+    // 게시글 삭제
+ @DeleteMapping("/announcement/{id}")
+ public @ResponseBody ResponseEntity<?> delete(@PathVariable int id) {
+     Company principal = (Company) session.getAttribute("principal");
+     if (principal == null) {
+         throw new CustomApiException("인증이 되지 않았습니다.");
+     }
+     announcementService.게시글삭제(id, principal.getId());
+     return new ResponseEntity<>(new ResponseDto<>(1, "삭제성공", null), HttpStatus.OK);
+ }
+
 }
