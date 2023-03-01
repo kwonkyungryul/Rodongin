@@ -54,7 +54,7 @@ CREATE TABLE employee_career (
 );
 
 -- employee의 자격증 테이블
-CREATE TABLE emp_license (
+CREATE TABLE employee_license (
 	id int primary key auto_increment,
     employee_id int not null,
     license_id int not null,
@@ -62,11 +62,11 @@ CREATE TABLE emp_license (
     created_at timestamp not null
 );
 
-CREATE TABLE emp_stack (
+CREATE TABLE employee_stack (
 	id int primary key auto_increment,
     employee_id int not null,
     stack_id int not null,
-    stack_acquisition varchar(20) not null,
+    stack_acquistion varchar(20) not null,
     created_at timestamp not null
 );
 -- ---------------------------------------------------------------------------------------------------

@@ -9,7 +9,6 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
       <h2>개인정보</h2>
     </div>
     <div class="button_center" style="margin-top: 15px">
-      <a href=""></a>
       <a href="" class="main_blue_btn" type="submit">수정</a>
     </div>
   </div>
