@@ -23,54 +23,54 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <div class="my_card">
   <div class="card">
     <img
-      src="/images/KT.jpg"
+      src="${list[0].companyThumbnail}"
       class="card-img-top"
-      alt="KT"
+      alt="Card image"
     />
 
     <div class="card-body">
-      <h5 class="card-title">KT</h5>
-      <p class="card-text">2023 신입/경력 모집</p>
-      <a href="#" class="btn btn-primary">지원하기</a>
+      <h5 class="card-title">${listview[0].announcementTitle}</h5>
+      <p class="card-text">2023 ${listview[0].companyFullname}</p>
+      <a href="/announcement/${listview[0].id}" class="btn btn-primary">지원하기</a>
     </div>
   </div>
   <div class="card">
     <img
-      src="/images/sk.png"
+      src="${list[1].companyThumbnail}"
       class="card-img-top"
       alt="sk"
     />
 
     <div class="card-body">
-      <h5 class="card-title">SK</h5>
-      <p class="card-text">2023 신입/경력 모집</p>
-      <a href="#" class="btn btn-primary">지원하기</a>
+      <h5 class="card-title">${listview[1].announcementTitle}</h5>
+      <p class="card-text">2023 ${listview[1].companyFullname}</p>
+      <a href="/announcement/${listview[1].id}" class="btn btn-primary">지원하기</a>
     </div>
   </div>
   <div class="card">
     <img
-      src="/images/samsung.png"
+      src="${list[2].companyThumbnail}"
       class="card-img-top"
       alt="samsung"
     />
 
     <div class="card-body">
-      <h5 class="card-title">Samsung</h5>
-      <p class="card-text">2023 신입/경력 모집</p>
-      <a href="#" class="btn btn-primary">지원하기</a>
+      <h5 class="card-title">${listview[2].announcementTitle}</h5>
+      <p class="card-text">2023 ${listview[2].companyFullname}</p>
+      <a href="/announcement/${listview[2].id}" class="btn btn-primary">지원하기</a>
     </div>
   </div>
   <div class="card">
     <img
-      src="/images/kakao.jpg"
+      src="${list[3].companyThumbnail}"
       class="card-img-top"
       alt="kakao"
     />
 
     <div class="card-body">
-      <h5 class="card-title">Kakao</h5>
-      <p class="card-text">2023 신입/경력 모집</p>
-      <a href="#" class="btn btn-primary">지원하기</a>
+      <h5 class="card-title">${listview[3].announcementTitle}</h5>
+      <p class="card-text">2023 ${listview[3].companyFullname}</p>
+      <a href="/announcement/${listview[3].id}" class="btn btn-primary">지원하기</a>
     </div>
   </div>
 </div>
@@ -82,9 +82,9 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
   <div class="input-group mb-3">
     <select class="form-select" id="inputGroupSelect02">
       <option selected>Choose...</option>
-      <option value="1">Java</option>
-      <option value="2">C+</option>
-      <option value="3">Js</option>
+      <c:forEach items="${stacks}" var="stack">
+      <option value="${stack.id}">${stack.stackName}</option>
+      </c:forEach>
     </select>
     <label
       class="input-group-text"
@@ -97,174 +97,80 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <!-- -->
 
 <!--  -->
+
+<c:forEach items="${listview}" var="list">
 <div class="accordion">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button
         class="accordion-button collapsed"
         type="button"
-        data-bs-toggle="collapse"
+         data-bs-toggle="collapse"
         data-bs-target="#collapseOne"
         aria-expanded="false"
-        aria-controls="collapseOne"
+        aria-controls="collapseOne" 
       >
         <div class="my_cir">
-          <strong class="my_sstrong">1</strong>
+          <strong class="my_sstrong">${list.id}</strong>
         </div>
-        <span class="my_span">제약 산업 디지털 마케팅 기획자</span>
-        <span class="my_span2">LG 화학</span>
+        <span class="my_span">${list.announcementTitle}</span>
+        <span class="my_span2">${list.companyFullname}</span> //!!
       </button>
     </h2>
     <div
-      id="collapseOne"
+     id="collapseOne"
       class="accordion-collapse collapse"
       aria-labelledby="headingOne"
-      data-bs-parent="#accordionExample"
+      data-bs-parent="#accordionExample" 
     >
       <div class="accordion-body">
-        <span>기업의 소개글</span>
+        <span>${list.announcementContent}</span>
       </div>
     </div>
+    <div class="my_deletebtnanddetail">
     <div class="my_button_ooo">
-      <button type="button" class="btn btn-primary">지원하기</button>
+      <button onclick="deleteById(${list.id})" type="button" class="btn btn-warning">삭제하기</button>
+    </div>
+     <div class="my_button_ooo" >
+      <a href="/announcement/${list.id}" class="btn btn-primary">지원하기</a>
+    </div>
     </div>
   </div>
 </div>
-<!--  -->
-<div class="accordion">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseTwo"
-        aria-expanded="false"
-        aria-controls="collapseTwo"
-      >
-        <div class="my_cir">
-          <strong class="my_sstrong">2</strong>
-        </div>
-        <span class="my_span">제약 산업 디지털 마케팅 기획자</span>
-        <span class="my_span2">LG 화학</span>
-      </button>
-    </h2>
-    <div
-      id="collapseTwo"
-      class="accordion-collapse collapse"
-      aria-labelledby="headingTwo"
-      data-bs-parent="#accordionExample"
-    >
-      <div class="accordion-body">
-        <span>기업의 소개글</span>
-      </div>
-    </div>
-    <div class="my_button_ooo">
-      <button type="button" class="btn btn-primary">지원하기</button>
-    </div>
-  </div>
+</c:forEach>
+<%--  --%>
+<div class="my_lastbuttonbig">
+<div class="my_lastbutton">
+<button id="savebtn" type="button" class="btn btn-primary ">공고등록하기</button>
 </div>
+</div>
+<!-- 페이징 -->
 
-<div class="accordion">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseThree"
-        aria-expanded="false"
-        aria-controls="collapseThree"
-      >
-        <div class="my_cir">
-          <strong class="my_sstrong">3</strong>
-        </div>
-        <span class="my_span">제약 산업 디지털 마케팅 기획자</span>
-        <span class="my_span2">LG 화학</span>
-      </button>
-    </h2>
-    <div
-      id="collapseThree"
-      class="accordion-collapse collapse"
-      aria-labelledby="headingThree"
-      data-bs-parent="#accordionExample"
-    >
-      <div class="accordion-body">
-        <span>기업의 소개글</span>
-      </div>
-    </div>
-    <div class="my_button_ooo">
-      <button type="button" class="btn btn-primary">지원하기</button>
-    </div>
-  </div>
-</div>
 
-<div class="accordion">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingfour">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapsefour"
-        aria-expanded="false"
-        aria-controls="collapsefour"
-      >
-        <div class="my_cir">
-          <strong class="my_sstrong">4</strong>
-        </div>
-        <span class="my_span">제약 산업 디지털 마케팅 기획자</span>
-        <span class="my_span2">LG 화학</span>
-      </button>
-    </h2>
-    <div
-      id="collapsefour"
-      class="accordion-collapse collapse"
-      aria-labelledby="headingfour"
-      data-bs-parent="#accordionExample"
-    >
-      <div class="accordion-body">
-        <span>기업의 소개글</span>
-      </div>
-    </div>
-    <div class="my_button_ooo">
-      <button type="button" class="btn btn-primary">지원하기</button>
-    </div>
-  </div>
-</div>
+<script>
+ let data = {
+            id: $("#id").val()}
+  
+  $('#savebtn').click(function() {
+    window.location.href = '/announcement/saveForm';
+  });
 
-<div class="accordion">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingfive">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapsefive"
-        aria-expanded="false"
-        aria-controls="collapsefive"
-      >
-        <div class="my_cir">
-          <strong class="my_sstrong">5</strong>
-        </div>
-        <span class="my_span">제약 산업 디지털 마케팅 기획자</span>
-        <span class="my_span2">LG 화학</span>
-      </button>
-    </h2>
-    <div
-      id="collapsefive"
-      class="accordion-collapse collapse"
-      aria-labelledby="headingfive"
-      data-bs-parent="#accordionExample"
-    >
-      <div class="accordion-body">
-        <span>기업의 소개글</span>
-      </div>
-    </div>
-    <div class="my_button_ooo">
-      <button type="button" class="btn btn-primary">지원하기</button>
-    </div>
-  </div>
-</div>
+
+ 
+ function deleteById(id) {
+  
+        $.ajax({
+            type: "delete",
+            url: "/announcement/" + id,
+            dataType: "json"
+        }).done((res) => { 
+            alert(res.msg);
+            location.href = "/";
+        }).fail((err) => { 
+            alert(err.responseJSON.msg);
+        });
+    }
+
+</script>
 
 <%@ include file="../layout/footer.jsp" %>
