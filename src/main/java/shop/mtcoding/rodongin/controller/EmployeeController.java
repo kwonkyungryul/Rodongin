@@ -21,6 +21,7 @@ import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.GraduateRespDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.LicenseRespDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.StackRespDto;
+import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduteRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
@@ -39,7 +40,6 @@ import shop.mtcoding.rodongin.model.master.SchoolMaster;
 import shop.mtcoding.rodongin.model.master.SchoolMasterRepository;
 import shop.mtcoding.rodongin.model.master.StackMaster;
 import shop.mtcoding.rodongin.model.master.StackMasterRepository;
-import shop.mtcoding.rodongin.model.resume.Resume;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
 import shop.mtcoding.rodongin.service.EmployeeService;
 import shop.mtcoding.rodongin.util.MySession;
@@ -181,8 +181,9 @@ public class EmployeeController {
         List<StackRespDto> empStack = employeeStackRepository.findById(principal.getId());
         model.addAttribute("empStack", empStack);
 
-        List<Resume> resumes = resumeRepository.findByEmpId(principal.getId());
+        List<ResumeGraduteRespDto> resumes = resumeRepository.findByEmpId(principal.getId());
         model.addAttribute("resumes", resumes);
+        
 
     
         return "employee/detail";

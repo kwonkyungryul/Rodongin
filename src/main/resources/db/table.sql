@@ -135,7 +135,7 @@ CREATE TABLE resume_stack (
 	id int primary key auto_increment,
     resume_id int not null,
     stack_id int not null,
-    stack_acquisition varchar(20) not null,
+    stack_acquisition varchar(100) not null,
     created_at timestamp not null
 );
 -------------------------------------------------------------------------

@@ -174,21 +174,21 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
                                 </div>
                                 <div>
                                     <span class="my_info_title">최종학력</span>
-                                    <span class="my_info"></span>
+                                    <span class="my_info">${resume.schoolName}</span>
                                 </div>
                             </div>
                             <div class="col-4 col-sm-6">
                                 <div>
                                     <span class="my_info_title">경력</span>
-                                    <span class="my_info"></span>
+                                    <span class="my_info">${resume.careerCompany}</span>
                                 </div>
                                 <div>
                                     <span class="my_info_title">자격증</span>
-                                    <span class="my_info"></span>
+                                    <span class="my_info">${resume.licenseName}</span>
                                 </div>
                                 <div>
                                     <span class="my_info_title">기술스택</span>
-                                    <span class="my_info"></span>
+                                    <span class="my_info">${resume.stackName}</span>
                                 </div>
                             </div>
                         </div>
