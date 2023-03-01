@@ -15,7 +15,7 @@ public class Announcement {
     private Integer stackId;
     private String announcementTitle;
     private String announcementContent;
-    private String announcementCareer;
+    private String announcementCarrer;
     private String announcementHireType;
     private String announcementRecNum;
     private String announcementSalary;
@@ -23,13 +23,13 @@ public class Announcement {
     private Timestamp createdAt;
 
     public Announcement(Integer companyId, Integer stackId, String announcementTitle, String announcementContent,
-            String announcementCareer, String announcementHireType, String announcementRecNum,
+            String announcementCarrer, String announcementHireType, String announcementRecNum,
             String announcementSalary, String announcementArea) {
         this.companyId = companyId;
         this.stackId = stackId;
         this.announcementTitle = announcementTitle;
         this.announcementContent = announcementContent;
-        this.announcementCareer = announcementCareer;
+        this.announcementCarrer = announcementCarrer;
         this.announcementHireType = announcementHireType;
         this.announcementRecNum = announcementRecNum;
         this.announcementSalary = announcementSalary;

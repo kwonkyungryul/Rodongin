@@ -27,7 +27,7 @@
     <header class="bg_color_main">
         <div class="container d-flex flex-column justify-content-end">
             <div class="header-top d-flex justify-content-between align-items-center mt-1">
-                <div class="logo fs-1 fw-bold font_color_point"><img src="/images/Logo.png" alt="" style="width: 170px; height: 39px;"></div>
+                <div class="logo fs-1 fw-bold font_color_point"><a href="/"><img src="/images/Logo.png" alt="" style="width: 170px; height: 39px;"></a></div>
                 <div class="d-flex">
                     <c:choose>
                        <c:when test="${principal == null}">
