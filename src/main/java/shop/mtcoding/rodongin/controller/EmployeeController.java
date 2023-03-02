@@ -22,8 +22,7 @@ import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.GraduateRespDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.LicenseRespDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.StackRespDto;
-import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduteRespDto;
-
+import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeListRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
@@ -43,15 +42,13 @@ import shop.mtcoding.rodongin.model.master.SchoolMasterRepository;
 import shop.mtcoding.rodongin.model.master.StackMaster;
 import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
-
 import shop.mtcoding.rodongin.service.employee.EmployeeService;
-
 import shop.mtcoding.rodongin.util.MySession;
 
 @Controller
 public class EmployeeController {
     @Autowired
-    private EmployeeRepository emploRepository;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     private EmployeeService employeeService;
@@ -83,10 +80,8 @@ public class EmployeeController {
     @Autowired
     private ResumeRepository resumeRepository;
 
-
-
-    @PostMapping("/employee/{id}/save")
-    public String save(@PathVariable int id, EmployeeGraduate employeeGraduate, EmployeeCareer employeeCareer,
+    @PostMapping("/employee/save")
+    public String save(EmployeeGraduate employeeGraduate, EmployeeCareer employeeCareer,
             EmployeeLicense employeeLicense, EmployeeStack employeeStack) {
 
         Employee principal = MySession.MyPrincipal(session);
@@ -94,7 +89,7 @@ public class EmployeeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        
+
         employeeService.개인정보추가(employeeGraduate, employeeCareer, employeeLicense, employeeStack, principal.getId());
         if (employeeCareer.getCareerStart().toString().equals("0001-01-01")) {
             employeeCareer.setCareerStart(null);
@@ -103,11 +98,11 @@ public class EmployeeController {
             employeeCareer.setCareerEnd(null);
         }
 
-        return "redirect:/employee/" + id;
+        return "redirect:/employee/detail";
     }
 
-    @PutMapping("/employee/{id}")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody EmployeeUpdatdReq employeeUpdateReq) {
+    @PutMapping("/employee/update")
+    public ResponseEntity<?> update(@RequestBody EmployeeUpdatdReq employeeUpdateReq) {
 
         Employee principal = MySession.MyPrincipal(session);
 
@@ -138,8 +133,6 @@ public class EmployeeController {
 
         return new ResponseEntity<>(new ResponseDto<>(1, "회원정보 수정 완료!", null), HttpStatus.OK);
     }
-
-
 
     @PostMapping("/employee/join")
     public String join(EmployeeJoinReqDto employeeJoinReqDto) throws Exception {
@@ -193,7 +186,7 @@ public class EmployeeController {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
 
-        Employee principal = emploRepository.findByEmployeeNameAndPassword(employeeLoginReqDto);
+        Employee principal = employeeRepository.findByEmployeeNameAndPassword(employeeLoginReqDto);
 
         if (principal == null) {
             throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
@@ -205,12 +198,12 @@ public class EmployeeController {
         return "redirect:/";
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/employee/detail")
     public String detail(Model model) {
 
         Employee principal = MySession.MyPrincipal(session);
 
-        model.addAttribute("empInfo", emploRepository.findById(principal.getId()));
+        model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
 
         List<EmployeeCareer> empCareers = employeeCareerrRepository.findById(principal.getId());
         model.addAttribute("empCareer", empCareers);
@@ -224,11 +217,9 @@ public class EmployeeController {
         List<StackRespDto> empStack = employeeStackRepository.findById(principal.getId());
         model.addAttribute("empStack", empStack);
 
-        List<ResumeGraduteRespDto> resumes = resumeRepository.findByEmpId(principal.getId());
+        List<ResumeListRespDto> resumes = resumeRepository.findByEmpId(principal.getId());
         model.addAttribute("resumes", resumes);
-        
 
-    
         return "employee/detail";
     }
 
@@ -240,11 +231,11 @@ public class EmployeeController {
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        
+
         List<SchoolMaster> schools = schoolMasterRepository.findAll();
         List<LicenseMaster> licenses = licenseMasterRepository.findAll();
         List<StackMaster> stacks = stackMasterRepository.findAll();
-        model.addAttribute("empInfo", emploRepository.findById(principal.getId()));
+        model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
         model.addAttribute("schools", schools);
         model.addAttribute("licenses", licenses);
         model.addAttribute("stacks", stacks);

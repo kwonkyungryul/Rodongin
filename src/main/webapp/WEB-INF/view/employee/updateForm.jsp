@@ -70,13 +70,13 @@
         console.log(data.employeeBirth);
         $.ajax({
           type: "put",
-          url: "/employee/" + id,
+          url: "/employee/update",
           data: JSON.stringify(data),
           contentType: "application/json; charset=utf-8",
           dataType: "json" // default : 응답의 mime 타입으로 유추함
         }).done((res) => { // 20X 일때
           alert(res.msg);
-          location.href = "/employee/" + id + "/updateForm";
+          location.href = "/employee/updateForm";
         }).fail((err) => { // 40X, 50X 일때
           alert(err.responseJSON.msg);
         });
@@ -101,7 +101,7 @@
       // }
     </script>
 
-    <form action="/employee/${id}/save" method="post">
+    <form action="/employee/save" method="post">
       <div class="my_info_insert">
         <div class="mb-3">
           <div>
@@ -109,6 +109,7 @@
           </div>
           <div class="d-flex">
             <select name="schoolId" id="schoolId" class="main_select_box_school">
+            <option value="0">선택해주세요</option>
               <c:forEach items="${schools}" var="school">
                 <option value="${school.id}">${school.schoolName}</option>
               </c:forEach>
@@ -160,6 +161,7 @@
               <div class="AA"></div>
               <span class="my_list">자격증명</span>
               <select name="licenseId" id="licenseId" class="main_select_box_title">
+                  <option value="0">선택해주세요</option>
                 <c:forEach items="${licenses}" var="license">
                   <option value="${license.id}">${license.licenseName}</option>
                 </c:forEach>
@@ -190,6 +192,7 @@
                 <div class="AA"></div>
                 <span class="my_list">기술명</span>
                 <select name="stackId" id="stackId" class="main_select_box_title">
+                    <option value="0">선택해주세요</option>
                   <c:forEach items="${stacks}" var="stack">
                     <option value="${stack.id}">${stack.stackName}</option>
                   </c:forEach>
