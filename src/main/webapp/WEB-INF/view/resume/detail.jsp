@@ -6,7 +6,7 @@
 
         <div class="my_info_insert">
             <div class="my_title">
-                <h2>MY 이력서</h2>
+                <h2>${resume.resumeTitle}</h2>
             </div>
             <div class="my_yellow_box mb-5">
                 <div class="my_info_box_margin">

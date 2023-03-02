@@ -185,13 +185,8 @@ public class EmployeeController {
         if (employeeLoginReqDto.getEmployeePassword() == null || employeeLoginReqDto.getEmployeePassword().isEmpty()) {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
-
-        Employee principal = employeeRepository.findByEmployeeNameAndPassword(employeeLoginReqDto);
-
-        if (principal == null) {
-            throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
-        }
-        employeeService.로그인(employeeLoginReqDto);
+        
+        Employee principal = employeeService.로그인(employeeLoginReqDto);
 
         session.setAttribute("principal", principal);
 
