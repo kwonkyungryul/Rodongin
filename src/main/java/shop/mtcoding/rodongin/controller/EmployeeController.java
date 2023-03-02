@@ -101,7 +101,7 @@ public class EmployeeController {
         return "redirect:/employee/detail";
     }
 
-    @PutMapping("/employee/{id}")
+    @PutMapping("/employee/update")
     public ResponseEntity<?> update(@RequestBody EmployeeUpdatdReq employeeUpdateReq) {
 
         Employee principal = MySession.MyPrincipal(session);
@@ -198,7 +198,7 @@ public class EmployeeController {
         return "redirect:/";
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/employee/detail")
     public String detail(Model model) {
 
         Employee principal = MySession.MyPrincipal(session);
