@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
 import shop.mtcoding.rodongin.dto.ResponseDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeLoginReqDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.GraduateRespDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.LicenseRespDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeResp.StackRespDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduteRespDto;
+
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
@@ -41,7 +44,9 @@ import shop.mtcoding.rodongin.model.master.SchoolMasterRepository;
 import shop.mtcoding.rodongin.model.master.StackMaster;
 import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
-import shop.mtcoding.rodongin.service.EmployeeService;
+
+import shop.mtcoding.rodongin.service.employee.EmployeeService;
+
 import shop.mtcoding.rodongin.util.MySession;
 
 @Controller
@@ -90,6 +95,7 @@ public class EmployeeController {
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
+        
         employeeService.개인정보추가(employeeGraduate, employeeCareer, employeeLicense, employeeStack, principal.getId());
         if (employeeCareer.getCareerStart().toString().equals("0001-01-01")) {
             employeeCareer.setCareerStart(null);
@@ -134,11 +140,48 @@ public class EmployeeController {
         return new ResponseEntity<>(new ResponseDto<>(1, "회원정보 수정 완료!", null), HttpStatus.OK);
     }
 
-  
-    @PostMapping("/employee/joinForm")
-    public String join() {
-        return "employee/joinForm";
 
+
+    @PostMapping("/employee/join")
+    public String join(EmployeeJoinReqDto employeeJoinReqDto) throws Exception {
+
+        if (employeeJoinReqDto.getEmployeeName() == null || employeeJoinReqDto.getEmployeeName().isEmpty()) {
+            throw new CustomException("아이디를 작성해주세요");
+        }
+        if (employeeJoinReqDto.getEmployeePassword() == null || employeeJoinReqDto.getEmployeePassword().isEmpty()) {
+            throw new CustomException("비밀번호를 작성해주세요");
+        }
+        if (employeeJoinReqDto.getEmployeeEmail() == null || employeeJoinReqDto.getEmployeeEmail().isEmpty()) {
+            throw new CustomException("email을 작성해주세요");
+        }
+        if (employeeJoinReqDto.getEmployeeFullname() == null || employeeJoinReqDto.getEmployeeFullname().isEmpty()) {
+            throw new CustomException("성함을 작성해주세요");
+        }
+        if (employeeJoinReqDto.getEmployeeBirth() == null) {
+            throw new CustomException("생일을 작성해주세요");
+        }
+        if (employeeJoinReqDto.getEmployeeTel() == null || employeeJoinReqDto.getEmployeeTel().isEmpty()) {
+            throw new CustomException("연락처를 작성해주세요");
+        }
+        if (employeeJoinReqDto.getEmployeeGender() == null) {
+            throw new CustomException("성별을 선택해주세요");
+        }
+        if (employeeJoinReqDto.getEmployeeAddress() == null || employeeJoinReqDto.getEmployeeAddress().isEmpty()) {
+            throw new CustomException("주소를 작성해주세요");
+        }
+
+        String email = employeeJoinReqDto.getEmployeeEmail().replaceAll(",", "");
+        // System.out.println(email);
+        employeeJoinReqDto.setEmployeeEmail(email);
+
+        String tel = employeeJoinReqDto.getEmployeeTel().replaceAll(",", "");
+        employeeJoinReqDto.setEmployeeTel(tel);
+
+        String address = employeeJoinReqDto.getEmployeeAddress().replaceAll(",", "");
+        employeeJoinReqDto.setEmployeeAddress(address);
+
+        employeeService.회원가입(employeeJoinReqDto);
+        return "redirect:/loginForm";
     }
 
     // employee 로그인요청
@@ -156,6 +199,7 @@ public class EmployeeController {
         if (principal == null) {
             throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
         }
+        employeeService.로그인(employeeLoginReqDto);
 
         session.setAttribute("principal", principal);
 

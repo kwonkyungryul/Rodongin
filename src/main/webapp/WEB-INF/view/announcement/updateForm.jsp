@@ -22,8 +22,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 
       <!--  공고제목  끝 -->
       <!-- 경력박스 -->
-      
-      <form action="/announcement" method="post">
+      <form> 
       <div class="my_input_box2">
         <div class="my_input_box">
           <div class="input-group input-group-sm mb-3">
@@ -33,8 +32,8 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-sm"
-              placeholder="제목을 입력해주세요" name="announcementTitle" id="announcementTitle"
-            />
+              placeholder="수정할 제목을 입력해주세요"
+            id="announcementTitle" value="${announcement.announcementTitle}"/>
           </div>
         </div>
       </div>
@@ -46,11 +45,11 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
       <div class="my_inputflex">
       <div class="input-group input-group-lg">
         <span class="input-group-text" id="inputGroup-sizing-lg">경력사항</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="announcementCarrer" id="announcementCarrer">
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="announcementCarrer" value="${announcement.announcementCarrer}">
       </div>
       <div class="input-group input-group-lg">
         <span class="input-group-text" id="inputGroup-sizing-lg">상세급여</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="announcementSalary" id="announcementSalary">
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="announcementSalary" value="${announcement.announcementSalary}">
       </div>
     </div>
       </div>
@@ -59,19 +58,19 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
         <div class="my_inputflex">
         <div class="input-group input-group-lg">
           <span class="input-group-text" id="inputGroup-sizing-lg">근무형태</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="announcementHireType" id="announcementHireType">
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="announcementHireType" value="${announcement.announcementHireType}">
         </div>
         <div class="input-group input-group-lg">
           <span class="input-group-text" id="inputGroup-sizing-lg">모집인원</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="announcementRecNum" id="announcementRecNum">
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="announcementRecNum" value="${announcement.announcementRecNum}">
         </div>
       </div>
         </div>
         <!-- 경력박스 끝 -->
 <!-- 기술선택 -->
 <div class="my_hr">
-    <div class="input-group mb-3" >
-          <select class="form-select" id="inputGroupSelect02">
+    <div class="input-group mb-3">
+           <select class="form-select" id="inputGroupSelect02">
       <option selected>Choose...</option>
       <c:forEach items="${stacks}" var="stack">
       <option value="${stack.id}">${stack.stackName}</option>
@@ -86,10 +85,11 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <!-- 근무지역 name-->
 <div class="my_allbox">
     <div class="my_hrname">
-    <h2>근무지역</h1>
+    <h2>근무지역</h2>
   </div>
   <div class="my_hrclass">
     <hr />
+   
   </div>
 </div>
 <!--  -->
@@ -104,15 +104,15 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 
     <!--주소  -->
     <div class="my_formclass">
-        <input class="form-control" type="text" placeholder="주소입력" aria-label="default input example" name="addr2" value="${address2}">
+        <input class="form-control" type="text" placeholder="주소입력" aria-label="default input example" id="announcementArea"name="addr2" value="${address2}">
         <button type="button" onclick="execPostCode();" class="btn btn-primary">주소찾기</button>
     </div>
       
 </div>
 <div class="my_formclass2">
-<input class="form-control" type="text" placeholder="상세주소" aria-label="default input example" name="announcementArea" id="announcementArea">
+<input class="form-control" type="text" placeholder="상세주소" aria-label="default input example" >
 </div>
-</div>
+</div></form>
    <!--주소 끝  -->
 <!-- 섬머노트 -->
 <div class="my_mysummermagin"name="announcementContent" id="announcementContent" >
@@ -120,7 +120,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
   <textarea id="summernote" > Hello Summernote</textarea>
 </form>
 <div class="my_summernotebtn">
-<button onclick="savelist()" type="button"  class="btn btn-primary">등록하기</button>
+<button onclick="updateId(${announcement.id})" type="button"  class="btn btn-primary">등록하기</button>
 </div>
 </form>
 </form>
@@ -140,34 +140,35 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
           
 	});
 });
- function savelist(id) {
-       let data = {
-            stackId: $("#inputGroupSelect02").val(),
+
+ function updateId(id) {
+        let data = {
+          stackId: $("#inputGroupSelect02").val(),
             announcementTitle: $("#announcementTitle").val(),
             announcementContent: $("#summernote").val(),
             announcementCarrer: $("#announcementCarrer").val(),
             announcementHireType: $("#announcementHireType").val(),
             announcementRecNum: $("#announcementRecNum").val(),
             announcementSalary: $("#announcementSalary").val(),
-            announcementArea: $("#announcementArea").val()
+            announcementArea: $("#announcementArea").val(),
         };
-       
+        console.log(data.stackId);
 
         $.ajax({
-            type: "post",
-            url: "/announcement",
+            type: "put",
+            url: "/announcement/" + id,
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
-            dataType: "json"
+            dataType: "json" 
         }).done((res) => { 
             alert(res.msg);
-            location.href = "/";
-        }).fail((err) => {
+            location.href = "/announcement/" + id;
+        }).fail((err) => { 
             alert(err.responseJSON.msg);
         });
-     }
+    }
 
-   function execPostCode() {
+     function execPostCode() {
          new daum.Postcode({
              oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.

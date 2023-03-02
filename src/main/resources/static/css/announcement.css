@@ -108,3 +108,14 @@
 .accordion button:focus {
   box-shadow: none;
 }
+
+.my_lastbuttonbig {
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+  margin-right: 10%;
+}
+.my_deletebtnanddetail {
+  display: flex;
+  justify-content: end;
+}

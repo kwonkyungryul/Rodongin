@@ -12,13 +12,15 @@ import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyLoginReqDto;
 @Mapper
 public interface CompanyRepository {
 
+    public Company findByCompanyUsername(String companyUsername);
+
     public Company findByCompanyNameAndPassword(CompanyLoginReqDto companyLoginReqDto);
 
     public List<Company> findAll();
 
     public Company findById(int id);
 
-    public int insert(CompanyLoginReqDto companyLoginReqDto);
+    public int insert(CompanyJoinReqDto companyJoinReqDto);
 
     public int updateById(@Param("id") Integer id, @Param("companyUsername") String companyUsername,
             @Param("companyPassword") String companyPassword, @Param("employeeFullname") String companyFullname,

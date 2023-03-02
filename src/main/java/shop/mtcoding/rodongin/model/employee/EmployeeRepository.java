@@ -8,12 +8,16 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 
+import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
+import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeLoginReqDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeUpdatdReq;
-import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
+
 
 
 @Mapper
 public interface EmployeeRepository {
+
+    public Employee findByEmployeeName(String employeeName);
 
     public Employee findByEmployeeNameAndPassword(EmployeeLoginReqDto employeeLoginReqDto);
     
@@ -21,9 +25,9 @@ public interface EmployeeRepository {
 
     public Employee findById(int id);
 
+    public int insert(EmployeeJoinReqDto employeejoinReqDto);
+    
     public int updateById(@Param("id") int id, @Param("employeeUpdatdReq") EmployeeUpdatdReq employeeUpdatdReq);
-
-    public int insert(EmployeeLoginReqDto employeeLoginReqDto);
 
     public int deleteById(int id);
 }
