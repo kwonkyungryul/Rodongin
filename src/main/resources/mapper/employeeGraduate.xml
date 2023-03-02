@@ -10,4 +10,12 @@
          VALUES (#{employeeId}, #{employeeGraduate.schoolId}, #{employeeGraduate.schoolGraduate}, NOW())
     </insert>
 
+    <select id="findById" resultType="shop.mtcoding.rodongin.dto.employee.EmployeeResp$GraduateRespDto">
+      select eg.ID, eg.EMPLOYEE_ID , eg.SCHOOL_ID ,sm.SCHOOL_NAME 
+        from EMPLOYEE_GRADUATE eg
+        inner join SCHOOL_MASTER sm
+        on eg.SCHOOL_ID =sm.ID 
+        where eg.EMPLOYEE_ID = #{employeeId}
+    </select>
+
     </mapper>

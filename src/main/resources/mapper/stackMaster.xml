@@ -6,7 +6,7 @@
 <mapper namespace="shop.mtcoding.rodongin.model.master.StackMasterRepository">
 
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.master.StackMaster">
-        select * from stack_master
+        SELECT * FROM RESUME where EMPLOYEE_ID = #{employeeId}
     </select>
 
     

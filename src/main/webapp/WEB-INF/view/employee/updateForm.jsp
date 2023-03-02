@@ -44,7 +44,7 @@
           <div class="my_info_thumbnail me-4">
             <div class="form-group">
               <img
-                src="${empInfo.employeeThumbnail == null ? '/images/KakaoTalk_20230104_161540633_02.jpg' : empInfo.employeeThumbnail}"
+                src="${empInfo.employeeThumbnail == null ? '/images/Kakao.jpg' : empInfo.employeeThumbnail}"
                 alt="Current Photo" class="img-fluid" id="imagePreview">
             </div>
             <%-- <input type="file" class="card-img-top" id="profile" name="profile" onchange="chooseImage(this)"> --%>

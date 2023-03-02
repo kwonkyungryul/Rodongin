@@ -5,6 +5,11 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.employee.EmployeeCareerRepository">
 
+
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.employee.EmployeeCareer">
+        SELECT * FROM EMPLOYEE_CAREER where EMPLOYEE_ID = #{employeeId}
+    </select>
+
     <insert id="insert">
          INSERT INTO employee_career (employee_id, career_company, career_start, career_end, created_at)
          VALUES (#{employeeId}, #{employeeCareer.careerCompany}, #{employeeCareer.careerStart},#{employeeCareer.careerEnd}, NOW())
