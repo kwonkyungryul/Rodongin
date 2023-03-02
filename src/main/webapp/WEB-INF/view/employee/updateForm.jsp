@@ -70,7 +70,7 @@
         console.log(data.employeeBirth);
         $.ajax({
           type: "put",
-          url: "/employee/" + id,
+          url: "/employee/update",
           data: JSON.stringify(data),
           contentType: "application/json; charset=utf-8",
           dataType: "json" // default : 응답의 mime 타입으로 유추함
