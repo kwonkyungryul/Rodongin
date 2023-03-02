@@ -10,4 +10,12 @@
          VALUES (#{employeeId}, #{employeeLicense.licenseId}, #{employeeLicense.licenseIssuer}, NOW())
     </insert>
 
+     <select id="findById" resultType="shop.mtcoding.rodongin.dto.employee.EmployeeResp$LicenseRespDto">
+        select el.ID, el.EMPLOYEE_ID , el.LICENSE_ID  ,lm.License_NAME ,el.LICENSE_ISSUER 
+        from EMPLOYEE_LICENSE  el
+        inner join LICENSE_MASTER  lm
+        on el.LICENSE_ID  =lm.ID 
+        where el.EMPLOYEE_ID = #{employeeId}
+    </select>
+
     </mapper>

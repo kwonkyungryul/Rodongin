@@ -146,3 +146,56 @@ INSERT INTO apply (announcement_id, resume_id, created_at) VALUES
 (3, 2, NOW()),
 (3, 3, NOW()),
 (4, 1, NOW());
+
+------------------------resume 최종학력, 경력사항, 자격증, 기술스택
+INSERT INTO resume_graduate (resume_id, school_id, school_graduate, created_at) VALUES
+(1, 1, '졸업', NOW()),
+(1, 2, '재학중', NOW()),
+(2, 2, '재학중', NOW()),
+(2, 3, '재학중', NOW()),
+(3, 1, '졸업', NOW()),
+(3, 1, '졸업', NOW()),
+(4, 3, '졸업', NOW()),
+(5, 2, '졸업', NOW()),
+(6, 1, '졸업', NOW()),
+(7, 3, '재학중', NOW()),
+(8, 2, '졸업', NOW()),
+(9, 1, '재학중', NOW()),
+(10, 3, '졸업', NOW());
+
+INSERT INTO resume_career(resume_id, career_company, career_start, career_end, created_at) VALUES
+(1, 'ABC IT Solutions', '2020-01-01', '2022-02-28', NOW()),
+(2, 'DEF Corp.', '2019-03-01', '2021-12-31', NOW()),
+(2, 'GHI Inc.', '2022-01-01', '2022-06-30', NOW()),
+(3, 'JKL Tech', '2018-04-01', '2020-03-31', NOW()),
+(4, 'MNO Co.', '2021-07-01', '2023-12-31', NOW()),
+(4, 'PQR IT Services', '2020-03-01', '2021-06-30', NOW()),
+(5, 'STU Systems', '2019-09-01', '2020-02-29', NOW()),
+(5, 'VWX IT Corp.', '2020-03-01', '2021-06-30', NOW()),
+(5, 'YZ IT Solutions', '2022-01-01', '2022-12-31', NOW()),
+(6, 'ABC IT Solutions', '2018-06-01', '2021-08-31', NOW());
+
+INSERT INTO resume_license (resume_id, license_id, license_issuer, created_at) VALUES
+(1, 1, '한국방송통신대학교', NOW()),
+(1, 2, '한국정보과학회', NOW()),
+(2, 3, '한국산업안전보건공단', NOW()),
+(2, 4, '한국운전자전문학원', NOW()),
+(3, 5, '한국생산성본부', NOW()),
+(3, 6, '한국데이터산업진흥원', NOW()),
+(4, 7, '한국소비자원', NOW()),
+(4, 8, '한국기술교육대학교', NOW()),
+(5, 9, '한국교원대학교', NOW()),
+(5, 10, '한국철도기술연구원', NOW());
+
+INSERT INTO resume_stack (resume_id, stack_id, stack_acquisition, created_at) VALUES
+(1, 1, '자바 기초 문법 숙지 및 간단한 프로그램 작성 가능', NOW()),
+(1, 2, '파이썬 기초 문법 숙지 및 간단한 데이터 분석/처리 프로그램 작성 가능', NOW()),
+(2, 3, '자바스크립트를 활용한 간단한 웹 페이지 제작 가능', NOW()),
+(3, 4, 'C# 기초 문법 숙지 및 간단한 데스크톱 애플리케이션 작성 가능', NOW()),
+(4, 5, 'PHP 기초 문법 숙지 및 간단한 웹 사이트 제작 가능', NOW()),
+(5, 6, '루비 기초 문법 숙지 및 간단한 웹 애플리케이션 작성 가능', NOW()),
+(6, 7, '스위프트 기초 문법 숙지 및 간단한 iOS 애플리케이션 작성 가능', NOW()),
+(7, 8, 'Objective-C 기초 문법 숙지 및 간단한 iOS 애플리케이션 작성 가능', NOW()),
+(8, 9, 'Kotlin 기초 문법 숙지 및 안드로이드 애플리케이션 작성 가능', NOW()),
+(9, 10, 'Go 기초 문법 숙지 및 간단한 CLI 프로그램 작성 가능', NOW());
+--------------------------------------------------------------
