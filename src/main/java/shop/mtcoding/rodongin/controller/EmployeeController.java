@@ -185,7 +185,7 @@ public class EmployeeController {
         if (employeeLoginReqDto.getEmployeePassword() == null || employeeLoginReqDto.getEmployeePassword().isEmpty()) {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
-        
+
         Employee principal = employeeService.로그인(employeeLoginReqDto);
 
         session.setAttribute("principal", principal);
@@ -246,5 +246,11 @@ public class EmployeeController {
     @GetMapping("/employee/joinForm")
     public String employeejoin() {
         return "employee/joinForm";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        session.invalidate();
+        return "redirect:/loginForm";
     }
 }

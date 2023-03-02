@@ -40,11 +40,11 @@ public class CompanyController {
         }
 
         Company principal = companyRepository.findByCompanyNameAndPassword(companyLoginReqDto);
-        session.setAttribute("principal", principal);
-
+        
         if (principal == null) {
             throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
         }
+        session.setAttribute("comPrincipal", principal);
         return "redirect:/";
     }
 
