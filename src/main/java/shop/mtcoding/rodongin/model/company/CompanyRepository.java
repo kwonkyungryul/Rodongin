@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyJoinReqDto;
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyLoginReqDto;
 
 @Mapper
