@@ -5,6 +5,14 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.resume.ResumeRepository">
 
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
+        SELECT * FROM resume WHERE id = #{id}
+    </select>
+    
+    <select id="findByEmployeeId" resultType="shop.mtcoding.rodongin.model.resume.Resume">
+        SELECT * FROM resume WHERE employee_id = #{employeeId}
+    </select>
+    
     <select id="findByEmpId" resultType="shop.mtcoding.rodongin.dto.resume.ResumeResp$ResumeGraduteRespDto">
       SELECT re.ID, re.EMPLOYEE_ID, re.RESUME_TITLE, re.RESUME_SALARY,
        MAX(rc.CAREER_COMPANY) AS CAREER_COMPANY, 
@@ -19,10 +27,6 @@
        INNER JOIN RESUME_STACK rst ON re.ID = rst.RESUME_ID
        WHERE re.EMPLOYEE_ID = #{employeeId}
        GROUP BY re.ID, re.EMPLOYEE_ID, re.RESUME_TITLE;
-    </select>
-
-    <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
-        SELECT * FROM RESUME where Id = #{Id}s
     </select>
 
     <delete id="deleteById">
