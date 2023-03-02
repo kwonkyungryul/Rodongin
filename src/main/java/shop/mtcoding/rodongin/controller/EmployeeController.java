@@ -102,7 +102,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/employee/{id}")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody EmployeeUpdatdReq employeeUpdateReq) {
+    public ResponseEntity<?> update(@RequestBody EmployeeUpdatdReq employeeUpdateReq) {
 
         Employee principal = MySession.MyPrincipal(session);
 

@@ -108,23 +108,33 @@ public class EmployeeService {
     @Transactional
     public void 개인정보추가(EmployeeGraduate employeeGraduate, EmployeeCareer employeeCareer,
             EmployeeLicense employeeLicense, EmployeeStack employeeStack, int principalId) {
-
-        int result = employeeGraduateRepository.insert(employeeGraduate, principalId);
-        if (result != 1) {
-            throw new CustomException("최종학력 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        if (employeeGraduate.getSchoolId() != 0) {
+            int result = employeeGraduateRepository.insert(employeeGraduate, principalId);
+            if (result != 1) {
+                throw new CustomException("최종학력 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
 
-        int result2 = employeeCareerRepository.insert(employeeCareer, principalId);
-        if (result2 != 1) {
-            throw new CustomException("경력 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        if (!employeeCareer.getCareerCompany().equals("") || employeeCareer.getCareerCompany() == null) {
+            int result2 = employeeCareerRepository.insert(employeeCareer, principalId);
+            if (result2 != 1) {
+                throw new CustomException("경력 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
-        int result3 = employeeLicenseRepository.insert(employeeLicense, principalId);
-        if (result3 != 1) {
-            throw new CustomException("자격증 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+
+        if (employeeLicense.getLicenseId() != 0) {
+            int result3 = employeeLicenseRepository.insert(employeeLicense, principalId);
+            if (result3 != 1) {
+                throw new CustomException("자격증 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
-        int result4 = employeeStackRepository.insert(employeeStack, principalId);
-        if (result4 != 1) {
-            throw new CustomException("기술스택 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        if (employeeStack.getStackId() != 0) {
+            int result4 = employeeStackRepository.insert(employeeStack, principalId);
+            if (result4 != 1) {
+                throw new CustomException("기술스택 추가 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
+
     }
+
 }
