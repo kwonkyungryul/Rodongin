@@ -5,7 +5,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 
  <link
       rel="stylesheet"
-      href="/css/announcementSaveForm.css"
+      href="/css/announcementUpdateForm.css"
     />
 
       <!-- 공고제목 -->

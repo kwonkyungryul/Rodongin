@@ -114,14 +114,14 @@
   justify-content: center;
 }
 .my_summernotebtn {
-  width: 1250px;
+  width: 500px;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-left: 13%;
+  margin-left: 45%;
 }
 
 .my_mysummermagin {
-  margin-left: 26%;
+  margin-left: 0%;
 }
