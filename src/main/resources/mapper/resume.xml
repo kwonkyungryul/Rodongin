@@ -24,6 +24,10 @@
     <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
         SELECT * FROM RESUME where Id = #{Id}
     </select>
+    
+    <select id="findByEmployeeId" resultType="shop.mtcoding.rodongin.model.resume.Resume">
+        SELECT * FROM resume WHERE employee_id = #{employeeId}
+    </select>
 
     <delete id="deleteById">
         DELETE FROM resume WHERE id = #{id}
