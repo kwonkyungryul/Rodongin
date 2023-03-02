@@ -101,7 +101,7 @@
       // }
     </script>
 
-    <form action="/employee/${id}/save" method="post">
+    <form action="/employee/save" method="post">
       <div class="my_info_insert">
         <div class="mb-3">
           <div>

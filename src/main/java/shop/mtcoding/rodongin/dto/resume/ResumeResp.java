@@ -9,7 +9,7 @@ public class ResumeResp {
 
     @Getter
     @Setter
-    public static class ResumeGraduteRespDto {
+    public static class ResumeListRespDto {
         private Integer id;
         private Integer employeeId;
         private String resumeTitle;
@@ -23,6 +23,32 @@ public class ResumeResp {
         private Date careerEnd;
         private String licenseName;
         private String licenseIssuer;
+        private String stackName;
+        private String stackAcquisition;
+    }
+
+    @Getter
+    @Setter
+    public static class ResumeGraduateRespDto {
+        private Integer resumeId;
+        private Integer schoolId;
+        private String schoolName;
+    }
+
+    @Getter
+    @Setter
+    public static class ResumeLicenseRespDto {
+        private Integer resumeId;
+        private Integer licenseId;
+        private String licenseName;
+        private String licenseIssuer;
+    }
+
+    @Getter
+    @Setter
+    public static class ResumeStackRespDto {
+        private Integer resumeId;;
+        private Integer stackId;
         private String stackName;
         private String stackAcquisition;
     }
