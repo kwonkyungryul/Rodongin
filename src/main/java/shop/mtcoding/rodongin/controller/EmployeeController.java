@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import shop.mtcoding.rodongin.dto.EmployeeReq.EmployeeLoginReqDto;
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeLoginReqDto;
