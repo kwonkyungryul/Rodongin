@@ -37,7 +37,9 @@
           <form action="/apply" method="post">
             <div class="modal-body">
               <c:forEach items="${resumes}" var="resume">
-              <span>${resume.resumeTitle}</span> <input type="radio" name="${resume.employeeId}" id=""> <br />
+                <span>${resume.resumeTitle}</span> <input type="radio" name="resumeId" value="${resume.id}" id="">
+                <br />
+                <input type="hidden" name="announcementId" value="${delete.id}">
               </c:forEach>
             </div>
             <div class="modal-footer">

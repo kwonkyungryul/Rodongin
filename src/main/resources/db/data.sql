@@ -121,7 +121,9 @@ INSERT INTO resume (employee_id, resume_title, resume_salary, CV, created_at) VA
 (5, '디자이너 이력서', '4000', '저는 그래픽 디자인 분야에서 3년 경력이 있습니다...', NOW()),
 (6, '개발자 이력서', '6000', '저는 스프링 프레임워크를 이용한 개발 경험이 5년 있습니다...', NOW()),
 (7, '데이터 분석가 이력서', '5500', '저는 기업 데이터를 분석하고 시각화하는 경험이 6년 있습니다...', NOW()),
-(8, '디자이너 이력서', '4500', '저는 반응형 웹사이트 디자인 분야에서 4년 경력이 있습니다...', NOW());
+(8, '디자이너 이력서', '4500', '저는 반응형 웹사이트 디자인 분야에서 4년 경력이 있습니다...', NOW()),
+(11, '디자이너 이력서111', '4500', '저는 반응형 웹사이트 디자인 분야에서 4년 경력이 있습니다...', NOW()),
+(11, '디자이너 이력서', '4500', '저는 반응형 웹사이트 디자인 분야에서 4년 경력이 있습니다...', NOW());
 
 -- 공고 테이블
 INSERT INTO announcement (company_id, stack_id, announcement_title, announcement_content, announcement_carrer, announcement_hire_type, announcement_rec_num, announcement_salary, announcement_area, created_at)
@@ -133,7 +135,7 @@ VALUES (1, 1, '신입 개발자 모집', '한국어 처리 엔진을 개발하�
        (2, 1, 'Java 개발자 채용', '다양한 Java 프로젝트를 개발하고 유지보수하는 Java 개발자를 채용합니다.', '경력', '계약직', 3, '3800', '서울 영등포구', now());
 
 -- 지원자 리스트
-INSERT INTO apply (employee_id, company_id, created_at) VALUES
+INSERT INTO apply (announcement_id, resume_id, created_at) VALUES
 (1, 1, NOW()),
 (1, 2, NOW()),
 (1, 3, NOW()),

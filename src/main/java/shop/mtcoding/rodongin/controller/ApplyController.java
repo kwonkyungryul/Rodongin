@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.rodongin.handler.ex.CustomException;
-import shop.mtcoding.rodongin.model.company.Company;
+import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.service.apply.ApplyService;
 
 @Controller
@@ -29,7 +29,7 @@ public class ApplyController {
     @PostMapping("/apply")
     public String apply(int announcementId, int resumeId) {
 
-        Company principal = (Company) session.getAttribute("principal");
+        Employee principal = (Employee) session.getAttribute("principal");
 
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다.", HttpStatus.UNAUTHORIZED);
