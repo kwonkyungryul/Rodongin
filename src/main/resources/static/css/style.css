@@ -15,27 +15,27 @@ li {
 }
 
 .bg_color_main {
-    background-color: rgb(255, 230, 104);
+    background-color: rgb(255, 230, 104) !important;
 }
 
 .bg_color_sub {
-    background-color: rgb(255, 238, 150);
+    background-color: rgb(255, 238, 150) !important;
 }
 
 .bg_color_point {
-    background-color: rgb(51, 80, 200);
+    background-color: rgb(51, 80, 200) !important;
 }
 
 .font_color_main {
-    color: rgb(255, 230, 104);
+    color: rgb(255, 230, 104) !important;
 }
 
 .font_color_sub {
-    color: rgb(255, 238, 150);
+    color: rgb(255, 238, 150) !important;
 }
 
 .font_color_point {
-    color: rgb(51, 80, 200);
+    color: rgb(51, 80, 200) !important;
 }
 
 .font_color_94 {
@@ -72,6 +72,7 @@ li {
   /* 메인 블루 버튼 (a태그) */
   .main_blue_btn {
     display: inline-block;
+    border: solid 1px transparent;
     padding: 8px 30px;
     background-color: rgb(51, 80, 200);
     border-radius: 7px;
@@ -81,10 +82,19 @@ li {
     text-decoration: none;
   }
 
+  .main_blue_btn:hover {
+    color: #fff;
+  }
+
   /* 메인 셀렉트 박스 */
   .main_select_box {
     display: inline-block;
     padding: 1px 5px;
     border: 1px solid #ccc;
     border-radius: 7px;
+  }
+
+  .form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
   }

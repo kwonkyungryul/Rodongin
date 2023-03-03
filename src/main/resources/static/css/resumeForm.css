@@ -1,0 +1,189 @@
+.my_title {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.my_info_title {
+  font-weight: bolder;
+  font-size: 16px;
+  margin-left: 20px;
+}
+
+.my_info {
+  font-size: 16px;
+  margin-left: 15px;
+}
+
+.my_name {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.my_yellow_box {
+  border: 2px solid rgb(255, 230, 104);
+}
+
+.my_info_box_margin {
+  margin: 20px;
+}
+
+.my_list {
+  width: 120px;
+}
+
+.my_info_title_margin {
+  margin-left: 40px;
+}
+
+.my_info_thumbnail {
+  border: 1px solid rgb(255, 230, 104);
+  width: 94px;
+  height: 113px;
+  /* margin-top: 5px; */
+  margin-bottom: 5px;
+  float: right;
+}
+
+.main_yellow_label {
+  display: inline-block;
+  padding: 6px;
+  /* width: 60px; */
+  /* height: 30px; */
+  background-color: rgb(255, 238, 150);
+  border-radius: 7px;
+  color: rgb(94, 94, 94);
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.my_content {
+  /* display: inline-block; */
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.my_resume_title_form {
+  height: 60px;
+  font-size: 25px;
+}
+
+.my_check {
+  display: inline-block;
+  margin-left: 30px;
+  margin-top: 25px;
+}
+
+.AA {
+  border: 1px solid black;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: black;
+  margin: auto;
+  margin-right: 10px;
+}
+
+.BB {
+  border: 1px solid black;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: black;
+  margin-right: 10px;
+}
+
+.my_license {
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  width: 140px;
+}
+
+.my_tek {
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+}
+
+.my_arrow_box {
+  display: flex;
+  justify-content: center;
+  margin: 5%;
+}
+
+.my_arrow {
+  font-size: 100px;
+  color: rgb(51, 80, 200);
+}
+
+.my_file_comment {
+  display: flex;
+  justify-content: center;
+  margin: 5%;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.main_blue_btn {
+  display: inline-block;
+  padding: 8px 30px;
+  /* width: 60px; */
+  /* height: 30px; */
+  background-color: rgb(51, 80, 200);
+  border-radius: 7px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+
+  text-decoration: none;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.main_select_box {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  /* font-size: 13px; */
+  /* font-weight: bold; */
+}
+
+.form-control:focus {
+  border-color: #ced4da;
+  box-shadow: none;
+}
+
+.my_info_insert {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.my_text {
+  margin-top: 16px;
+  width: 180px;
+}
+
+.my_main_blue_btn {
+  display: inline-block;
+  padding: 8px 30px;
+  /* width: 60px; */
+  /* height: 30px; */
+  background-color: rgb(51, 80, 200);
+  border-radius: 7px;
+  color: #fff;
+  font-size: 16px;
+  width: 90px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 40%;
+  margin-left: 30%;
+}
+
+.my_end {
+  align-items: flex-end;
+}
