@@ -1,0 +1,127 @@
+.my_name_body_big {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my_input_box {
+  width: 800px;
+}
+
+.my_input_box2 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.input-group-text {
+  color: white;
+  font-weight: bold;
+  background-color: rgb(255, 230, 104);
+}
+
+.my_hrname {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  width: 800px;
+  margin-left: 26%;
+}
+
+.my_hrsmlname {
+  margin-top: 13px;
+  margin-left: 4%;
+}
+
+.my_hrclass {
+  margin-left: 26.5%;
+  width: 800px;
+}
+
+.my_inputbigflex {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.my_containerbox2 {
+  display: flex;
+  justify-content: center;
+  margin-left: 5%;
+}
+
+.my_inputflex {
+  display: flex;
+  justify-content: center;
+  width: 800px;
+}
+
+.my_hr {
+  margin-top: 20px;
+  width: 200px;
+  margin-left: 62%;
+}
+
+.my_hrname {
+  display: flex;
+  justify-content: flex-start;
+}
+/* 근무지 */
+.my_rmsanwl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(255, 230, 104);
+  border: 1px solid rgb(255, 230, 104);
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  color: white;
+  margin-left: 26%;
+  margin-bottom: 10px;
+  /* margin-right: 10px;
+    margin-left: 18%; */
+  border: 1px solid;
+}
+
+.input-groupa {
+  width: 1000px;
+}
+
+.my_wjscpqrtm {
+  display: flex;
+  justify-content: center;
+}
+
+.form-control {
+  width: 730px;
+}
+
+.my_formclass {
+  display: flex;
+  justify-content: center;
+}
+.my_formclass2 {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  margin-left: 18%;
+}
+
+/* 노트 */
+.my_summernote {
+  display: flex;
+  justify-content: center;
+}
+.my_summernotebtn {
+  width: 1250px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 13%;
+}
+
+.my_mysummermagin {
+  margin-left: 26%;
+}

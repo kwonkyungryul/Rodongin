@@ -1,0 +1,121 @@
+.my_search {
+  display: flex;
+  margin-left: 25%;
+  margin-top: 30px;
+  width: 50%;
+}
+
+/* 메인카드 */
+.my_card {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.card {
+  border-top: 10px solid rgb(255, 230, 104);
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  width: 250px;
+  height: 330px;
+  margin-left: 10px;
+  box-shadow: 3px 3px 10px gray;
+}
+
+.card img {
+  border-bottom: none;
+  height: 180px;
+}
+.card-body {
+  z-index: 3;
+  border-top: 2px solid rgb(255, 230, 104);
+  background: white;
+  height: 100px;
+  border: 0.5px solid gainsboro;
+}
+
+/* 기술스택 */
+.my_hr {
+  width: 200px;
+  margin-left: 69%;
+}
+
+/*  */
+
+.my_accordionq {
+  margin-top: 0%;
+}
+
+.my_cir {
+  /* border: 1px solid rgb(255, 230, 104); */
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgb(255, 230, 104);
+  font-weight: bold;
+  font-size: 10px;
+  color: white;
+  width: 20px;
+  height: 20px;
+}
+
+.accordion {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.accordion-button {
+  width: 1000px;
+  /* height: 100px; */
+}
+
+.accordion-body {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  height: 100px;
+}
+
+/* display: flex;
+  justify-content: center; */
+.my_sstrong {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px;
+}
+
+.my_span {
+  display: inline-block;
+  margin-left: 20%;
+  font-weight: bold;
+}
+.my_span2 {
+  display: inline-block;
+  margin-left: 40%;
+}
+
+.my_button_ooo {
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.accordion button:focus {
+  box-shadow: none;
+}
+
+.my_lastbuttonbig {
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+  margin-right: 20%;
+}
+.my_deletebtnanddetail {
+  display: flex;
+  justify-content: end;
+}

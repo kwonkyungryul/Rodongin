@@ -1,0 +1,35 @@
+textarea:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.my_border_radius {
+    border: 1px solid #ced4da;
+    border-radius: 1.25em;
+    /* border-color: rgb(94, 94, 94); */
+}
+
+.my_login_nav {
+    display: flex;
+    background-color: rgb(255, 230, 104);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    color: rgb(94, 94, 94);
+    /* border: 1px solid rgb(255, 230, 104); */
+    /* color: #fff; */
+    padding: 13px 0;
+}
+
+.my_login_box {
+    border-inline: 1px;
+    background-color: transparent;
+    border-radius: 20px;
+    padding: 1.25em 1.625em;
+}

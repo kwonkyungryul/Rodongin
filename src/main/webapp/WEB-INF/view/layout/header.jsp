@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/32aa2b8683.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     
@@ -27,16 +27,32 @@
     <header class="bg_color_main">
         <div class="container d-flex flex-column justify-content-end">
             <div class="header-top d-flex justify-content-between align-items-center mt-1">
-                <div class="logo fs-1 fw-bold font_color_point"><img src="/images/Logo.png" alt="" style="width: 170px; height: 39px;"></div>
+                <div class="logo fs-1 fw-bold font_color_point"><a href="/"><img src="/images/Logo.png" alt="" style="width: 170px; height: 39px;"></a></div>
                 <div class="d-flex">
-                    <!-- <div class="buttons pe-3"><a href="#"><b>로그인</b></a></div>
-                    <div class="buttons"><a href="#"><b>회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></div> -->
+                    <c:choose>
+                       <c:when test="${not empty principal}">
+                        <div class="buttons pe-2">
+                            <div class="" style="border-radius: 50%; width: 30px; height: 30px; background-color: #fff;"></div>
+                        </div>
+                        <div class="buttons pe-3"><a href="/employee/detail">${principal.employeeFullname}</a></div>
+                        <div class="buttons"><a href="/logout"><b>로그아웃</b></a></div>
 
-                    <div class="buttons pe-2">
-                        <div class="" style="border-radius: 50%; width: 30px; height: 30px; background-color: #fff;"></div>
-                    </div>
-                    <div class="buttons pe-3">권경렬</div>
-                    <div class="buttons"><a href="#"><b>로그아웃</b></a></div>
+                       </c:when>
+
+                       <c:when test="${not empty comPrincipal}">
+                        <div class="buttons pe-2">
+                            <div class="" style="border-radius: 50%; width: 30px; height: 30px; background-color: #fff;"></div>
+                        </div>
+                        <div class="buttons pe-3"><a href="/company/${comPrincipal.id}">${comPrincipal.companyFullname}</a></div>
+                        <div class="buttons"><a href="/logout"><b>로그아웃</b></a></div>
+                       </c:when>
+                    
+                       <c:otherwise>
+                        <div class="buttons pe-3"><a href="/loginForm"><b>로그인</b></a></div>
+                        <div class="buttons"><a href="/employee/joinForm"><b>회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></div>
+                       </c:otherwise>
+                    </c:choose>
+
 
                 </div>
             </div>
