@@ -87,7 +87,7 @@ VALUES
     (5, 2, '한국산업인력공단', NOW());
 
 -- employee의 기술스택 테이블
-INSERT INTO employee_stack (employee_id, stack_id, stack_acquistion, created_at) VALUES 
+INSERT INTO employee_stack (employee_id, stack_id, stack_acquisition, created_at) VALUES
 (1, 1, '2020-01-01', NOW()),
 (1, 2, '2019-05-01', NOW()),
 (2, 1, '2021-02-01', NOW()),

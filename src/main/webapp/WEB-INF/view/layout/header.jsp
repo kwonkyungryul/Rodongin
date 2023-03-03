@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,10 +51,9 @@
                        <c:otherwise>
                         <div class="buttons pe-3"><a href="/loginForm"><b>로그인</b></a></div>
                         <div class="buttons"><a href="/employee/joinForm"><b>회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></div>
+
                        </c:otherwise>
                     </c:choose>
-
-
                 </div>
             </div>
             <nav class="d-flex justify-content-center mt-auto pt-3 pb-1">

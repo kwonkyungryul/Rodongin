@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.rodongin.model.resume.ResumeRepository">
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
+      SELECT * FROM resume WHERE id = #{id}
+    </select>
 
+    <select id="findByApplyResumeIdWithCareer" resultType="shop.mtcoding.rodongin.dto.resume.ResumeRes$ResumeApplyListResDto">
+        SELECT r.resume_title, r.resume_salary, rc.career_company FROM resume r
+        INNER JOIN resume_career rc
+        ON r.id = rc.resume_id
+        WHERE r.id = #{applyResumeId}
+    </select>
+    
     <select id="findByEmpId" resultType="shop.mtcoding.rodongin.dto.resume.ResumeResp$ResumeListRespDto">
         SELECT re.ID, re.EMPLOYEE_ID, re.RESUME_TITLE, re.RESUME_SALARY,
         MAX(rc.CAREER_COMPANY) AS CAREER_COMPANY, 
@@ -20,17 +30,12 @@
         WHERE re.EMPLOYEE_ID = #{employeeId}
         GROUP BY re.ID, re.EMPLOYEE_ID, re.RESUME_TITLE
     </select>
-
-    <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
-        SELECT * FROM RESUME where Id = #{Id}
-    </select>
     
     <select id="findByEmployeeId" resultType="shop.mtcoding.rodongin.model.resume.Resume">
         SELECT * FROM resume WHERE employee_id = #{employeeId}
     </select>
-
+    
     <delete id="deleteById">
         DELETE FROM resume WHERE id = #{id}
     </delete>
-
 </mapper>
