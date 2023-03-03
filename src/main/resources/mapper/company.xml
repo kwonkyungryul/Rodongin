@@ -18,6 +18,7 @@
     </select>
 
     <select id="findById" resultType="shop.mtcoding.rodongin.model.company.Company">
+
         SELECT * FROM company WHERE id = #{id}
     </select>
 

@@ -176,6 +176,7 @@ public class AnnouncementController {
         model.addAttribute("delete", announcementRepository.findById(id));
         model.addAttribute("listview", announcementRepository.findAnnouncementlist());
         model.addAttribute("company", companyRepository.findById(id));
+
         return "announcement/detail";
     }
 
@@ -194,6 +195,7 @@ public class AnnouncementController {
             throw new CustomApiException("인증이 되지 않았습니다.");
         }
         announcementService.게시글삭제(id, comPrincipal.getId());
+
         return new ResponseEntity<>(new ResponseDto<>(1, "삭제성공", null), HttpStatus.OK);
     }
 

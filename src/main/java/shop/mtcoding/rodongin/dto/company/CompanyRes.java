@@ -19,9 +19,5 @@ public class CompanyRes {
         private String companyIntroduction;
         private String companyHistory;
         private String companyVision;
-        
-        
-        
-    
     }
 }

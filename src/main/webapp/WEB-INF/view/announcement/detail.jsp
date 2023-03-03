@@ -177,20 +177,17 @@
     <!-- 버튼 -->
     <div class="my_lastbuttonbig">
     
-    
       <div class="my_lastbutton">
           <c:if test="${detailDto.id == comPrincipal.id}" >
         <a href="/announcement/${announcement.id}/updateForm" class="btn btn-warning">수정하기</a>
       </c:if>
-       
-       
+
       </div>
       <div class="my_lastbutton">
         <a href="/company/${announcement.companyId}" class="btn btn-primary ">기업정보 ></a>
       </div>
 
     </div>
-    <!--  -->
 
     <script>
       let principalId = $('#principalId').val();

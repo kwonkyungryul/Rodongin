@@ -130,10 +130,11 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <div class="my_deletebtnanddetail">
     <div class="my_button_ooo">
 
-     <c:if test="${list.companyId == comPrincipal.id}" >
-  <button onclick="deleteById(${list.id})" type="button" class="btn btn-warning">삭제하기</button>
-</c:if>
-    
+
+    <c:if test="${list.companyId == comPrincipal.id}" >
+      <button onclick="deleteById(${list.id})" type="button" class="btn btn-warning">삭제하기</button>
+    </c:if>
+
     </div>
      <div class="my_button_ooo" >
       <a href="/announcement/${list.id}" class="btn btn-primary">지원하기</a>
