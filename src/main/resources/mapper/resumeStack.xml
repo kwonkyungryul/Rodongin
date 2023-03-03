@@ -15,4 +15,12 @@
     <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.ResumeStack">
         SELECT * FROM resume_stack WHERE id = #{id}
     </select>
+    
+    <select id="findByResumeId" resultType="shop.mtcoding.rodongin.dto.resume.ResumeResp$ResumeStackRespDto">
+        select rs.RESUME_ID , rs.STACK_ID , sm.STACK_NAME , rs.STACK_ACQUISITION , 
+        from RESUME_STACK rs
+        inner join STACK_MASTER sm
+        on rs.STACK_ID =sm.ID 
+        where rs.RESUME_ID = #{resumeId}
+    </select>
 </mapper>

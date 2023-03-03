@@ -5,7 +5,7 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.apply.ApplyRepository">
     <insert id="insert">
-        INSERT INTO apply(employee_id, company_id, created_at) VALUES(#{employeeId}, #{companyId}, now())
+        INSERT INTO apply (announcement_id, resume_id, created_at) VALUES (#{announcementId}, #{resumeId}, NOW())
     </insert>
     
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.apply.Apply">

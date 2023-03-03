@@ -15,4 +15,8 @@
     <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.ResumeCareer">
         SELECT * FROM resume_career WHERE id = #{id}
     </select>
+    
+    <select id="findByResumeId" resultType="shop.mtcoding.rodongin.model.resume.ResumeCareer">
+        SELECT * FROM resume_career where resume_id = #{resumeId}
+    </select>
 </mapper>

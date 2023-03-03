@@ -22,7 +22,7 @@ public class Employee {
     private String employeeAddress;
     private String employeeThumbnail;
     private Timestamp createdAt;
-    
+
     public Employee(String employeeName, String employeePassword, String employeeFullname, String employeeEmail,
             String employeeTel, String employeeGender, Date employeeBirth, String employeeAddress,
             String employeeThumbnail) {
@@ -37,5 +37,4 @@ public class Employee {
         this.employeeThumbnail = employeeThumbnail;
     }
 
-    
 }

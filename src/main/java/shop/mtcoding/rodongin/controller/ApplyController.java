@@ -1,10 +1,13 @@
 package shop.mtcoding.rodongin.controller;
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +44,20 @@ public class ApplyController {
         List<ApplyListResDto> applys = applyRepository.findByCompanyId(companyId);
 
         model.addAttribute("applys", applys);
+
         return "apply/list";
+    }
+
+    @PostMapping("/apply")
+    public String apply(int announcementId, int resumeId) {
+
+        Employee principal = (Employee) session.getAttribute("principal");
+
+        if (principal == null) {
+            throw new CustomException("인증이 되지 않았습니다.", HttpStatus.UNAUTHORIZED);
+        }
+        applyService.지원하기(announcementId, resumeId);
+
+        return "redirect:/announcement/" + announcementId;
     }
 }

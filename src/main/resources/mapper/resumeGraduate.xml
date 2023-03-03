@@ -16,8 +16,11 @@
         SELECT * FROM resume_graduate WHERE id = #{id}
     </select>
 
-    <select id="findByResumeId" resultType="shop.mtcoding.rodongin.model.resume.ResumeGraduate">
-        SELECT * FROM resume_graduate WHERE resume_id = #{ResumeId}
+    <select id="findByResumeId" resultType="shop.mtcoding.rodongin.dto.resume.ResumeResp$ResumeGraduateRespDto">
+            select rg.RESUME_ID , rg.SCHOOL_ID , sm.SCHOOL_NAME 
+            from RESUME_GRADUATE rg
+            inner join SCHOOL_MASTER sm
+            on rg.SCHOOL_ID =sm.ID 
+            where rg.RESUME_ID = #{resumeId}
+            GROUP BY SCHOOL_ID 
     </select>
-    
-</mapper>

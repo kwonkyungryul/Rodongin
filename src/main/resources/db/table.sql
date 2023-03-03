@@ -66,7 +66,7 @@ CREATE TABLE employee_stack (
 	id int primary key auto_increment,
     employee_id int not null,
     stack_id int not null,
-    stack_acquisition varchar(20) not null,
+    stack_acquistion varchar(20) not null,
     created_at timestamp not null
 );
 -- ---------------------------------------------------------------------------------------------------
@@ -157,7 +157,7 @@ CREATE TABLE announcement (
 
 CREATE TABLE apply (
 	id int primary key auto_increment,
+    announcement_id int not null,
     resume_id int not null,
-    company_id int not null,
     created_at timestamp not null
 );

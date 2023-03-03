@@ -15,6 +15,7 @@ public class EmployeeStack {
     private Integer stackId;
     private String stackAcquistion;
     private Timestamp createdAt;
+
     public EmployeeStack(Integer employeeId, Integer stackId, String stackAcquistion) {
         this.employeeId = employeeId;
         this.stackId = stackId;

@@ -17,11 +17,12 @@ public class EmployeeCareer {
     private Date careerStart;
     private Date careerEnd;
     private Timestamp createdAt;
+
     public EmployeeCareer(Integer employeeId, String careerCompany, Date careerStart, Date careerEnd) {
         this.employeeId = employeeId;
         this.careerCompany = careerCompany;
         this.careerStart = careerStart;
         this.careerEnd = careerEnd;
     }
-    
+
 }

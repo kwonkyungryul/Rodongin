@@ -9,7 +9,7 @@
     </insert>
     
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.master.StackMaster">
-        SELECT * FROM stackMaster;
+        SELECT * FROM stack_master
     </select>
 
     <select id="findById" resultType="shop.mtcoding.rodongin.model.master.StackMaster">

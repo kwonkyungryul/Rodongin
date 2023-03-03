@@ -165,6 +165,7 @@
 
 .my_text {
   margin-top: 16px;
+  width: 180px;
 }
 
 .my_main_blue_btn {
@@ -179,7 +180,7 @@
   width: 90px;
   font-weight: bold;
   text-decoration: none;
-  margin-top: 60%;
+  margin-top: 40%;
   margin-left: 30%;
 }
 
