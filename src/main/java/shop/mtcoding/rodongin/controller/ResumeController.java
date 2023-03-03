@@ -12,9 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
+import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeCareerSaveDto;
+import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeGraduateSaveDto;
+import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeLicenseSaveDto;
+import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeSaveDto;
+import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeStackSaveDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduateRespDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeLicenseRespDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeStackRespDto;
@@ -27,7 +34,7 @@ import shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeLicenseRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeStackRepository;
-import shop.mtcoding.rodongin.service.ResumeService;
+import shop.mtcoding.rodongin.service.resume.ResumeService;
 import shop.mtcoding.rodongin.util.MySession;
 
 @Controller
@@ -88,8 +95,36 @@ public class ResumeController {
         return "resume/detail";
     }
 
+    @PostMapping("/resume/save")
+    public @ResponseBody ResponseEntity<?> resumeSave(@RequestBody ResumeSaveDto resumeSaveDto) {
+        System.out.println(resumeSaveDto.getCV());
+        System.out.println(resumeSaveDto.getResumeSalary());
+        System.out.println(resumeSaveDto.getResumeTitle());
+        Employee principal = MySession.MyPrincipal(session);
+
+        if (principal == null) {
+             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+
+        resumeService.이력서등록(resumeSaveDto, principal.getId());
+        // if (resumeCareerSaveDto.getCareerStart().toString().equals("0001-01-01")) {
+        //     resumeCareerSaveDto.setCareerStart(null);
+        // }
+        // if (resumeCareerSaveDto.getCareerEnd().toString().equals("0001-01-01")) {
+        //     resumeCareerSaveDto.setCareerEnd(null);
+        // }
+        return new ResponseEntity<>(new ResponseDto<>(1, "이력서 등록 성공", resumeSaveDto.getId()), HttpStatus.OK);
+    }
+
     @GetMapping("/resume/saveForm")
-    public String resumeForm() {
+    public String resumeForm(Model model) {
+        Employee principal = MySession.MyPrincipal(session);
+
+        if (principal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
+
         return "resume/saveForm";
     }
 }
