@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.rodongin.model.resume.ResumeRepository">
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
+      SELECT * FROM resume WHERE id = #{id}
+    </select>
+
+    <select id="findByApplyResumeIdWithCareer" resultType="shop.mtcoding.rodongin.dto.resume.ResumeRes$ResumeApplyListResDto">
+        SELECT r.resume_title, r.resume_salary, rc.career_company FROM resume r
+        INNER JOIN resume_career rc
+        ON r.id = rc.resume_id
+        WHERE r.id = #{applyResumeId}
+    </select>
+</mapper>

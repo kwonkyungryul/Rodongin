@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository">
+    <insert id="insert">
+        INSERT INTO resume_graduate(resume_id, school_id, school_graduate, created_at) VALUES(#{resumeId}, #{schoolId}, #{schoolGraduate}, now())
+    </insert>
+    
+    <select id="findAll" resultType="shop.mtcoding.rodongin.model.resume.ResumeGraduate">
+        SELECT * FROM resume_graduate;
+    </select>
+
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.ResumeGraduate">
+        SELECT * FROM resume_graduate WHERE id = #{id}
+    </select>
+
+    <select id="findByResumeId" resultType="shop.mtcoding.rodongin.model.resume.ResumeGraduate">
+        SELECT * FROM resume_graduate WHERE resume_id = #{ResumeId}
+    </select>
+    
+</mapper>

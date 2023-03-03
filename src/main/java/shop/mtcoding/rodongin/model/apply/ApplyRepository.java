@@ -1,0 +1,22 @@
+package shop.mtcoding.rodongin.model.apply;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import shop.mtcoding.rodongin.dto.apply.ApplyRes.ApplyListResDto;
+
+@Mapper
+public interface ApplyRepository {
+    public int insert(Apply apply);
+
+    public List<Apply> findAll();
+
+    public Apply findById(int id);
+
+    public int updateById(int id, Apply apply);
+
+    public int deleteById(int id);
+
+    public List<ApplyListResDto> findByCompanyId(int companyId);
+}
