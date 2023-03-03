@@ -13,41 +13,41 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <div class="my_name">
-                                <h3>박지연</h3>
+                                <h3>${empInfo.employeeFullname}</h3>
                             </div>
 
                             <div class="d-flex">
                                 <div>
                                     <div>
                                         <span class="my_info_title">생년월일</span>
-                                        <span class="my_info">1995-05-10</span>
+                                        <span class="my_info">${empInfo.employeeBirth}</span>
                                     </div>
                                     <div>
                                         <span class="my_info_title">연락처</span>
-                                        <span class="my_info">010-9626-4682</span>
+                                        <span class="my_info">${empInfo.employeeTel}</span>
                                     </div>
                                 </div>
                                 <div class="my_info_title_margin">
                                     <div>
                                         <span class="my_info_title">주소</span>
-                                        <span class="my_info">부산 진구 중앙대로 서면 하이뷰 더파크 409호</span>
+                                        <span class="my_info">${empInfo.employeeAddress}</span>
                                     </div>
                                     <div>
                                         <span class="my_info_title">이메일</span>
-                                        <span class="my_info">siki4682@naver.com</span>
+                                        <span class="my_info">${empInfo.employeeEmail}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="my_info_thumbnail">
-                            <img class="card-img-top" src="images/profile.jfif" alt="Card image">
-                        </div>
+                         <div class="my_info_thumbnail">
+                                <img src="${empInfo.employeeThumbnail == null ? '/images/kakao.jpg' : empInfo.employeeThumbnail}"
+                                    alt="Current Photo" class="img-fluid" id="imagePreview" />
+                            </div>
 
                     </div>
                 </div>
             </div>
         </div>
-
 
 
         <div>
@@ -56,7 +56,7 @@
                     <span class="main_yellow_label mb-2">제목</span>
                 </div>
                 <div>
-                    <input class="form-control my_resume_title_form mb-2" type="text" placeholder="이력서 타이틀 입력">
+                    <input name="resumeTitle" id="resumeTitle" class="form-control my_resume_title_form mb-2" type="text" placeholder="이력서 타이틀 입력">
                 </div>
             </div>
 
@@ -187,10 +187,21 @@
             </div>
             <div class="my_sub_title_form">
                 <div class="d-flex mb-3">
+                    <span class="main_yellow_label">희망연봉</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="BB"></div>
+                        <input name="resumeSalary" id="resumeSalary" class="form-control" style="width: 30%;" type="number">
+                        <p class="m-2">  (만 원)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="my_sub_title_form">
+                <div class="d-flex mb-3">
                     <span class="main_yellow_label">자기소개서</span>
                 </div>
                 <div class="form-group my_summernote">
-                    <textarea class="form-control summernote" rows="5" id="content" name="content"></textarea>
+                    <textarea class="form-control summernote" rows="5" id="CV" name="CV"></textarea>
                 </div>
             </div>
             <div class="my_sub_title_form">
@@ -209,13 +220,34 @@
 
                 <div>
                     <div class="button_center d-flex justify-content-center">
-                        <a href="" class="main_blue_btn" type="submit">등록</a>
+                        <button onclick="save()" class="main_blue_btn" type="button">등록</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+<script>
+    function save() {
+        let data = {
+            "resumeTitle": $("#resumeTitle").val(),
+            "resumeSalary": $("#resumeSalary").val(),
+            "cv": $("#CV").val()
+        };
+        
+        $.ajax({
+            type: "post",
+            url: "/resume/save",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done((res) => { // 20X 일때
+            alert(res.msg);
+            location.href = "/resume/"+res.data+"/detail";
+        }).fail((err) => {
+            alert(err.responseJSON.msg);
+        });
+    }
+</script>
     <script>
         $('.summernote').summernote({
             tabsize: 2,
