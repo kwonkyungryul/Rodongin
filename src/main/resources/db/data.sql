@@ -1,16 +1,16 @@
 -- 개인 유저 테이블
 INSERT INTO employee (employee_name, employee_password, employee_fullname, employee_email, employee_tel, employee_gender, employee_birth, employee_address, employee_info_thumbnail, created_at)
 VALUES
-('ssar', '1234', '홍길동', 'ssar@ssar.com', '01011111111', 'M', '1990-01-01', '서울특별시 강남구', NULL, NOW()),
-('cos', '1234', '최성훈', 'cos@cos.com', '01022222222', 'M', '1991-01-01', '서울특별시 강북구', NULL, NOW()),
-('love', '1234', '장보고', 'love@love.com', '01033333333', 'M', '1992-01-01', '서울특별시 강서구', NULL, NOW()),
-('toby', '1234', '김동훈', 'toby@toby.com', '01044444444', 'M', '1993-01-01', '서울특별시 강동구', NULL, NOW()),
-('alice', '1234', '앨리스', 'alice@alice.com', '01055555555', 'F', '1994-01-01', '서울특별시 관악구', NULL, NOW()),
-('cat', '1234', '김토끼', 'cat@cat.com', '01066666666', 'F', '1995-01-01', '서울특별시 강서구', NULL, NOW()),
-('dog', '1234', '박강아지', 'dog@dog.com', '01077777777', 'F', '1996-01-01', '서울특별시 성북구', NULL, NOW()),
-('elephant', '1234', '정코끼리', 'elephant@elephant.com', '01088888888', 'F', '1997-01-01', '서울특별시 은평구', NULL, NOW()),
-('fox', '1234', '신여우', 'fox@fox.com', '01099999999', 'F', '1998-01-01', '서울특별시 노원구', NULL, NOW()),
-('grape', '1234', '김포도', 'grape@grape.com', '01000000000', 'F', '1999-01-01', '서울특별시 양천구', NULL, NOW());
+('ssar', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '홍길동', 'ssar@ssar.com', '01011111111', 'M', '1990-01-01', '서울특별시 강남구', NULL, NOW()),
+('cos', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '최성훈', 'cos@cos.com', '01022222222', 'M', '1991-01-01', '서울특별시 강북구', NULL, NOW()),
+('love', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '장보고', 'love@love.com', '01033333333', 'M', '1992-01-01', '서울특별시 강서구', NULL, NOW()),
+('toby', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '김동훈', 'toby@toby.com', '01044444444', 'M', '1993-01-01', '서울특별시 강동구', NULL, NOW()),
+('alice', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '앨리스', 'alice@alice.com', '01055555555', 'F', '1994-01-01', '서울특별시 관악구', NULL, NOW()),
+('cat', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '김토끼', 'cat@cat.com', '01066666666', 'F', '1995-01-01', '서울특별시 강서구', NULL, NOW()),
+('dog', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '박강아지', 'dog@dog.com', '01077777777', 'F', '1996-01-01', '서울특별시 성북구', NULL, NOW()),
+('elephant', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '정코끼리', 'elephant@elephant.com', '01088888888', 'F', '1997-01-01', '서울특별시 은평구', NULL, NOW()),
+('fox', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '신여우', 'fox@fox.com', '01099999999', 'F', '1998-01-01', '서울특별시 노원구', NULL, NOW()),
+('grape', '6de7618067bb8fb9a8e1ed5c98cff2ea87f45f9f61e4f9e8c871f4105f46007a', '김포도', 'grape@grape.com', '01000000000', 'F', '1999-01-01', '서울특별시 양천구', NULL, NOW());
 
 -- 학교명 테이블 (관리자가 생성)
 INSERT INTO school_master (school_name, created_at) VALUES

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyJoinReqDto;
@@ -97,8 +98,8 @@ public class CompanyController {
         return "company/saveForm";
     }
 
-    @GetMapping("/company/1")
-    public String detail() {
+    @GetMapping("/company/{id}")
+    public String detail(@PathVariable int id) {
         return "company/detail";
     }
 

@@ -59,7 +59,7 @@ public class AnnouncementController {
     public @ResponseBody ResponseEntity<?> update(@PathVariable int id,
             @RequestBody AnnouncementUpdateReqDto announcementUpdateReqDto, HttpServletResponse response) {
 
-        Company principal = (Company) session.getAttribute("principal");
+        Company principal = (Company) session.getAttribute("comPrincipal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다.", HttpStatus.UNAUTHORIZED);
         }
@@ -165,17 +165,17 @@ public class AnnouncementController {
     public String detail(@PathVariable int id, Model model) {
 
         Employee principal = (Employee) session.getAttribute("principal");
-        if (principal == null) {
-            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        if (principal != null) {
+            int employeeId = principal.getId();
+            model.addAttribute("resumes", resumeRepository.findByEmployeeId(employeeId));
+            // throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
-        int employeeId = principal.getId();
 
         model.addAttribute("announcement", announcementRepository.findAnnouncementAndCompanyId(id));
         model.addAttribute("tostack", stackMasterRepository.findById(id));
         model.addAttribute("delete", announcementRepository.findById(id));
         model.addAttribute("listview", announcementRepository.findAnnouncementlist());
 
-        model.addAttribute("resumes", resumeRepository.findByEmployeeId(employeeId));
         return "announcement/detail";
     }
 

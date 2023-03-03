@@ -43,7 +43,7 @@
                         <div class="buttons pe-2">
                             <div class="" style="border-radius: 50%; width: 30px; height: 30px; background-color: #fff;"></div>
                         </div>
-                        <div class="buttons pe-3"><a href="/employee/detail">${comPrincipal.companyFullname}</a></div>
+                        <div class="buttons pe-3"><a href="/company/${comPrincipal.id}">${comPrincipal.companyFullname}</a></div>
                         <div class="buttons"><a href="/logout"><b>로그아웃</b></a></div>
                        </c:when>
                     
