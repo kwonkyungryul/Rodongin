@@ -17,7 +17,8 @@
         SELECT * FROM company
     </select>
 
-    <select id="findByID" resultType="shop.mtcoding.rodongin.model.company.Company">
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.company.Company">
+
         SELECT * FROM company WHERE id = #{id}
     </select>
 

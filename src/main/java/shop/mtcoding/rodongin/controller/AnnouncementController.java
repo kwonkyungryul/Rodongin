@@ -175,6 +175,7 @@ public class AnnouncementController {
         model.addAttribute("tostack", stackMasterRepository.findById(id));
         model.addAttribute("delete", announcementRepository.findById(id));
         model.addAttribute("listview", announcementRepository.findAnnouncementlist());
+        model.addAttribute("company", companyRepository.findById(id));
 
         return "announcement/detail";
     }
@@ -189,11 +190,12 @@ public class AnnouncementController {
     // 게시글 삭제
     @DeleteMapping("/announcement/{id}")
     public @ResponseBody ResponseEntity<?> delete(@PathVariable int id) {
-        Company principal = (Company) session.getAttribute("principal");
-        if (principal == null) {
+        Company comPrincipal = (Company) session.getAttribute("comPrincipal");
+        if (comPrincipal == null) {
             throw new CustomApiException("인증이 되지 않았습니다.");
         }
-        announcementService.게시글삭제(id, principal.getId());
+        announcementService.게시글삭제(id, comPrincipal.getId());
+
         return new ResponseEntity<>(new ResponseDto<>(1, "삭제성공", null), HttpStatus.OK);
     }
 
