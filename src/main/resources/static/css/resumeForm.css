@@ -27,6 +27,17 @@
   margin: 20px;
 }
 
+
+.main_select_box_school {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  width: 90%;
+  margin-right: 5px;
+}
+
 .my_list {
   width: 120px;
 }
@@ -69,6 +80,21 @@
   height: 60px;
   font-size: 25px;
 }
+
+.my_career_input {
+  width: 936.58px;
+}
+
+.main_select_box_title {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  width: 100%;
+  height: 38px;
+}
+
 
 .my_check {
   display: inline-block;

@@ -11,16 +11,27 @@ import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeLicenseSaveDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeSaveDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeStackSaveDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
-import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.resume.Resume;
+import shop.mtcoding.rodongin.model.resume.ResumeCareerRepository;
+import shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository;
+import shop.mtcoding.rodongin.model.resume.ResumeLicenseRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
+import shop.mtcoding.rodongin.model.resume.ResumeStackRepository;
 
 @Service
 public class ResumeService {
 
     @Autowired
     private ResumeRepository resumeRepository;
-    
+    @Autowired
+    private ResumeGraduateRepository resumeGraduateRepository;
+    @Autowired
+    private ResumeCareerRepository resumeCareerRepository;
+    @Autowired
+    private ResumeLicenseRepository resumeLicenseRepository;
+    @Autowired
+    private ResumeStackRepository resumeStackRepository;
+
     @Transactional
     public void delete(int resumeId, Integer principalId) {
         Resume ResumePS = resumeRepository.findById(resumeId);
@@ -38,18 +49,27 @@ public class ResumeService {
     }
 
     @Transactional
-    public void 이력서등록(ResumeSaveDto resumeSaveDto,int employeeId) {
-        // System.out.println(resumeSaveDto.getCV());
-        // System.out.println(resumeSaveDto.getResumeSalary());
-        // System.out.println(resumeSaveDto.getResumeTitle());
+    public void 이력서등록(ResumeSaveDto resumeSaveDto, ResumeGraduateSaveDto resumeGraduateSaveDto,
+            ResumeCareerSaveDto resumeCareerSaveDto, ResumeLicenseSaveDto resumeLicenseSaveDto,
+            ResumeStackSaveDto resumeStackSaveDto, int employeeId) {
+
+        System.out.println(resumeSaveDto.getResumeTitle());
+        System.out.println(resumeSaveDto.getCV());
+        System.out.println(resumeGraduateSaveDto.getSchoolId());
+        System.out.println(resumeCareerSaveDto.getCareerCompany());
+        System.out.println(resumeLicenseSaveDto.getLicenseId());
+        System.out.println(resumeStackSaveDto.getStackId());
+
         try {
             resumeRepository.insert(employeeId, resumeSaveDto);
+            resumeGraduateRepository.insert(resumeSaveDto.getId(), resumeGraduateSaveDto);
+            resumeCareerRepository.insert(resumeSaveDto.getId(), resumeCareerSaveDto);
+            resumeLicenseRepository.insert(resumeSaveDto.getId(), resumeLicenseSaveDto);
+            resumeStackRepository.insert(resumeSaveDto.getId(), resumeStackSaveDto);
+
         } catch (Exception e) {
             throw new CustomApiException("이력서 등록 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-        }    
-        System.out.println(resumeSaveDto.getId());
+        }
     }
-        
-      
-}
 
+}

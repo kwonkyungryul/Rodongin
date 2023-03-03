@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
@@ -28,6 +28,12 @@ import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeStackRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
+import shop.mtcoding.rodongin.model.master.LicenseMaster;
+import shop.mtcoding.rodongin.model.master.LicenseMasterRepository;
+import shop.mtcoding.rodongin.model.master.SchoolMaster;
+import shop.mtcoding.rodongin.model.master.SchoolMasterRepository;
+import shop.mtcoding.rodongin.model.master.StackMaster;
+import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeCareer;
 import shop.mtcoding.rodongin.model.resume.ResumeCareerRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository;
@@ -44,6 +50,14 @@ public class ResumeController {
     private HttpSession session;
     @Autowired
     private ResumeService resumeService;
+    @Autowired
+    private SchoolMasterRepository schoolMasterRepository;
+
+    @Autowired
+    private LicenseMasterRepository licenseMasterRepository;
+
+    @Autowired
+    private StackMasterRepository stackMasterRepository;
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -96,23 +110,23 @@ public class ResumeController {
     }
 
     @PostMapping("/resume/save")
-    public @ResponseBody ResponseEntity<?> resumeSave(@RequestBody ResumeSaveDto resumeSaveDto) {
-        System.out.println(resumeSaveDto.getCV());
-        System.out.println(resumeSaveDto.getResumeSalary());
-        System.out.println(resumeSaveDto.getResumeTitle());
+    public @ResponseBody ResponseEntity<?> resumeSave(@RequestPart ResumeSaveDto resumeSaveDto,
+            @RequestPart ResumeGraduateSaveDto resumeGraduateSaveDto,
+            @RequestPart ResumeCareerSaveDto resumeCareerSaveDto,
+            @RequestPart ResumeLicenseSaveDto resumeLicenseSaveDto,
+            @RequestPart ResumeStackSaveDto resumeStackSaveDto) {
+
+        System.out.println("테스트");
+
         Employee principal = MySession.MyPrincipal(session);
 
         if (principal == null) {
-             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
 
-        resumeService.이력서등록(resumeSaveDto, principal.getId());
-        // if (resumeCareerSaveDto.getCareerStart().toString().equals("0001-01-01")) {
-        //     resumeCareerSaveDto.setCareerStart(null);
-        // }
-        // if (resumeCareerSaveDto.getCareerEnd().toString().equals("0001-01-01")) {
-        //     resumeCareerSaveDto.setCareerEnd(null);
-        // }
+        resumeService.이력서등록(resumeSaveDto, resumeGraduateSaveDto, resumeCareerSaveDto, resumeLicenseSaveDto,
+                resumeStackSaveDto, principal.getId());
+
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 등록 성공", resumeSaveDto.getId()), HttpStatus.OK);
     }
 
@@ -124,6 +138,14 @@ public class ResumeController {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
         model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
+
+        List<SchoolMaster> schools = schoolMasterRepository.findAll();
+        List<LicenseMaster> licenses = licenseMasterRepository.findAll();
+        List<StackMaster> stacks = stackMasterRepository.findAll();
+        model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
+        model.addAttribute("schools", schools);
+        model.addAttribute("licenses", licenses);
+        model.addAttribute("stacks", stacks);
 
         return "resume/saveForm";
     }

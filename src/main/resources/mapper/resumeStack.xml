@@ -13,4 +13,9 @@
         where rs.RESUME_ID = #{resumeId}
     </select>
 
+    <insert id="insert">
+        INSERT INTO resume_stack (resume_id, stack_id, stack_acquisition, created_at) VALUES
+        (#{resumeId},#{stackId},#{stackAcquisition},NOW())
+    </insert>
+
     </mapper>

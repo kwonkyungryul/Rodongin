@@ -14,4 +14,10 @@
             GROUP BY SCHOOL_ID 
     </select>
 
-    </mapper>
+    
+    <insert id="insert">
+        INSERT INTO resume_graduate (resume_id, school_id, school_graduate, created_at) VALUES
+        (#{resumeGraduateSaveDto.resumeId}, #{resumeGraduateSaveDto.schoolId}, #{resumeGraduateSaveDto.schoolGraduate}, NOW())
+    </insert>
+
+</mapper>

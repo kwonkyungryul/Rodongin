@@ -14,4 +14,9 @@
         GROUP BY LICENSE_ID 
     </select>
 
+    <insert id="insert">
+        INSERT INTO resume_license (resume_id, license_id, license_issuer, created_at) VALUES
+        (#{resumeLicenseSaveDto.resumeId},#{resumeLicenseSaveDto.licenseId},#{resumeLicenseSaveDto.licenseIssuer}, NOW())
+    </insert>
+
     </mapper>

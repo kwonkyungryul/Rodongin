@@ -81,7 +81,7 @@
           alert(err.responseJSON.msg);
         });
       }
-      }
+      
       function chooseImage(obj) {
         //console.log(obj);
         //console.log(obj.files);
@@ -123,7 +123,6 @@
             </div>
           </div>
         </div>
-    </form>
 
     <div class="mb-3">
       <div class="d-flex mb-2">
