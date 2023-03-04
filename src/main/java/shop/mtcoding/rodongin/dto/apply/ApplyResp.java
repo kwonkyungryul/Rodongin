@@ -5,11 +5,11 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ApplyRes {
+public class ApplyResp {
     
     @Setter
     @Getter
-    public static class ApplyListResDto {
+    public static class ApplyListRespDto {
         private String employeeFullname;
         private String employeeAddress;
         private String resumeTitle;
@@ -17,18 +17,5 @@ public class ApplyRes {
         private String stackName;
         private String companyName;
         private Integer resumeId;
-    }
-
-    @Setter
-    @Getter
-    public static class ApplyListResumeResDto {
-        private String employeeFullname;
-        private String employeeAddress;
-        private List<String> careerCompany;
-        private String resumeTitle;
-        private String career;
-        private String stack;
-        private Integer resumeId;
-
     }
 }

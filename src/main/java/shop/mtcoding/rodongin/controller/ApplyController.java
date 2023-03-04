@@ -6,18 +6,21 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;asdasdas
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import shop.mtcoding.rodongin.dto.apply.ApplyResp.ApplyListRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
-import shop.mtcoding.rodongin.dto.apply.ApplyRes.ApplyListResDto;
 import shop.mtcoding.rodongin.model.apply.ApplyRepository;
 import shop.mtcoding.rodongin.model.company.Company;
+import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
+import shop.mtcoding.rodongin.service.apply.ApplyService;
 
 @Controller
 public class ApplyController {
@@ -32,15 +35,18 @@ public class ApplyController {
     ResumeGraduateRepository resumeGraduateRepository;
 
     @Autowired
+    ApplyService applyService;
+
+    @Autowired
     HttpSession session;
 
     @GetMapping("/apply/{companyId}/list")
     public String applyList(@PathVariable int companyId, Model model) {
-        Company principal = (Company) session.getAttribute("principal");
+        Company principal = (Company) session.getAttribute("comPrincipal");
         if (principal == null) {
             throw new CustomException("인증되지 않았습니다.");
         }
-        List<ApplyListResDto> applys = applyRepository.findByCompanyId(companyId);
+        List<ApplyListRespDto> applys = applyRepository.findByCompanyId(companyId);
 
         model.addAttribute("applys", applys);
 

@@ -7,13 +7,6 @@
     <select id="findById" resultType="shop.mtcoding.rodongin.model.resume.Resume">
       SELECT * FROM resume WHERE id = #{id}
     </select>
-
-    <select id="findByApplyResumeIdWithCareer" resultType="shop.mtcoding.rodongin.dto.resume.ResumeRes$ResumeApplyListResDto">
-        SELECT r.resume_title, r.resume_salary, rc.career_company FROM resume r
-        INNER JOIN resume_career rc
-        ON r.id = rc.resume_id
-        WHERE r.id = #{applyResumeId}
-    </select>
     
     <select id="findByEmpId" resultType="shop.mtcoding.rodongin.dto.resume.ResumeResp$ResumeListRespDto">
         SELECT re.ID, re.EMPLOYEE_ID, re.RESUME_TITLE, re.RESUME_SALARY,
@@ -23,11 +16,11 @@
         MAX((SELECT STACK_NAME FROM STACK_MASTER stm WHERE stm.ID = rst.STACK_ID)) AS STACK_NAME,
         MAX(rst.STACK_ACQUISITION)
         FROM RESUME re
-        INNER JOIN RESUME_CAREER rc ON re.ID = rc.RESUME_ID
-        INNER JOIN RESUME_GRADUATE rg ON re.ID = rg.RESUME_ID 
-        INNER JOIN RESUME_LICENSE rl ON re.ID = rl.RESUME_ID 
-        INNER JOIN RESUME_STACK rst ON re.ID = rst.RESUME_ID
-        WHERE re.EMPLOYEE_ID = #{employeeId}
+        LEFT OUTER JOIN RESUME_CAREER rc ON re.ID = rc.RESUME_ID
+        LEFT OUTER JOIN RESUME_GRADUATE rg ON re.ID = rg.RESUME_ID 
+        LEFT OUTER JOIN RESUME_LICENSE rl ON re.ID = rl.RESUME_ID 
+        LEFT OUTER JOIN RESUME_STACK rst ON re.ID = rst.RESUME_ID
+        WHERE re.employee_id = #{emplopyeeId}
         GROUP BY re.ID, re.EMPLOYEE_ID, re.RESUME_TITLE
     </select>
     

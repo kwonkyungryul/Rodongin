@@ -24,3 +24,5 @@
             where rg.RESUME_ID = #{resumeId}
             GROUP BY SCHOOL_ID 
     </select>
+
+</mapper>

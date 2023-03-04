@@ -19,6 +19,7 @@ import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduateRespDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeLicenseRespDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeStackRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
+import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeCareer;
@@ -27,8 +28,7 @@ import shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeLicenseRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeStackRepository;
-import shop.mtcoding.rodongin.service.ResumeService;
-import shop.mtcoding.rodongin.util.MySession;
+import shop.mtcoding.rodongin.service.resume.ResumeService;
 
 @Controller
 public class ResumeController {
@@ -53,7 +53,7 @@ public class ResumeController {
 
     @DeleteMapping("/resume/{id}")
     public @ResponseBody ResponseEntity<?> delete(@PathVariable("id") int id) {
-        Employee principal = MySession.MyPrincipal(session);
+        Employee principal = (Employee) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
@@ -63,10 +63,10 @@ public class ResumeController {
 
     @GetMapping("/resume/{id}/detail")
     public String resume(@PathVariable int id, Model model) {
-        Employee principal = MySession.MyPrincipal(session);
+        Employee principal = (Employee) session.getAttribute("principal");
 
         if (principal == null) {
-            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
 
         model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));

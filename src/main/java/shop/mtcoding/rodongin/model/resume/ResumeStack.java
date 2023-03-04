@@ -11,6 +11,6 @@ public class ResumeStack {
     private Integer id;
     private Integer resumeId;
     private Integer stackId;
-    private String stackAcquistion;
+    private String stackAcquisition;
     private Timestamp createdAt;
 }

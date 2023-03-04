@@ -6,11 +6,11 @@ import java.sql.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CompanyRes {
+public class CompanyResp {
 
     @Getter
     @Setter
-    public static class CompanyDetailResDto {
+    public static class CompanyDetailRespDto {
         private String companyFullname;
         private String companyThumbnail;
         private Date companyEstablish;

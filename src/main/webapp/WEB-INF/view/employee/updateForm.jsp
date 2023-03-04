@@ -203,7 +203,7 @@
               <div class="d-flex align-items-center">
                 <div class="AA"></div>
                 <span class="my_list">활용도</span>
-                <input name="stackAcquistion" id="stackAcquistion" class="form-control my_util" type="text" />
+                <input name="stackAcquisition" id="stackAcquisition" class="form-control my_util" type="text" />
               </div>
             </div>
           </div>

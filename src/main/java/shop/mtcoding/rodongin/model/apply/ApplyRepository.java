@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import shop.mtcoding.rodongin.dto.apply.ApplyRes.ApplyListResDto;
+import shop.mtcoding.rodongin.dto.apply.ApplyResp.ApplyListRespDto;
 
 @Mapper
 public interface ApplyRepository {
@@ -20,5 +20,5 @@ public interface ApplyRepository {
 
     public int deleteById(int id);
 
-    public List<ApplyListResDto> findByCompanyId(int companyId);
+    public List<ApplyListRespDto> findByCompanyId(int companyId);
 }

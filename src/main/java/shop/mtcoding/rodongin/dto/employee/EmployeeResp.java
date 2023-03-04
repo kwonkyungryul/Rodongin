@@ -31,8 +31,15 @@ public class EmployeeResp {
         private Integer employeeId;
         private Integer stackId;
         private String stackName;
-        private String stackAcquistion;
+        private String stackAcquisition;
     }
 
+    @Setter
+    @Getter
+    public static class ResumeApplyListRespDto {
+        private String resumeTitle;
+        private String resumeSalary;
+        private String careerCompany;
+    }
     
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import shop.mtcoding.rodongin.dto.announcement.AnnouncementReq.AnnouncementDetailReqDto;
 import shop.mtcoding.rodongin.dto.announcement.AnnouncementReq.AnnouncementUpdateReqDto;
+import shop.mtcoding.rodongin.dto.announcement.AnnouncementResp.AnnouncementDetailRespDto;
 
 
 
@@ -15,9 +15,9 @@ import shop.mtcoding.rodongin.dto.announcement.AnnouncementReq.AnnouncementUpdat
 public interface AnnouncementRepository {
 
 
-    public AnnouncementDetailReqDto findAnnouncementAndCompanyId(int id);
+    public AnnouncementDetailRespDto findAnnouncementAndCompanyId(int id);
 
-    public List<AnnouncementDetailReqDto> findAnnouncementlist();
+    public List<AnnouncementDetailRespDto> findAnnouncementlist();
     // public List<AnnouncementDetailReqDto> findByDetailUser(int id);
 
     public List<Announcement> findTopList();

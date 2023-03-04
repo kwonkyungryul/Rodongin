@@ -10,13 +10,14 @@
     </select>
 
 
-    <select id="findAnnouncementAndCompanyId" resultType="shop.mtcoding.rodongin.dto.announcement.AnnouncementReq$AnnouncementDetailReqDto">
+    <select id="findAnnouncementAndCompanyId" resultType="shop.mtcoding.rodongin.dto.announcement.AnnouncementResp$AnnouncementDetailRespDto">
         select * from announcement a
     inner join company c
     on a.company_id = c.id
     where a.id = #{id}
     </select>
-    <select id="findAnnouncementlist" resultType="shop.mtcoding.rodongin.dto.announcement.AnnouncementReq$AnnouncementDetailReqDto">
+    
+    <select id="findAnnouncementlist" resultType="shop.mtcoding.rodongin.dto.announcement.AnnouncementResp$AnnouncementDetailRespDto">
         select * from announcement a
     inner join company c
     on a.company_id = c.id

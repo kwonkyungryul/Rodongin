@@ -16,7 +16,7 @@
         SELECT * FROM apply WHERE id = #{id}
     </select>
 
-    <select id="findByCompanyId" resultType="shop.mtcoding.rodongin.dto.apply.ApplyRes$ApplyListResDto">
+    <select id="findByCompanyId" resultType="shop.mtcoding.rodongin.dto.apply.ApplyResp$ApplyListRespDto">
         SELECT r.id as resume_id, e.employee_fullname, e.employee_address, r.resume_title, r.resume_salary, GROUP_CONCAT(DISTINCT rc.career_company SEPARATOR ', ') companyName, GROUP_CONCAT(DISTINCT sm.stack_name SEPARATOR ', ') stackName
         FROM apply a
         INNER JOIN resume r

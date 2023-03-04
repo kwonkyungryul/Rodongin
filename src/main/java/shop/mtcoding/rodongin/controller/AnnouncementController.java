@@ -63,26 +63,32 @@ public class AnnouncementController {
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다.", HttpStatus.UNAUTHORIZED);
         }
+
         if (announcementUpdateReqDto.getAnnouncementTitle() == null
                 || announcementUpdateReqDto.getAnnouncementTitle().isEmpty()) {
             throw new CustomApiException("title을 작성해주세요");
         }
+
         if (announcementUpdateReqDto.getAnnouncementContent() == null
                 || announcementUpdateReqDto.getAnnouncementTitle().isEmpty()) {
             throw new CustomApiException("Content을 작성해주세요");
         }
+
         if (announcementUpdateReqDto.getAnnouncementCarrer() == null
                 || announcementUpdateReqDto.getAnnouncementTitle().isEmpty()) {
             throw new CustomApiException("Carrer을 작성해주세요");
         }
+
         if (announcementUpdateReqDto.getAnnouncementHireType() == null
                 || announcementUpdateReqDto.getAnnouncementTitle().isEmpty()) {
             throw new CustomApiException("HireType을 작성해주세요");
         }
+
         if (announcementUpdateReqDto.getAnnouncementSalary() == null
                 || announcementUpdateReqDto.getAnnouncementTitle().isEmpty()) {
             throw new CustomApiException("Salary을 작성해주세요");
         }
+
         if (announcementUpdateReqDto.getAnnouncementArea() == null
                 || announcementUpdateReqDto.getAnnouncementTitle().isEmpty()) {
             throw new CustomApiException("Area을 작성해주세요");
@@ -98,7 +104,7 @@ public class AnnouncementController {
         List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("stacks", stacks);
 
-        Company principal = (Company) session.getAttribute("principal");
+        Company principal = (Company) session.getAttribute("comPrincipal");
         if (principal == null) {
             throw new CustomException("인증이 되지 않았당", HttpStatus.UNAUTHORIZED);
         }
@@ -118,7 +124,7 @@ public class AnnouncementController {
     @PostMapping("/announcement")
     public @ResponseBody ResponseEntity<?> saveForm(@RequestBody AnnouncementSaveReqDto AnnouncementSaveReqDto) {
 
-        Company principal = (Company) session.getAttribute("principal");
+        Company principal = (Company) session.getAttribute("comPrincipal");
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
@@ -182,6 +188,10 @@ public class AnnouncementController {
 
     @GetMapping("announcement/saveForm")
     public String saveForm(Model model) {
+        Company principal = (Company) session.getAttribute("comPrincipal");
+        if (principal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
         List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("stacks", stacks);
         return "announcement/saveForm";

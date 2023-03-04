@@ -70,22 +70,24 @@ public class EmployeeService {
     @Transactional
     public Employee 로그인(EmployeeLoginReqDto employeeLoginReqDto) {
         Employee principalPS = employeeRepository.findByEmployeeName(employeeLoginReqDto.getEmployeeName());
-
-        boolean isCheck;
-        try {
-            isCheck = Encode.matches(employeeLoginReqDto.getEmployeePassword(), principalPS.getEmployeePassword());
-        } catch (Exception e) {
-            throw new CustomException("???");
+        if (principalPS == null) {
+            throw new CustomException("일치하는 회원 정보가 없습니다.");
         }
+        // boolean isCheck;
+        // try {
+        //     isCheck = Encode.matches(employeeLoginReqDto.getEmployeePassword(), principalPS.getEmployeePassword());
+        // } catch (Exception e) {
+        //     throw new CustomException("???");
+        // }
 
-        if (!isCheck) {
-            throw new CustomException("비밀번호가 다릅니다.");
-        }
-        employeeLoginReqDto.setEmployeePassword(principalPS.getEmployeePassword());
+        // if (!isCheck) {
+        //     throw new CustomException("비밀번호가 다릅니다.");
+        // }
+        // employeeLoginReqDto.setEmployeePassword(principalPS.getEmployeePassword());
 
         Employee principal = employeeRepository.findByEmployeeNameAndPassword(employeeLoginReqDto);
         if (principal == null) {
-            throw new CustomException("일치하는 회원정보가 없습니다.");
+            throw new CustomException("비밀번호가 일치하지 않습니다.");
         }
         return principal;
 

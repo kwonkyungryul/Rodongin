@@ -43,7 +43,6 @@ import shop.mtcoding.rodongin.model.master.StackMaster;
 import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
 import shop.mtcoding.rodongin.service.employee.EmployeeService;
-import shop.mtcoding.rodongin.util.MySession;
 
 @Controller
 public class EmployeeController {
@@ -84,7 +83,7 @@ public class EmployeeController {
     public String save(EmployeeGraduate employeeGraduate, EmployeeCareer employeeCareer,
             EmployeeLicense employeeLicense, EmployeeStack employeeStack) {
 
-        Employee principal = MySession.MyPrincipal(session);
+        Employee principal = (Employee) session.getAttribute("principal");
 
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -104,7 +103,7 @@ public class EmployeeController {
     @PutMapping("/employee/update")
     public ResponseEntity<?> update(@RequestBody EmployeeUpdatdReq employeeUpdateReq) {
 
-        Employee principal = MySession.MyPrincipal(session);
+        Employee principal = (Employee) session.getAttribute("principal");
 
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -196,7 +195,10 @@ public class EmployeeController {
     @GetMapping("/employee/detail")
     public String detail(Model model) {
 
-        Employee principal = MySession.MyPrincipal(session);
+        Employee principal = (Employee) session.getAttribute("principal");
+        if (principal == null) {
+          throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);  
+        }
 
         model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
 
@@ -221,7 +223,7 @@ public class EmployeeController {
     @GetMapping("/employee/updateForm")
     public String infoUpdateForm(Model model) {
 
-        Employee principal = MySession.MyPrincipal(session);
+        Employee principal = (Employee) session.getAttribute("principal");
 
         if (principal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);

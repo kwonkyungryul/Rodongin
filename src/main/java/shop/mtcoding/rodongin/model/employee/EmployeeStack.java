@@ -13,12 +13,12 @@ public class EmployeeStack {
     private Integer id;
     private Integer employeeId;
     private Integer stackId;
-    private String stackAcquistion;
+    private String stackAcquisition;
     private Timestamp createdAt;
 
-    public EmployeeStack(Integer employeeId, Integer stackId, String stackAcquistion) {
+    public EmployeeStack(Integer employeeId, Integer stackId, String stackAcquisition) {
         this.employeeId = employeeId;
         this.stackId = stackId;
-        this.stackAcquistion = stackAcquistion;
+        this.stackAcquisition = stackAcquisition;
     }
 }
