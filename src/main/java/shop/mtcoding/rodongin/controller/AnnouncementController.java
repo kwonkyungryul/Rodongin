@@ -69,6 +69,11 @@ public class AnnouncementController {
             throw new CustomApiException("title을 작성해주세요");
         }
 
+        if (announcementUpdateReqDto.getStackId() == null
+        || announcementUpdateReqDto.getStackId() == 0) {
+            throw new CustomApiException("기술선택을 선택해주세요");
+        }
+
         if (announcementUpdateReqDto.getAnnouncementContent() == null
                 || announcementUpdateReqDto.getAnnouncementTitle().isEmpty()) {
             throw new CustomApiException("Content을 작성해주세요");
@@ -104,8 +109,8 @@ public class AnnouncementController {
         List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("stacks", stacks);
 
-        Company principal = (Company) session.getAttribute("comPrincipal");
-        if (principal == null) {
+        Company comPrincipal = (Company) session.getAttribute("comPrincipal");
+        if (comPrincipal == null) {
             throw new CustomException("인증이 되지 않았당", HttpStatus.UNAUTHORIZED);
         }
         Announcement announcementPS = announcementRepository.findById(id);
@@ -113,7 +118,7 @@ public class AnnouncementController {
         if (announcementPS == null) {
             throw new CustomException("없는 게시글을 수정할 수 없다.");
         }
-        if (announcementPS.getId() != principal.getId()) {
+        if (comPrincipal.getId() != comPrincipal.getId()) {
             throw new CustomException("게시글을 수정할 권한이 없당");
         }
         model.addAttribute("announcement", announcementPS);
@@ -124,9 +129,14 @@ public class AnnouncementController {
     @PostMapping("/announcement")
     public @ResponseBody ResponseEntity<?> saveForm(@RequestBody AnnouncementSaveReqDto AnnouncementSaveReqDto) {
 
-        Company principal = (Company) session.getAttribute("comPrincipal");
-        if (principal == null) {
+        Company comPrincipal = (Company) session.getAttribute("comPrincipal");
+        if (comPrincipal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+
+        if (AnnouncementSaveReqDto.getStackId() == null
+                || AnnouncementSaveReqDto.getStackId() == 0) {
+            throw new CustomApiException("기술선택을 선택해주세요");
         }
         if (AnnouncementSaveReqDto.getAnnouncementTitle() == null
                 || AnnouncementSaveReqDto.getAnnouncementTitle().isEmpty()) {
@@ -153,7 +163,7 @@ public class AnnouncementController {
             throw new CustomApiException("Area을 작성해주세요");
         }
 
-        announcementService.공고등록(AnnouncementSaveReqDto, principal.getId());
+        announcementService.공고등록(AnnouncementSaveReqDto, comPrincipal.getId());
 
         return new ResponseEntity<>(new ResponseDto<>(1, "게시글작성 성공", null), HttpStatus.CREATED);
     }
@@ -178,7 +188,7 @@ public class AnnouncementController {
         }
 
         model.addAttribute("announcement", announcementRepository.findAnnouncementAndCompanyId(id));
-        model.addAttribute("tostack", stackMasterRepository.findById(id));
+        model.addAttribute("tostack", stackMasterRepository.findByIdAnnouncement(id));
         model.addAttribute("delete", announcementRepository.findById(id));
         model.addAttribute("listview", announcementRepository.findAnnouncementlist());
         model.addAttribute("company", companyRepository.findById(id));
@@ -188,8 +198,8 @@ public class AnnouncementController {
 
     @GetMapping("announcement/saveForm")
     public String saveForm(Model model) {
-        Company principal = (Company) session.getAttribute("comPrincipal");
-        if (principal == null) {
+        Company comPrincipal = (Company) session.getAttribute("comPrincipal");
+        if (comPrincipal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
         List<StackMaster> stacks = stackMasterRepository.findAll();

@@ -32,6 +32,13 @@
             )
     </insert>
 
+     <update id="updateById" >
+        update company set 
+            company_fullname = #{companyFullname},company_thumbnail = #{companyThumbnail} , 
+            company_establish =  #{companyEstablish}, company_sales = #{companySales}, company_employees_number = #{companyEmployeesNumber},
+            company_introduction = #{companyIntroduction}, company_history = #{companyHistory}, company_vision = #{companyVision} where id = #{id}
+    </update>
+
     <delete id="deleteById">
         DELETE FROM company WHERE id = #{id}
     </delete>

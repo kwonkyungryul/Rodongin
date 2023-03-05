@@ -4,14 +4,21 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyJoinReqDto;
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyLoginReqDto;
+import shop.mtcoding.rodongin.dto.company.CompanyResp.CompanyDetailRespDto;
+import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.company.Company;
 import shop.mtcoding.rodongin.model.company.CompanyRepository;
@@ -94,14 +101,55 @@ public class CompanyController {
 
     }
 
+    @PutMapping("/company/update")
+    public @ResponseBody ResponseEntity<?> update(
+    @RequestBody CompanyDetailRespDto companyDetailRespDto){
+        Company comPrincipal = (Company) session.getAttribute("comPrincipal");
+        if (comPrincipal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        if (companyDetailRespDto.getCompanyEstablish() == null){
+            throw new CustomApiException("Etablish를 작성해주세요");
+        } 
+        if (companyDetailRespDto.getCompanyFullname() == null || companyDetailRespDto.getCompanyFullname().isEmpty()) {
+            throw new CustomApiException("Fullname을 작성해주세요");
+        }       
+        if (companyDetailRespDto.getCompanyIntroduction() == null || companyDetailRespDto.getCompanyIntroduction().isEmpty()) {
+            throw new CustomApiException("Introduction을 작성해주세요");
+        }
+        if (companyDetailRespDto.getCompanyHistory() == null || companyDetailRespDto.getCompanyHistory().isEmpty()) {
+            throw new CustomApiException("History를 작성해주세요");
+        }
+        if (companyDetailRespDto.getCompanyVision() == null || companyDetailRespDto.getCompanyVision().isEmpty()) {
+            throw new CustomApiException("Vision을 작성해주세요");
+        }
+
+        companyService.기업소개등록(companyDetailRespDto, comPrincipal.getId());
+
+        return new ResponseEntity<>(new ResponseDto<>(1, "기업소개 수정성공", null), HttpStatus.CREATED);
+            
+        
+    }
+
+
     @GetMapping("/company/saveForm")
-    public String saveForm() {
-        Company principal = (Company) session.getAttribute("comPrincipal");
-        if (principal == null) {
+    public String saveForm( Model model){
+        Company comPrincipal = (Company) session.getAttribute("comPrincipal");
+        if (comPrincipal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
+        Company company = companyRepository.findById(comPrincipal.getId());
+        if (company == null) {
+            throw new CustomException("없는 기업소개를 수정할 수 없습니다");
+        }
+        if (company.getId() != company.getId()) {
+            throw new CustomException("기업소개를 수정할 권한이 없습니다", HttpStatus.FORBIDDEN);
+        }
+
+        model.addAttribute("detailDto", company);
         return "company/saveForm";
     }
+
 
     @GetMapping("/company/{id}")
     public String detail(@PathVariable int id, Model model) {

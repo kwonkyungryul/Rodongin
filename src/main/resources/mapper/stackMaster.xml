@@ -15,4 +15,8 @@
     <select id="findById" resultType="shop.mtcoding.rodongin.model.master.StackMaster">
         SELECT * FROM resume_stack WHERE id = #{id}
     </select>
+
+    <select id="findByIdAnnouncement" resultType="shop.mtcoding.rodongin.model.master.StackMaster">
+        select * from stack_master where id = #{id}
+    </select>
 </mapper>

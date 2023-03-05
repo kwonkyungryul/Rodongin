@@ -72,7 +72,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <div class="my_hr">
     <div class="input-group mb-3" >
           <select class="form-select" id="inputGroupSelect02">
-      <option selected>Choose...</option>
+      <option selected value="0">Choose...</option>
       <c:forEach items="${stacks}" var="stack">
       <option value="${stack.id}">${stack.stackName}</option>
       </c:forEach>

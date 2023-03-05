@@ -11,4 +11,6 @@ public interface StackMasterRepository {
 
     public StackMaster findById(int id); 
 
+    public StackMaster findByIdAnnouncement(int id);
+
 }
