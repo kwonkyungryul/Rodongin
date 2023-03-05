@@ -146,9 +146,12 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <%--  --%>
 <div class="my_lastbuttonbig">
 <div class="my_lastbutton">
+<c:if test="${comPrincipal.id != null}" >
 <button id="savebtn" type="button" class="btn btn-primary ">공고등록하기</button>
+</c:if>
 </div>
 </div>
+
 <!-- 페이징 -->
 
 
@@ -157,9 +160,11 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
             id: $("#id").val()}
   
   $('#savebtn').click(function() {
-    window.location.href = '/announcement/saveForm';
+      
+          window.location.href = '/announcement/saveForm';
   });
 
+  
 
  
  function deleteById(id) {

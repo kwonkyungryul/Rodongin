@@ -71,7 +71,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <div class="my_hr">
     <div class="input-group mb-3">
            <select class="form-select" id="inputGroupSelect02">
-      <option selected>Choose...</option>
+      <option selected value="0">Choose...</option>
       <c:forEach items="${stacks}" var="stack">
       <option value="${stack.id}">${stack.stackName}</option>
       </c:forEach>
@@ -143,14 +143,14 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 
  function updateId(id) {
         let data = {
-          stackId: $("#inputGroupSelect02").val(),
+            stackId: $("#inputGroupSelect02").val(),
             announcementTitle: $("#announcementTitle").val(),
             announcementContent: $("#summernote").val(),
             announcementCarrer: $("#announcementCarrer").val(),
             announcementHireType: $("#announcementHireType").val(),
             announcementRecNum: $("#announcementRecNum").val(),
             announcementSalary: $("#announcementSalary").val(),
-            announcementArea: $("#announcementArea").val(),
+            announcementArea: $("#announcementArea").val()
         };
         console.log(data.stackId);
 

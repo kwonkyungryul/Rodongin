@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import shop.mtcoding.rodongin.dto.company.CompanyResp.CompanyDetailRespDto;
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyJoinReqDto;
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyLoginReqDto;
+import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.company.Company;
 import shop.mtcoding.rodongin.model.company.CompanyRepository;
@@ -67,6 +68,28 @@ public class CompanyService {
             throw new CustomException("일시적인 서버 에러입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @Transactional
+    public void 기업소개등록(CompanyDetailRespDto companyDetailRespDto, int comPrincipalId ){
+        Company comPrincipal = companyRepository.findById(comPrincipalId);
+        // String thumbnail = HtmlParser.getThumbnail(companyDetailResDto.getCompanyThumbnail());
+        
+        int result = companyRepository.updateById(
+            comPrincipalId,
+            companyDetailRespDto.getCompanyFullname(),
+            companyDetailRespDto.getCompanyThumbnail(),
+            companyDetailRespDto.getCompanyEstablish(),
+            companyDetailRespDto.getCompanySales(),
+            companyDetailRespDto.getCompanyEmployeesNumber(),
+            companyDetailRespDto.getCompanyIntroduction(),
+            companyDetailRespDto.getCompanyHistory(),
+            companyDetailRespDto.getCompanyVision()
+        );
+        if (result != 1) {
+            throw new CustomApiException("기업소개 수정 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
     }
 
 }
