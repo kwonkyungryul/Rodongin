@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop.mtcoding.rodongin.model.customer.CustomerRepository">
+
+<select id="findAll" resultType="shop.mtcoding.blog.model.Customer">
+        select * from customer
+    </select>
+
+    <select id="findById" resultType="shop.mtcoding.blog.model.Customer">
+        select * from customer where id = #{id}
+    </select>    
+
+    <insert id="insert">
+        insert into customer (customer_title, customer_content, employee_id, created_at)
+        values(#{customerTitle}, #{customerContent}, #{employeeId}, now())
+    </insert>    
+
+    <delete id="deleteById" >
+        delete from customer where id = #{id}
+    </delete>    
+
+    <update id="updateById" >
+        update customer set customer_title= #{customerTitle}, customer_content= #{customerContent} where id = #{id} 
+    </update>    
+
+</mapper>

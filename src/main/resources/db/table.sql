@@ -1,3 +1,11 @@
+CREATE TABLE customer(
+    id int auto_increment primary key,
+    customer_title varchar(100) not null,
+    customer_content longtext not null,
+    employee_id int not null,
+    created_at timestamp not null
+);
+
 CREATE TABLE employee (
 	id int primary key auto_increment,
     employee_name varchar(255) not null unique,
