@@ -5,11 +5,11 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.customer.CustomerRepository">
 
-<select id="findAll" resultType="shop.mtcoding.blog.model.Customer">
+<select id="findAll" resultType="shop.mtcoding.rodongin.model.customer.Customer">
         select * from customer
     </select>
 
-    <select id="findById" resultType="shop.mtcoding.blog.model.Customer">
+    <select id="findById" resultType="shop.mtcoding.rodongin.model.customer.Customer">
         select * from customer where id = #{id}
     </select>    
 
