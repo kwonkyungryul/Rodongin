@@ -18,5 +18,4 @@ public class CustomerReq {
         private String customerTitle;
         private String customerContent;
     }
-
 }

@@ -5,7 +5,7 @@
 
         <div class="container mt-3">
             <div class="d-flex justify-content-center" style="width: 100%;">
-                <h3 class="border-bottom border-3 py-2" style="width: 70%; text-align: lift; border-color">
+                <h3 class="border-bottom border-3 py-2" style="width: 70%; text-align: lift;">
                     <b>고객센터</b>
                 </h3>
             </div>

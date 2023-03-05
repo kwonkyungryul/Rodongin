@@ -158,7 +158,7 @@
             </div>
         </div>
 
-                <script>
+        <script>
             function selectAll(selectAll) {
                 const checkboxes
                     = document.getElementsByName('check');
