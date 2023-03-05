@@ -25,3 +25,4 @@
         where rs.RESUME_ID = #{resumeId}
     </select>
 </mapper>
+

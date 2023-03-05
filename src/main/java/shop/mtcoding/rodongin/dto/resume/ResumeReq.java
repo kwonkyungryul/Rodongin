@@ -24,6 +24,7 @@ public class ResumeReq {
         private Integer stackId;
         private String stackAcquisition;
 
+
     }
 
     @Getter

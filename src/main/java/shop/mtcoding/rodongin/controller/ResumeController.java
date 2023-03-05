@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeSaveDto;
+
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduateRespDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeLicenseRespDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeStackRespDto;
@@ -46,7 +48,6 @@ public class ResumeController {
     private HttpSession session;
     @Autowired
     private ResumeService resumeService;
-
     @Autowired
     private SchoolMasterRepository schoolMasterRepository;
 
@@ -119,16 +120,18 @@ public class ResumeController {
 
         resumeService.이력서등록(resumeSaveDto, principal.getId());
 
+
         return new ResponseEntity<>(new ResponseDto<>(1, "이력서 등록 성공", resumeSaveDto.getId()), HttpStatus.OK);
     }
 
-     @GetMapping("/resume/saveForm")
+    @GetMapping("/resume/saveForm")
     public String resumeForm(Model model) {
 
         Employee principal = (Employee) session.getAttribute("principal");
 
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+
         }
         model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
 

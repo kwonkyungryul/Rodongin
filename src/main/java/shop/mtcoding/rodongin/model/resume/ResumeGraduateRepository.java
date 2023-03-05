@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeGraduateSaveDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduateRespDto;
 
 

@@ -37,3 +37,4 @@
         (#{employeeId}, #{resumeSaveDto.resumeTitle}, #{resumeSaveDto.resumeSalary}, #{resumeSaveDto.CV}, NOW())
     </insert>
 </mapper>
+

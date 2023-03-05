@@ -164,7 +164,11 @@
                                     <div class="d-flex align-items-center">
                                         <div class="AA"></div>
                                         <span class="my_list">활용도</span>
+<<<<<<< HEAD
                                         <input name="stackAcquisition" id="stackAcquisition" class="form-control my_util" type="text" />
+=======
+                                        <input class="form-control my_util" type="text">
+>>>>>>> ebc27a23ba82b2e1e5b4285c738440e17ac1be20
                                     </div>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeSaveDto;
+
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.model.resume.Resume;
 import shop.mtcoding.rodongin.model.resume.ResumeCareerRepository;
@@ -27,7 +28,7 @@ public class ResumeService {
     private ResumeLicenseRepository resumeLicenseRepository;
     @Autowired
     private ResumeStackRepository resumeStackRepository;
-    
+
     @Transactional
     public void delete(int resumeId, Integer principalId) {
         Resume ResumePS = resumeRepository.findById(resumeId);
@@ -43,7 +44,7 @@ public class ResumeService {
             throw new CustomApiException("이력서 삭제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-     @Transactional
+    @Transactional
     public void 이력서등록(ResumeSaveDto resumeSaveDto, int employeeId) {
 
         try {

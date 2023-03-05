@@ -22,6 +22,4 @@ public interface ResumeCareerRepository {
     public int updateById(int id, ResumeCareer apply);
 
     public int deleteById(int id);
-    
-
 }
