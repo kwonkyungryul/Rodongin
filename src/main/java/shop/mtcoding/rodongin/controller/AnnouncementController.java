@@ -186,9 +186,10 @@ public class AnnouncementController {
             model.addAttribute("resumes", resumeRepository.findByEmployeeId(employeeId));
             // throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
+        int stackId = announcementRepository.findAnnouncementAndCompanyId(id).getStackId();
 
         model.addAttribute("announcement", announcementRepository.findAnnouncementAndCompanyId(id));
-        model.addAttribute("tostack", stackMasterRepository.findById(id));
+        model.addAttribute("tostack", stackMasterRepository.findById(stackId));
         model.addAttribute("delete", announcementRepository.findById(id));
         model.addAttribute("listview", announcementRepository.findAnnouncementlist());
         model.addAttribute("company", companyRepository.findById(id));
