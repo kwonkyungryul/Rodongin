@@ -1,45 +1,28 @@
 package shop.mtcoding.rodongin.dto.customer;
 
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 
 public class CustomerResp {
 
-    @Getter
     @Setter
-    public static class GraduateRespDto {
+    @Getter
+    public static class CustomerListRespDto {
         private Integer id;
-        private Integer employeeId;
-        private Integer schoolId;
-        private String schoolName;
+        private String customerTitle;
+        private String employeeName;
+        private Timestamp createdAt;
     }
 
-    @Getter
     @Setter
-    public static class LicenseRespDto {
+    @Getter
+    public static class CustomerDetailRespDto {
         private Integer id;
+        private String customerTitle;
+        private String customerContent;
         private Integer employeeId;
-        private Integer licenseId;
-        private String licenseName;
-        private String licenseIssuer;
+        private String employeeName;
     }
-
-    @Getter
-    @Setter
-    public static class StackRespDto {
-        private Integer id;
-        private Integer employeeId;
-        private Integer stackId;
-        private String stackName;
-        private String stackAcquisition;
-    }
-
-    @Setter
-    @Getter
-    public static class ResumeApplyListRespDto {
-        private String resumeTitle;
-        private String resumeSalary;
-        private String careerCompany;
-    }
-
 }

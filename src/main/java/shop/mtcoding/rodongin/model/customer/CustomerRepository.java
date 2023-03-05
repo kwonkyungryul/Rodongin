@@ -5,19 +5,24 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import shop.mtcoding.rodongin.dto.customer.CustomerResp.CustomerListRespDto;
+
 @Mapper
 public interface CustomerRepository {
 
-    public List<Customer> findAll();
+        public List<CustomerListRespDto> findAllWithEmployee();
 
-    public Customer findById(int id);
+        public List<Customer> findAll();
 
-    public int insert(@Param("customerTitle") String customerTitle, @Param("customerContent") String customerContent,
-            @Param("employeeId") Integer employeeId);
+        public Customer findById(int id);
 
-    public int updateById(@Param("customerTitle") String customerTitle,
-            @Param("customerContent") String customerContent,
-            @Param("employeeId") Integer employeeId);
+        public int insert(@Param("customerTitle") String customerTitle,
+                        @Param("customerContent") String customerContent,
+                        @Param("employeeId") Integer employeeId);
 
-    public int deleteById(int id);
+        public int updateById(@Param("customerTitle") String customerTitle,
+                        @Param("customerContent") String customerContent,
+                        @Param("employeeId") Integer employeeId);
+
+        public int deleteById(int id);
 }

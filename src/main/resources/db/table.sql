@@ -1,6 +1,6 @@
 CREATE TABLE customer(
     id int auto_increment primary key,
-    customer_title varchar(100) not null,
+    customer_title varchar(255) not null,
     customer_content longtext not null,
     employee_id int not null,
     created_at timestamp not null

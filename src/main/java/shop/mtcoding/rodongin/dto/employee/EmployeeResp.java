@@ -41,5 +41,13 @@ public class EmployeeResp {
         private String resumeSalary;
         private String careerCompany;
     }
-    
+
+    @Setter
+    @Getter
+    public static class CustomerRespDto {
+        private Integer id;
+        private String employeeName;
+        private String employeeEmail;
+    }
+
 }
