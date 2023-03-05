@@ -142,9 +142,6 @@ public class CompanyController {
         if (company == null) {
             throw new CustomException("없는 기업소개를 수정할 수 없습니다");
         }
-        if (company.getId() != company.getId()) {
-            throw new CustomException("기업소개를 수정할 권한이 없습니다", HttpStatus.FORBIDDEN);
-        }
 
         model.addAttribute("detailDto", company);
         return "company/saveForm";
