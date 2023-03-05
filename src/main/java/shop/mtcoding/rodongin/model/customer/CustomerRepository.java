@@ -12,13 +12,12 @@ public interface CustomerRepository {
 
     public Customer findById(int id);
 
-    public int insert(@Param("title") String title, @Param("content") String content,
-            @Param("employeeId") Integer employeeId, @Param("employeeTel") String employeeTel,
-            @Param("employeeEmail") String employeeEmail);
+    public int insert(@Param("customerTitle") String customerTitle, @Param("customerContent") String customerContent,
+            @Param("employeeId") Integer employeeId);
 
-    public int updateById(@Param("title") String title, @Param("content") String content,
-            @Param("employeeId") Integer employeeId, @Param("employeeTel") String employeeTel,
-            @Param("employeeEmail") String employeeEmail);
+    public int updateById(@Param("customerTitle") String customerTitle,
+            @Param("customerContent") String customerContent,
+            @Param("employeeId") Integer employeeId);
 
     public int deleteById(int id);
 }
