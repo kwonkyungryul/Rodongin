@@ -5,7 +5,8 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.resume.ResumeStackRepository">
     <insert id="insert">
-        INSERT INTO resume_stack(resume_id, stack_id, stack_acquisition) VALUES(#{resumeId}, #{stackId}, #{stackAcquisition}, now())
+        INSERT INTO resume_stack (resume_id, stack_id, stack_acquisition, created_at) VALUES
+        (#{resumeId},#{stackId},#{stackAcquisition},NOW())
     </insert>
     
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.resume.ResumeStack">

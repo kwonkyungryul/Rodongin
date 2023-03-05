@@ -171,21 +171,21 @@
                     </div>
                     <div>
                       <span class="my_info_title">최종학력</span>
-                      <span class="my_info">${resume.schoolName == null ? "해당사항 없음" : resume.schoolName}</span>
+                      <span class="my_info">${resume.schoolName}</span>
                     </div>
                   </div>
                   <div class="col-4 col-sm-6">
                     <div>
                       <span class="my_info_title">경력</span>
-                      <span class="my_info">${resume.careerCompany == null ? "해당사항 없음" : resume.careerCompany}</span>
+                      <span class="my_info">${resume.careerCompany}</span>
                     </div>
                     <div>
                       <span class="my_info_title">자격증</span>
-                      <span class="my_info">${resume.licenseName == null ? "해당사항 없음" : resume.licenseName}</span>
+                      <span class="my_info">${resume.licenseName}</span>
                     </div>
                     <div>
                       <span class="my_info_title">기술스택</span>
-                      <span class="my_info">${resume.stackName == null ? "해당사항 없음" : resume.stackName}</span>
+                      <span class="my_info">${resume.stackName}</span>
                     </div>
                   </div>
                 </div>
@@ -200,7 +200,7 @@
       </c:forEach>
       <div>
         <div class="button_center d-flex justify-content-center">
-          <button class="main_blue_btn" type="submit">이력서 등록</button>
+           <a href="/resume/saveForm" class="main_blue_btn">이력서 등록</a>
         </div>
       </div>
     </div>
