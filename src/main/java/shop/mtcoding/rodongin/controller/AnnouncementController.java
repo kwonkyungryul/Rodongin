@@ -188,7 +188,7 @@ public class AnnouncementController {
         }
 
         model.addAttribute("announcement", announcementRepository.findAnnouncementAndCompanyId(id));
-        model.addAttribute("tostack", stackMasterRepository.findByIdAnnouncement(id));
+        model.addAttribute("tostack", stackMasterRepository.findById(id));
         model.addAttribute("delete", announcementRepository.findById(id));
         model.addAttribute("listview", announcementRepository.findAnnouncementlist());
         model.addAttribute("company", companyRepository.findById(id));
