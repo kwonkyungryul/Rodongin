@@ -10,9 +10,10 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <div class="d-flex">
       <div class="p-2" style="border-radius: 20px; box-shadow: 2px 2px 5px">
         <img
-          src="/images/kakao.jpg"
+          src="${detailDto.companyThumbnail}"  
           width="50"
           height="50"
+          style="border-radius: 20px; box-shadow: 2px 2px 5px;
           alt="company logo"
         />
       </div>
