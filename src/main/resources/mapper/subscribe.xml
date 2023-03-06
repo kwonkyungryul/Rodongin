@@ -4,7 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shop.mtcoding.rodongin.model.subscribe.SubscribeRepository">
+    <select id="findByEmployeeIdAndAnnouncementId" resultType="shop.mtcoding.rodongin.model.subscribe.Subscribe">
+        SELECT * FROM subscribe WHERE employee_id = #{employeeId} AND announcement_id = #{announcementId}
+    </select>
+
+    <select id="findByAllCount" resultType="int">
+        SELECT COUNT(*) FROM subscribe
+    </select>
+
     <insert id="insert">
-        INSERT INTO subscribe (employee_id, company_id, created_at) VALUES(#{employeeId}, #{companyId}, now())
+        INSERT INTO subscribe (employee_id, announcement_id, created_at) VALUES(#{employeeId}, #{announcementId}, now())
     </insert>
 </mapper>

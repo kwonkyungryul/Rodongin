@@ -196,8 +196,8 @@ INSERT INTO resume_stack (resume_id, stack_id, stack_acquisition, created_at) VA
 (8, 9, 'Kotlin 기초 문법 숙지 및 안드로이드 애플리케이션 작성 가능', NOW()),
 (9, 10, 'Go 기초 문법 숙지 및 간단한 CLI 프로그램 작성 가능', NOW());
 --------------------------------------------------------------
-INSERT INTO subscribe (employee_id, company_id, created_at) VALUES
-(1, 1, NOW()),
+INSERT INTO subscribe (employee_id, announcement_id, created_at) VALUES
+-- (1, 1, NOW()),
 (2, 2, NOW()),
 (3, 3, NOW()),
 (4, 4, NOW()),

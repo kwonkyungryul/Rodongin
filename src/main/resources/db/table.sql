@@ -165,6 +165,6 @@ CREATE TABLE apply (
 CREATE TABLE subscribe (
     id int primary key auto_increment,
     employee_id int not null,
-    company_id int not null,
+    announcement_id int not null,
     created_at timestamp not null
 )

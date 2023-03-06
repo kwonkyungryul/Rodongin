@@ -31,6 +31,8 @@ import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.master.StackMaster;
 import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
+import shop.mtcoding.rodongin.model.subscribe.Subscribe;
+import shop.mtcoding.rodongin.model.subscribe.SubscribeRepository;
 import shop.mtcoding.rodongin.service.announcement.AnnouncementService;
 
 @Controller
@@ -53,6 +55,9 @@ public class AnnouncementController {
 
     @Autowired
     private AnnouncementRepository announcementRepository;
+
+    @Autowired
+    private SubscribeRepository subscribeRepository;
 
     // 게시글 수정
     @PutMapping("/announcement/{id}")
@@ -179,12 +184,16 @@ public class AnnouncementController {
 
     @GetMapping("announcement/{id}")
     public String detail(@PathVariable int id, Model model) {
+        Boolean isSubscribe = false;
 
         Employee principal = (Employee) session.getAttribute("principal");
         if (principal != null) {
-            int employeeId = principal.getId();
-            model.addAttribute("resumes", resumeRepository.findByEmployeeId(employeeId));
-            // throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+            model.addAttribute("resumes", resumeRepository.findByEmployeeId(principal.getId()));
+            Subscribe check = subscribeRepository.findByEmployeeIdAndAnnouncementId(principal.getId(), id);
+            
+            if (check != null) {
+                isSubscribe = true;
+            }
         }
         int stackId = announcementRepository.findAnnouncementAndCompanyId(id).getStackId();
 
@@ -193,6 +202,8 @@ public class AnnouncementController {
         model.addAttribute("delete", announcementRepository.findById(id));
         model.addAttribute("listview", announcementRepository.findAnnouncementlist());
         model.addAttribute("company", companyRepository.findById(id));
+        model.addAttribute("isSubscribe", isSubscribe);
+        model.addAttribute("count", subscribeRepository.findByAllCount());
 
         return "announcement/detail";
     }
