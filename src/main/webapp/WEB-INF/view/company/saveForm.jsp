@@ -16,7 +16,7 @@
 <form id="profileForm">
     <!-- 생략 -->
     <div class="mb-3">
-        <label for="profile" class="main_yellow_label px-3 text-white bg_color_point">사진수정</label>
+        
     <input type="file" id="profile" name="profile" accept="image/*" class="main_yellow_label px-3 text-white bg_color_point">
     </div>
     <div class="mb-3">

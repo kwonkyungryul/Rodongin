@@ -137,7 +137,8 @@
     <div class="my-fullbox">
       <!-- img 삽입 -->
       <div class="my_insertimg">
-        <img src="${announcement.companyThumbnail}" class="card-img-top" alt="sk" />
+       <img src="${announcement.companyThumbnail}" width="250"
+          height="200" class="card-img-top" alt="sk" style="border-radius: 20px; box-shadow: 2px 2px 5px;" />
       </div>
       <!-- img 삽입 -->
 
