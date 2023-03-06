@@ -2,6 +2,18 @@
     <%@ include file="../layout/header.jsp" %>
 
 
+        <!-- pageNum과 pageSize는 클라이언트에서 요청한 페이지 번호와 페이지당 게시글 수 -->
+        <c:set var="pageNum" value="${param.pageNum == null ? 1 : param.pageNum}" />
+        <c:set var="pageSize" value="${param.pageSize == null ? 10 : param.pageSize}" />
+
+        <!-- 총 게시글 수 계산 -->
+        <c:set var="totalCnt" value="${customerService.getTotalCnt()}" />
+        <c:set var="totalPage" value="${(totalCnt / pageSize) + (totalCnt % pageSize > 0 ? 1 : 0)}" />
+
+        <!-- 현재 페이지에 해당하는 게시글만 가져오는 쿼리 실행 -->
+        <c:set var="listDtos" value="${customerService.getCustomersByPage(pageNum, pageSize)}" />
+
+
         <div class="container mt-3">
             <div class="d-flex justify-content-center" style="width: 100%;">
                 <h3 class="border-bottom border-3 py-2" style="width: 70%; text-align: lift;">
@@ -23,11 +35,9 @@
                         <tbody class="border border-1">
                             <tr>
                                 <td class="card-title">${listDto.id}</td>
-                                <div class="text-dark-50">
-                                    <td><a href="/customer/${listDto.id}">${listDto.customerTitle}</a>
-                                    </td>
-                                </div>
-
+                                <td class="my-text-ellipsis"><a
+                                        href="/customer/${listDto.id}">${listDto.customerTitle}</a>
+                                </td>
                                 <td>${listDto.employeeName}</td>
                                 <td>
                                     <fmt:formatDate value="${listDto.createdAt}" pattern="yyyy-MM-dd HH:mm" />

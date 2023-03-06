@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.customer.CustomerReq.CustomerSaveReqDto;
-import shop.mtcoding.rodongin.handler.ex.CustomApiException;
+import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.customer.CustomerRepository;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
@@ -40,13 +40,13 @@ public class CustomerController {
     public @ResponseBody ResponseEntity<?> save(@RequestBody CustomerSaveReqDto customerSaveReqDto) {
         Employee principal = (Employee) session.getAttribute("principal");
         if (principal == null) {
-            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
         if (customerSaveReqDto.getCustomerTitle().length() > 100) {
-            throw new CustomApiException("제목의 길이가 100자 이하여야 합니다.");
+            throw new CustomException("제목의 길이가 100자 이하여야 합니다.");
         }
         if (customerSaveReqDto.getCustomerContent() == null || customerSaveReqDto.getCustomerContent().isEmpty()) {
-            throw new CustomApiException("내용을 작성해 주세요.");
+            throw new CustomException("내용을 작성해 주세요.");
         }
 
         customerService.글쓰기(customerSaveReqDto, principal.getId());
@@ -57,19 +57,20 @@ public class CustomerController {
 
     @GetMapping("/customer/list")
     public String list(Model model) {
-        model.addAttribute("listDtos", customerRepository.findAllWithEmployee());
+        model.addAttribute("listDtos", customerRepository.findCustomerList());
 
         return "customer/list";
     }
 
     @GetMapping("/customer/{id}")
-    public String detail(@PathVariable int id) {
+    public String detail(@PathVariable int id, Model model) {
+        model.addAttribute("listDeails", customerRepository.findCustomerDetail(id));
+
         return "customer/detail";
     }
 
     @GetMapping("/customer/saveForm")
     public String saveForm(Model model) {
-
         return "customer/saveForm";
     }
 

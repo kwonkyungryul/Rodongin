@@ -13,6 +13,7 @@ public class CustomerResp {
         private Integer id;
         private String customerTitle;
         private String employeeName;
+        private Integer employeeId;
         private Timestamp createdAt;
     }
 
@@ -22,7 +23,8 @@ public class CustomerResp {
         private Integer id;
         private String customerTitle;
         private String customerContent;
-        private Integer employeeId;
         private String employeeName;
+        private Integer employeeId;
+        private Timestamp createdAt;
     }
 }

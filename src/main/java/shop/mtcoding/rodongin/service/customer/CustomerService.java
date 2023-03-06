@@ -18,6 +18,7 @@ public class CustomerService {
 
     @Transactional
     public void 글쓰기(CustomerSaveReqDto customerSaveReqDto, Integer employeeId) {
+
         int result = customerRepository.insert(customerSaveReqDto.getCustomerTitle(),
                 customerSaveReqDto.getCustomerContent(), employeeId);
         if (result != 1) {

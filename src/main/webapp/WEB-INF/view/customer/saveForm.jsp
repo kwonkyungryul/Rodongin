@@ -11,7 +11,7 @@
                             <div class="mb-2">
                                 <label for="username" class="form-label">아이디</label>
                                 <input type="text" class="form-control" id="username" name="username"
-                                    value="${user.username}" required>
+                                    value="${employeeName}" required>
                             </div>
                             <div class="mb-2">
                                 <label for="email" class="form-label">이메일</label>
@@ -23,9 +23,13 @@
                             </div>
                             <div class="mb-2">
                                 <label for="content" class="form-label">문의내용</label>
-                                <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+                                <div class="form-group">
+                                <textarea class="form-control summernote" rows="5" id="content"
+                                    name="content"></textarea>
+                                </div>
+                                <%-- <textarea class="form-control" id="content" name="content" rows="4" required></textarea> --%>
                             </div>
-                            <button onclick="save()" type="button" class="btn btn-primary">글쓰기완료</button>
+                            <button onclick="save()" type="button" class="btn btn-primary">글쓰기</button>
                         </form>
                     </div>
                 </div>
