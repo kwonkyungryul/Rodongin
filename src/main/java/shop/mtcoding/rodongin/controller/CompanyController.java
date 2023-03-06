@@ -160,34 +160,4 @@ public class CompanyController {
     public String companyjoin() {
         return "company/joinForm";
     }
-
-
-    
-    // @PostMapping("/company/update")
-    // public String profileUpdate(MultipartFile profile){
-    //     Company comPrincipal = (Company) session.getAttribute("comPrincipal");
-    //     if (comPrincipal == null) {
-    //         return "redirect:/loginForm";
-    //     }
-
-    //     if(profile.isEmpty()){
-    //         throw new CustomException("사진이 전송되지 않았습니다");
-    //     }
-
-    //     Company CompanyPS = companyService.프로필사진수정(profile, comPrincipal.getId());
-    //     session.setAttribute("principal", CompanyPS);
-
-    //     return "redirect:/company/saveForm";
-    // }
-
-    // @GetMapping("/company/profileUpdateForm")
-    // public String profileUpdateForm(Model model){
-    //     Company comPrincipal = (Company) session.getAttribute("comPrincipal");
-    //     if (comPrincipal == null) {
-    //         return "redirect:/loginForm";
-    //     }
-    //     Company CompanyPS = companyRepository.findById(comPrincipal.getId());
-    //     model.addAttribute("Company", CompanyPS);
-    //     return "company/profileUpdateForm";
-    // }
 }
