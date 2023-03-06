@@ -20,6 +20,8 @@ input:focus {
     color: #fff;
     font-size: 13px;
     font-weight: bold;
+    height: 37.5px;
+    width: 50px;
 }
 
 .main_yellow_label_customer {
@@ -30,4 +32,30 @@ input:focus {
     color: rgb(94, 94, 94);
     font-size: 13px;
     font-weight: bold;
+    height: 37.5px;
+    width: 50px;
 }
+
+.main_gray_btn_customer {
+    display: inline-block;
+    padding: 8px 9px;
+    background-color: rgb(210, 210, 210);
+    border-radius: 7px;
+    border: transparent;
+    color: rgb(94, 94, 94);
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    height: 37.5px;
+    width: 50px;
+}
+
+/* display: inline-flex ;
+padding: 6px;
+background-color: rgb(94, 94, 94);
+border-radius: 7px;
+color: rgb(210, 210, 210);
+font-size: 13px;
+font-weight: bold;
+height: 37.5px;
+width: 50px; */

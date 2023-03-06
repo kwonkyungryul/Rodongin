@@ -6,26 +6,29 @@
 <mapper namespace="shop.mtcoding.rodongin.model.customer.CustomerRepository">
 
     <select id="findCustomerDetail" resultType="shop.mtcoding.rodongin.dto.customer.CustomerResp$CustomerDetailRespDto">
-        select cu.id, cu.customer_title, cu.customer_content, em.employee_name
+        select cu.id, cu.customer_title, cu.customer_content, em.id, em.employee_name
         from customer cu
         inner join employee em
         on cu.employee_id = em.id
         where cu.id = #{id}
     </select> 
 
-<!-- 
-  private String customerTitle;
+    <!-- public static class CustomerDetailRespDto {
+        private Integer id;
+        private String customerTitle;
         private String customerContent;
-        private String employeeName;
         private Integer employeeId;
-        private Timestamp createdAt;
-    } -->
+        private String employeeName;
+        private Timestamp createdAt; -->
+
+
+
     <select id="findCustomerList" resultType="shop.mtcoding.rodongin.dto.customer.CustomerResp$CustomerListRespDto">
         SELECT cu.id, cu.customer_title, em.employee_name, cu.created_at
         FROM customer cu 
         INNER JOIN employee em ON cu.employee_id = em.id
         ORDER BY cu.id DESC
-        LIMIT 0, 7
+        <!-- LIMIT 0, 7 -->
     </select>
 
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.customer.Customer">

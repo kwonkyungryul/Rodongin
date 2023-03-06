@@ -6,7 +6,7 @@
             <form>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter title" name="title" id="title"
-                        value="제목입니다">
+                        value="${customer}">
                 </div>
 
                 <div class="form-group">

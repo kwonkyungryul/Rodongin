@@ -14,6 +14,7 @@ public class Customer {
     private String customerTitle;
     private String customerContent;
     private Integer employeeId;
+    private String employeeName;
     private Timestamp createdAt;
 
     public Customer(Integer id, String customerTitle, String customerContent, Integer employeeId, Timestamp createdAt) {

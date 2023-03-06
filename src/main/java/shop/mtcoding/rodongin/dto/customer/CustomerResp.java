@@ -8,23 +8,23 @@ import lombok.Setter;
 public class CustomerResp {
 
     @Setter
-    @Getter
+    @Getter // listDto
     public static class CustomerListRespDto {
         private Integer id;
         private String customerTitle;
-        private String employeeName;
         private Integer employeeId;
+        private String employeeName;
         private Timestamp createdAt;
     }
 
     @Setter
-    @Getter
+    @Getter // detailDto
     public static class CustomerDetailRespDto {
         private Integer id;
         private String customerTitle;
         private String customerContent;
-        private String employeeName;
         private Integer employeeId;
+        private String employeeName;
         private Timestamp createdAt;
     }
 }
