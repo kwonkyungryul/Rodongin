@@ -75,7 +75,7 @@
                         </select>
                         <div>
                             <select name="schoolGraduate" id="schoolGraduate" class="main_select_box p-2">
-                                <option value="0">선택해주세요</option>
+                                <option value="${resumeGraduates.schoolGraduate}">${resumeGraduates.schoolGraduate}</option>
                                 <option value="고등학교 졸업">고등학교 졸업</option>
                                 <option value="대학 (2,3년)">대학 (2,3년)</option>
                                 <option value="대학교 (4년)">대학교 (4년)</option>

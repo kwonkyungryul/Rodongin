@@ -72,9 +72,6 @@ public class ResumeService {
             resumeGraduateRepository.updateByResumeId(id, resumeUpdateDto.getSchoolId(),
                     resumeUpdateDto.getSchoolGraduate());
 
-            System.out.println("회사" + resumeUpdateDto.getCareerCompany());
-            System.out.println("회사" + resumeUpdateDto.getCareerStart());
-            System.out.println("회사" + resumeUpdateDto.getCareerEnd());
             resumeCareerRepository.updateByResumeId(id,
                     resumeUpdateDto.getCareerCompany(),
                     resumeUpdateDto.getCareerStart(),

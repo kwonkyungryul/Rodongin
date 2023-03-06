@@ -33,7 +33,7 @@ public class ResumeResp {
         private Integer resumeId;
         private Integer schoolId;
         private String schoolName;
-        private String schoolGradute;
+        private String schoolGraduate;
     }
 
     @Getter

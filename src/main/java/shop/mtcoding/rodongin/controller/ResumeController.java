@@ -77,7 +77,10 @@ public class ResumeController {
     @PutMapping("resume/{id}/update")
     public @ResponseBody ResponseEntity<?> update(@PathVariable int id, @RequestBody ResumeUpdateDto resumeUpdateDto) {
 
-        // Employee principal = (Employee) session.getAttribute("principal");
+        Employee principal = (Employee) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
 
         resumeService.이력서수정(id, resumeUpdateDto);
 
@@ -87,9 +90,19 @@ public class ResumeController {
     @GetMapping("resume/{id}/update")
     public String updateForm(@PathVariable int id, Model model, ResumeListRespDto resumeListRespDto) {
         Employee principal = (Employee) session.getAttribute("principal");
+
         if (principal == null) {
-            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
+
+        Resume resume = resumeRepository.findById(id);
+        if (resume == null) {
+            throw new CustomApiException("없는 이력서를 수정할 수 없습니다");
+        }
+        if (resume.getEmployeeId() != principal.getId()) {
+            throw new CustomApiException("이력서를 수정할 권한이 없습니다", HttpStatus.FORBIDDEN);
+        }
+
         // 개인정보
         model.addAttribute("empInfo",
                 employeeRepository.findById(principal.getId()));
@@ -102,7 +115,7 @@ public class ResumeController {
         model.addAttribute("licenses", licenses);
         model.addAttribute("stacks", stacks);
         // 이력서
-        model.addAttribute("resume", resumeRepository.findById(id));
+        model.addAttribute("resume", resume);
 
         List<ResumeCareer> resumeCareers = resumeCareerRepository.findByResumeId(id);
         model.addAttribute("resumeCareers", resumeCareers);
