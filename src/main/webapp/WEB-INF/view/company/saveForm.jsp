@@ -20,10 +20,8 @@
     <input type="file" id="profile" name="profile" accept="image/*" class="main_yellow_label px-3 text-white bg_color_point">
     </div>
     <div class="mb-3">
-        <%-- <img id="imagePreview" src="${detailDto.companyThumbnail}" alt="프로필 사진" style="max-width: 200px;"> --%>
     </div>
     <!-- 생략 -->
-<%-- <button type="button" class="main_yellow_label px-3 text-white bg_color_point">사진수정</button> --%>
 
                 </div>
             </div>
