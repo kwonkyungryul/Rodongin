@@ -200,7 +200,7 @@
       </c:forEach>
       <div>
         <div class="button_center d-flex justify-content-center">
-          <button class="main_blue_btn" type="submit">이력서 등록</button>
+           <a href="/resume/saveForm" class="main_blue_btn">이력서 등록</a>
         </div>
       </div>
     </div>

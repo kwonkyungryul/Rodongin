@@ -31,4 +31,10 @@
     <delete id="deleteById">
         DELETE FROM resume WHERE id = #{id}
     </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="resumeSaveDto.id">
+        INSERT INTO resume (employee_id, resume_title, resume_salary, CV, created_at) VALUES
+        (#{employeeId}, #{resumeSaveDto.resumeTitle}, #{resumeSaveDto.resumeSalary}, #{resumeSaveDto.CV}, NOW())
+    </insert>
 </mapper>
+

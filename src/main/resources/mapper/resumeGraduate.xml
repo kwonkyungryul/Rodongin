@@ -5,7 +5,8 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository">
     <insert id="insert">
-        INSERT INTO resume_graduate(resume_id, school_id, school_graduate, created_at) VALUES(#{resumeId}, #{schoolId}, #{schoolGraduate}, now())
+        INSERT INTO resume_graduate (resume_id, school_id, school_graduate, created_at) VALUES
+        (#{resumeId}, #{schoolId}, #{schoolGraduate}, NOW())
     </insert>
     
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.resume.ResumeGraduate">
@@ -24,5 +25,4 @@
             where rg.RESUME_ID = #{resumeId}
             GROUP BY SCHOOL_ID 
     </select>
-
 </mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
@@ -101,7 +102,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/employee/update")
-    public ResponseEntity<?> update(@RequestBody EmployeeUpdatdReq employeeUpdateReq) {
+    public @ResponseBody ResponseEntity<?> update(@RequestBody EmployeeUpdatdReq employeeUpdateReq) {
 
         Employee principal = (Employee) session.getAttribute("principal");
 
@@ -196,6 +197,7 @@ public class EmployeeController {
     public String detail(Model model) {
 
         Employee principal = (Employee) session.getAttribute("principal");
+        
         if (principal == null) {
           throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);  
         }

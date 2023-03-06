@@ -51,10 +51,8 @@
             </div>
 
 
-
+        <form action="resume/save" method="post">
             <div>
-
-
                 <div class="mb-3">
                     <div>
                         <span class="main_yellow_label mb-2">최종학력</span>
@@ -158,5 +156,5 @@
             </div>
         </div>
     </div>
-
+</form>
         <%@ include file="../layout/footer.jsp" %>

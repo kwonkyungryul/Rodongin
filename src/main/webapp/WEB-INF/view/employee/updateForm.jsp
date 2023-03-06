@@ -47,7 +47,7 @@
                 src="${empInfo.employeeThumbnail == null ? '/images/Kakao.jpg' : empInfo.employeeThumbnail}"
                 alt="Current Photo" class="img-fluid" id="imagePreview">
             </div>
-            <%-- <input type="file" class="card-img-top" id="profile" name="profile" onchange="chooseImage(this)"> --%>
+            <input type="file" class="card-img-top" id="profile" name="profile" onchange="chooseImage(this)">
           </div>
         </div>
       </div>
@@ -81,24 +81,24 @@
           alert(err.responseJSON.msg);
         });
       }
-      // }
-      // function chooseImage(obj) {
-      //   //console.log(obj);
-      //   //console.log(obj.files);
-      //   let f = obj.files[0];
-      //   if (!f.type.match("image.*")) {
-      //     alert("이미지를 등록해야 합니다.");
-      //     return;
-      //   }
-      //   let reader = new FileReader();
-      //   reader.readAsDataURL(f);
-      //   // 콜스택이 다 비워지고, 이벤트 루프로 가서 readAsDataURL 이벤트가 끝나면 콜백시켜주는 함수
-      //   reader.onload = function (e) {
-      //     console.log(e);
-      //     console.log(e.target.result);
-      //     $("#imagePreview").attr("src", e.target.result);
-      //   }
-      // }
+      
+      function chooseImage(obj) {
+        //console.log(obj);
+        //console.log(obj.files);
+        let f = obj.files[0];
+        if (!f.type.match("image.*")) {
+          alert("이미지를 등록해야 합니다.");
+          return;
+        }
+        let reader = new FileReader();
+        reader.readAsDataURL(f);
+        // 콜스택이 다 비워지고, 이벤트 루프로 가서 readAsDataURL 이벤트가 끝나면 콜백시켜주는 함수
+        reader.onload = function (e) {
+          console.log(e);
+          console.log(e.target.result);
+          $("#imagePreview").attr("src", e.target.result);
+        }
+      }
     </script>
 
     <form action="/employee/save" method="post">
@@ -123,7 +123,6 @@
             </div>
           </div>
         </div>
-    </form>
 
     <div class="mb-3">
       <div class="d-flex mb-2">
