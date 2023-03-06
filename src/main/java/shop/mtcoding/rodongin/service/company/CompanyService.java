@@ -94,27 +94,4 @@ public class CompanyService {
         }
         System.out.println("aaa0");
     }
-
-    @Transactional
-    public Company 프로필사진수정(MultipartFile profile, int comPrincipalId){
-        // 1번 사진을 /static/image에 UUID로 변경해서 저장
-        String uuidImageName = PathUtil.writeImageFile(profile);
-        
-        // 2번 저장된 파일의 경로를 DB에 저장
-        Company CompanyPS = companyRepository.findById(comPrincipalId);
-        CompanyPS.setCompanyThumbnail(uuidImageName);
-        companyRepository.updateById(
-            comPrincipalId,
-            CompanyPS.getCompanyFullname(),
-            CompanyPS.getCompanyThumbnail(),
-            CompanyPS.getCompanyEstablish(),
-            null,
-            CompanyPS.getCompanyEmployeesNumber(),
-            CompanyPS.getCompanyIntroduction(),
-            CompanyPS.getCompanyHistory(),
-            CompanyPS.getCompanyVision()
-        );
-        return CompanyPS;
-    }
-
 }
