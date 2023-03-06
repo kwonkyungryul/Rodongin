@@ -66,7 +66,7 @@
                         <span class="main_yellow_label mb-2">최종학력</span>
                     </div>
                     <div class="d-flex">
-                        <select name="schoolId" id="schoolId" class="main_select_box_school">
+                        <select name="schoolId" id="schoolId" class="main_select_box p-2">
                             <option value="0">선택해주세요</option>
                             <c:forEach items="${schools}" var="school">
                                 <option value="${school.id}">${school.schoolName}</option>
@@ -164,11 +164,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="AA"></div>
                                         <span class="my_list">활용도</span>
-<<<<<<< HEAD
                                         <input name="stackAcquisition" id="stackAcquisition" class="form-control my_util" type="text" />
-=======
-                                        <input class="form-control my_util" type="text">
->>>>>>> ebc27a23ba82b2e1e5b4285c738440e17ac1be20
                                     </div>
                                 </div>
                             </div>

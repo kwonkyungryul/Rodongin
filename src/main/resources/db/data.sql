@@ -88,21 +88,18 @@ VALUES
 
 -- employee의 기술스택 테이블
 INSERT INTO employee_stack (employee_id, stack_id, stack_acquisition, created_at) VALUES
-(1, 1, '2020-01-01', NOW()),
-(1, 2, '2019-05-01', NOW()),
-(2, 1, '2021-02-01', NOW()),
-(2, 3, '2019-12-01', NOW()),
-(3, 4, '2020-11-01', NOW()),
-(3, 2, '2018-09-01', NOW()),
-(4, 1, '2022-01-01', NOW()),
-(4, 4, '2021-06-01', NOW()),
-(5, 3, '2020-03-01', NOW()),
-(5, 2, '2019-08-01', NOW());
+(1, 1, '자바 기초 문법 숙지 및 간단한 프로그램 작성 가능', NOW()),
+(1, 2, '파이썬 기초 문법 숙지 및 간단한 데이터 분석/처리 프로그램 작성 가능', NOW()),
+(2, 3, '자바 기초 문법 숙지 및 간단한 프로그램 작성 가능', NOW()),
+(2, 4, '자바스크립트를 활용한 간단한 웹 페이지 제작 가능', NOW()),
+(3, 5, 'C# 기초 문법 숙지 및 간단한 데스크톱 애플리케이션 작성 가능', NOW()),
+(3, 6, '파이썬 기초 문법 숙지 및 간단한 데이터 분석/처리 프로그램 작성 가능', NOW()),
+(4, 7, '스위프트 기초 문법 숙지 및 간단한 iOS 애플리케이션 작성 가능', NOW()),
+(4, 8, 'Objective-C 기초 문법 숙지 및 간단한 iOS 애플리케이션 작성 가능', NOW()),
+(5, 9, 'Kotlin 기초 문법 숙지 및 안드로이드 애플리케이션 작성 가능', NOW()),
+(5, 10, 'Go 기초 문법 숙지 및 간단한 CLI 프로그램 작성 가능', NOW());
 
 -- 기업 테이블
--- INSERT INTO company(company_username, company_password, company_fullname, company_ceo_name, company_license_number, company_tel, company_address, company_email, company_thumbnail, company_establish, company_sales, company_employees_number, company_introduction, company_history, company_vision, created_at)
--- VALUES
--- ('company1', '1234', '삼성전자', '김기남', '123456-123456', '02-123-1234', '서울시 강남구 역삼동', 'samsung@samsung.com', 'thumbnail1', '1969-03-01', 100000000, 30000, '삼성전자입니다.', '삼성전자의 연혁', '삼성전자의 미래목표', NOW()),
 INSERT INTO company (company_username, company_password, company_fullname, company_ceo_name, company_license_number, company_tel, company_address, company_email, company_thumbnail, company_establish, company_sales, company_employees_number, company_introduction, company_history, company_vision, created_at)
 VALUES
 ('alphago', '1234', '알파고', '홍길동', '123456789012', '02-123-4567', '서울시 강남구', 'company1@example.com', '/images/kakao.jpg', '2010-01-01', 1000000000, 1000, '알파고는 인공지능 기술을 기반으로 다양한 분야에서 연구와 개발을 진행하고 있습니다.', '알파고는 2010년에 창립되어 현재까지 다양한 분야에서 연구와 개발을 진행하고 있습니다.', '알파고는 인공지능 기술을 활용해 사람들의 생활을 더 편리하고 풍요롭게 만드는 것을 목표로 합니다.', NOW()),
