@@ -4,19 +4,36 @@
     <link rel="stylesheet" href="/css/announcementDetail.css" />
 
 
+
     <div class="my_centerbox">
       <div class="my_campname_d_day">
-        <div class="my_campname">
-          <div>${announcement.companyFullname}</div>
-          <h1>${announcement.companyFullname}</h3>
+        <div class="d-flex">
+          <div class="my_campname">
+            <div>${announcement.companyFullname}</div>
+            <div class="d-flex">
+              <h1 class="mb-0">${announcement.companyFullname} </h1>
+            </div>
+          </div>
+          
         </div>
         <!--  -->
             <c:if test="${comPrincipal == null}" >
-          <div class="my_d_day">
-            <div class="my_ddaybox">
-            <div>D-7</div>
-          </div>
-          <div class="my_buttonsize">
+          
+              <div class="my_buttonsize d-flex align-items-end">
+                  <div id="starBox" class="">
+                    <button onclick="subscribe(${isSubscribe}, ${announcement.id})" class="star_box text-center d-flex justify-content-center px-3 ms-5 me-3 btn btn-outline-primary text-center">
+                      <div class="">
+                        <i class="${isSubscribe ? "fa-solid" : "fa-regular"} fa-star fs-5"></i>
+                        <p class="m-0">${count}</p>
+                      </div>
+                    </button> 
+                  </div>
+                    <input id="isSubscribe" type="hidden" value="${isSubscribe}">
+                    <input id="isSubscribe" type="hidden" value="${announcement.id}">
+            <div class="my_d_day">
+              <div class="my_ddaybox">
+                <div>D-7</div>
+              </div>
               <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="applyBtn">
                 지원하기
               </button>
@@ -26,6 +43,8 @@
         </div>
       </div>
     </div>
+
+    
 
     <!-- 모달 창 -->
     <c:if test="${principal != null}" >
@@ -190,15 +209,7 @@
 
     </div>
 
-    <script>
-      let principalId = $('#principalId').val();
-      $('#applyBtn').click(()=>{
-        if (principalId == 0) {
-          alert('로그인 후 지원해주세요.');
-          return;
-        }
-      })
-    </script>
+    <script src="/js/announcementDetail.js"></script>
 
 
     <%@ include file="../layout/footer.jsp" %>

@@ -133,3 +133,12 @@
   justify-content: center;
   margin-left: 36%;
 }
+
+.star_box {
+  width: 72px !important;
+}
+
+.star_box:hover {
+  background-color: transparent !important;
+  color: #0d6efd !important;
+}
