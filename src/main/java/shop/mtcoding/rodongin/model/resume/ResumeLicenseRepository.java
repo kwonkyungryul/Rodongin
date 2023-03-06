@@ -11,11 +11,15 @@ import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeLicenseRespDto;
 @Mapper
 public interface ResumeLicenseRepository {
 
-    public List<ResumeLicenseRespDto> findByResumeId(int resumeId);
+        public List<ResumeLicenseRespDto> findByResumeId(int resumeId);
 
-    public void insert(@Param("resumeId") int resumeId, @Param("licenseId") int licenseId, @Param("licenseIssuer") String licenseIssuer);
+        public void insert(@Param("resumeId") int resumeId, @Param("licenseId") int licenseId,
+                        @Param("licenseIssuer") String licenseIssuer);
 
-    void insert(@Param("resumeId") int resumeId,
-            @Param("resumeLicenseSaveDto") ResumeLicenseSaveDto resumeLicenseSaveDto);
+        public void insert(@Param("resumeId") int resumeId,
+                        @Param("resumeLicenseSaveDto") ResumeLicenseSaveDto resumeLicenseSaveDto);
+
+        public void updateByResumeId(@Param("resumeId") int resumeId, @Param("licenseId") int licenseId,
+                        @Param("licenseIssuer") String licenseIssuer);
 
 }

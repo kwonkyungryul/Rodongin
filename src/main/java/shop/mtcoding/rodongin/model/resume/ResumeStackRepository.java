@@ -13,6 +13,10 @@ public interface ResumeStackRepository {
 
     List<ResumeStackRespDto> findByResumeId(int resumeId);
 
-    public void insert(@Param("resumeId") int resumeId, @Param("stackId") int stackId, @Param("stackAcquisition") String stackAcquisition);
+    public void insert(@Param("resumeId") int resumeId, @Param("stackId") int stackId,
+            @Param("stackAcquisition") String stackAcquisition);
+
+    public void updateByResumeId(@Param("resumeId") int resumeId, @Param("stackId") int stackId,
+            @Param("stackAcquisition") String stackAcquisition);
 
 }

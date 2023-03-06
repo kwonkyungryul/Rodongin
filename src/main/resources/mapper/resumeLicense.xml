@@ -18,4 +18,11 @@
         (#{resumeId}, #{licenseId}, #{licenseIssuer}, NOW())
     </insert>
 
+    <update id="updateByResumeId">
+        update resume_license
+        set license_id = #{licenseId}
+        ,license_issuer = #{licenseIssuer}
+        where resume_id = #{resumeId}
+    </update>
+
 </mapper>

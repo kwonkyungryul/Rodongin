@@ -5,7 +5,7 @@
 
         <div class="my_info_insert">
             <div class="my_title">
-                <h2>이력서 등록</h2>
+                <h2>이력서 수정</h2>
             </div>
             <div class="my_yellow_box">
                 <div class="my_info_box_margin">
@@ -57,7 +57,7 @@
                     </div>
                     <div>
                         <input name="resumeTitle" id="resumeTitle" class="form-control my_resume_title_form mb-2"
-                            type="text" placeholder="이력서 타이틀 입력">
+                            type="text" value="${resume.resumeTitle}" placeholder="이력서 타이틀 입력">
                     </div>
                 </div>
 
@@ -65,9 +65,10 @@
                     <div>
                         <span class="main_yellow_label mb-2">최종학력</span>
                     </div>
-                    <div class="d-flex">
+                    <c:forEach items="${resumeGraduates}" var="resumeGraduates">
+                    <div class="d-flex mb-2">
                         <select name="schoolId" id="schoolId" class="main_select_box_school">
-                            <option value="0">선택해주세요</option>
+                            <option value="${resumeGraduates.schoolId}">${resumeGraduates.schoolName}</option>
                             <c:forEach items="${schools}" var="school">
                                 <option value="${school.id}">${school.schoolName}</option>
                             </c:forEach>
@@ -81,31 +82,32 @@
                             </select>
                         </div>
                     </div>
+                    </c:forEach>
                 </div>
 
                 <div class="mb-3">
                     <div class="d-flex mb-2">
                         <span class="main_yellow_label">경력사항</span>
                         <div class="form-check my_check" id="isCareerCheck">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" />
                         </div>
                     </div>
+                    <c:forEach items="${resumeCareers}" var="resumeCareers">
                     <div class="align-items-center d-flex mb-2">
                         <div class="AA"></div>
                         <span class="my_list">회사명</span>
-                        <input name="careerCompany" id="careerCompany" class="form-control my_career_input"
+                        <input name="careerCompany" id="careerCompany" value="${resumeCareers.careerCompany}" class="form-control my_career_input"
                             type="text" />
                     </div>
                     <div class="align-items-center d-flex mb-2">
                         <div class="AA"></div>
                         <span class="my_list">재직기간</span>
                         <div class="d-flex my_career_input">
-                            <input name="careerStart" id="careerStart" class="form-control" type="date"
-                                value="0001-01-01" />
-                            <input name="careerEnd" id="careerEnd" class="form-control" type="date"
-                                value="0001-01-01" />
+                            <input name="careerStart" id="careerStart" class="form-control" value="${resumeCareers.careerStart}" type="date"/>
+                            <input name="careerEnd" id="careerEnd" class="form-control" value="${resumeCareers.careerEnd}" type="date"/>
                         </div>
                     </div>
+                    </c:forEach>
                 </div>
 
                 <div>
@@ -115,6 +117,8 @@
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" readonly>
                         </div>
                     </div>
+
+                <c:forEach items="${resumeLicense}" var="resumeLicense">
                     <div class="mb-1">
                         <div class="row">
                             <div class="col-md-4">
@@ -122,7 +126,7 @@
                                     <div class="AA"></div>
                                     <span class="my_list">자격증명</span>
                                     <select name="licenseId" id="licenseId" class="main_select_box_title">
-                                        <option value="0">선택해주세요</option>
+                                        <option value="${resumeLicense.licenseId}">${resumeLicense.licenseName}</option>
                                         <c:forEach items="${licenses}" var="license">
                                             <option value="${license.id}">${license.licenseName}</option>
                                         </c:forEach>
@@ -133,11 +137,12 @@
                                 <div class="d-flex align-items-center">
                                     <div class="AA"></div>
                                     <span class="my_list">발행처</span>
-                                    <input id="licenseIssuer" name="licenseIssuer" class="form-control my_util" type="text">
+                                    <input id="licenseIssuer" name="licenseIssuer" value="${resumeLicense.licenseIssuer}" class="form-control my_util" type="text">
                                 </div>
                             </div>
                         </div>
                     </div>
+                </c:forEach>
 
                     <div>
                         <div class="d-flex mb-2">
@@ -146,6 +151,7 @@
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" readonly>
                             </div>
                         </div>
+                        <c:forEach items="${resumeStack}" var="resumeStack">
                         <div class="mb-1">
                             <div class="row">
                                 <div class="col-md-4">
@@ -153,7 +159,7 @@
                                         <div class="AA"></div>
                                         <span class="my_list">기술명</span>
                                         <select name="stackId" id="stackId" class="main_select_box_title">
-                                            <option value="0">선택해주세요</option>
+                                            <option value="${resumeStack.stackId}">${resumeStack.stackName}</option>
                                             <c:forEach items="${stacks}" var="stack">
                                                 <option value="${stack.id}">${stack.stackName}</option>
                                             </c:forEach>
@@ -164,11 +170,12 @@
                                     <div class="d-flex align-items-center">
                                         <div class="AA"></div>
                                         <span class="my_list">활용도</span>
-                                        <input name="stackAcquisition" id="stackAcquisition" class="form-control my_util" type="text" />
+                                        <input name="stackAcquisition" id="stackAcquisition" value="${resumeStack.stackAcquisition}" class="form-control my_util" type="text" />
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </c:forEach>
                     </div>
 
                 </div>
@@ -179,7 +186,7 @@
                     <div class="d-flex align-items-center">
                         <div class="BB"></div>
                         <input name="resumeSalary" id="resumeSalary" class="form-control" style="width: 30%;"
-                            type="number">
+                            type="number" value="${resume.resumeSalary}">
                         <p class="m-2"> (만 원)</p>
                     </div>
                 </div>
@@ -189,7 +196,7 @@
                     <span class="main_yellow_label">자기소개서</span>
                 </div>
                 <div class="form-group my_summernote">
-                    <textarea class="form-control summernote" rows="5" id="CV" name="CV"></textarea>
+                    <textarea class="form-control summernote" rows="5" id="CV" name="CV">${resume.CV}</textarea>
                 </div>
             </div>
             <div class="my_sub_title_form">
@@ -208,14 +215,14 @@
 
                 <div>
                     <div class="button_center d-flex justify-content-center">
-                        <button onclick="save()" class="main_blue_btn" type="button">등록</button>
+                        <button onclick="updateById(${resume.id})" class="main_blue_btn" type="button">등록</button>
                     </div>
                 </div>
             </div>
         </div>
         </div>
         <script>
-            function save() {
+            function updateById(id) {
                 let data = {
                     "resumeTitle": $("#resumeTitle").val(),
                     "resumeSalary": $("#resumeSalary").val(),
@@ -231,19 +238,18 @@
                     "stackAcquisition": $("#stackAcquisition").val()
                 };
 
-                $.ajax({
-                    type: "post",
-                    url: "/resume/save",
+               $.ajax({
+                    type: "put",
+                    url: "/resume/"+id+"/update",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
-                    dataType: "json"
+                    dataType: "json" // default : 응답의 mime 타입으로 유추함
                 }).done((res) => { // 20X 일때
                     alert(res.msg);
-                    location.href = "/resume/" + res.data + "/detail";
-                }).fail((err) => {
+                    location.href = "/resume/"+id+"/detail";
+                }).fail((err) => { // 40X, 50X 일때
                     alert(err.responseJSON.msg);
                 });
-                console.log(data);
             }
         </script>
         <script>

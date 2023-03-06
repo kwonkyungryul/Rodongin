@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeSaveDto;
-
+import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeUpdateDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.model.resume.Resume;
 import shop.mtcoding.rodongin.model.resume.ResumeCareerRepository;
@@ -44,18 +44,49 @@ public class ResumeService {
             throw new CustomApiException("이력서 삭제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @Transactional
     public void 이력서등록(ResumeSaveDto resumeSaveDto, int employeeId) {
 
         try {
             resumeRepository.insert(employeeId, resumeSaveDto);
-            resumeGraduateRepository.insert(resumeSaveDto.getId(), resumeSaveDto.getSchoolId(),resumeSaveDto.getSchoolGraduate());
-            resumeCareerRepository.insert(resumeSaveDto.getId(), resumeSaveDto.getCareerCompany(),resumeSaveDto.getCareerStart(),resumeSaveDto.getCareerEnd());
-            resumeLicenseRepository.insert(resumeSaveDto.getId(), resumeSaveDto.getLicenseId(),resumeSaveDto.getLicenseIssuer());
-            resumeStackRepository.insert(resumeSaveDto.getId(), resumeSaveDto.getStackId(),resumeSaveDto.getStackAcquisition());
+            resumeGraduateRepository.insert(resumeSaveDto.getId(), resumeSaveDto.getSchoolId(),
+                    resumeSaveDto.getSchoolGraduate());
+            resumeCareerRepository.insert(resumeSaveDto.getId(), resumeSaveDto.getCareerCompany(),
+                    resumeSaveDto.getCareerStart(), resumeSaveDto.getCareerEnd());
+            resumeLicenseRepository.insert(resumeSaveDto.getId(), resumeSaveDto.getLicenseId(),
+                    resumeSaveDto.getLicenseIssuer());
+            resumeStackRepository.insert(resumeSaveDto.getId(), resumeSaveDto.getStackId(),
+                    resumeSaveDto.getStackAcquisition());
 
         } catch (Exception e) {
             throw new CustomApiException("이력서 등록 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public void 이력서수정(int id, ResumeUpdateDto resumeUpdateDto) {
+
+        try {
+
+            resumeRepository.updateById(id, resumeUpdateDto);
+            resumeGraduateRepository.updateByResumeId(id, resumeUpdateDto.getSchoolId(),
+                    resumeUpdateDto.getSchoolGraduate());
+
+            System.out.println("회사" + resumeUpdateDto.getCareerCompany());
+            System.out.println("회사" + resumeUpdateDto.getCareerStart());
+            System.out.println("회사" + resumeUpdateDto.getCareerEnd());
+            resumeCareerRepository.updateByResumeId(id,
+                    resumeUpdateDto.getCareerCompany(),
+                    resumeUpdateDto.getCareerStart(),
+                    resumeUpdateDto.getCareerEnd());
+            resumeLicenseRepository.updateByResumeId(id, resumeUpdateDto.getLicenseId(),
+                    resumeUpdateDto.getLicenseIssuer());
+
+            resumeStackRepository.updateByResumeId(id, resumeUpdateDto.getStackId(),
+                    resumeUpdateDto.getStackAcquisition());
+
+        } catch (Exception e) {
+            throw new CustomApiException("이력서 수정 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

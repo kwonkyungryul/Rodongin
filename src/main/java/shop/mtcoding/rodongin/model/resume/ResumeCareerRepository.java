@@ -13,7 +13,7 @@ public interface ResumeCareerRepository {
 
     public void insert(@Param("resumeId") int resumeId, @Param("careerCompany") String careerCompany,
             @Param("careerStart") Date careerStart,
-    @Param ("careerEnd") Date careerEnd);
+            @Param("careerEnd") Date careerEnd);
 
     public List<ResumeCareer> findAll();
 
@@ -22,4 +22,8 @@ public interface ResumeCareerRepository {
     public int updateById(int id, ResumeCareer apply);
 
     public int deleteById(int id);
+
+    public void updateByResumeId(@Param("resumeId") int resumeId, @Param("careerCompany") String careerCompany,
+            @Param("careerStart") Date careerStart,
+            @Param("careerEnd") Date careerEnd);
 }
