@@ -24,5 +24,12 @@
         on rs.STACK_ID =sm.ID 
         where rs.RESUME_ID = #{resumeId}
     </select>
+
+     <update id="updateByResumeId">
+        update resume_stack
+        set stack_id = #{stackId}
+        ,stack_acquisition = #{stackAcquisition}
+        where resume_id = #{resumeId}
+    </update>
 </mapper>
 

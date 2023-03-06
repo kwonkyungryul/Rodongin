@@ -10,7 +10,7 @@ public class ResumeReq {
     @Setter
     @Getter
     public static class ResumeSaveDto {
-        private int id;
+        private Integer id;
         private String resumeTitle;
         private String resumeSalary;
         private String CV;
@@ -23,8 +23,23 @@ public class ResumeReq {
         private String licenseIssuer;
         private Integer stackId;
         private String stackAcquisition;
+    }
 
-
+    @Setter
+    @Getter
+    public static class ResumeUpdateDto {
+        private String resumeTitle;
+        private String resumeSalary;
+        private String CV;
+        private Integer schoolId;
+        private String schoolGraduate;
+        private String careerCompany;
+        private Date careerStart;
+        private Date careerEnd;
+        private Integer licenseId;
+        private String licenseIssuer;
+        private Integer stackId;
+        private String stackAcquisition;
     }
 
     @Getter

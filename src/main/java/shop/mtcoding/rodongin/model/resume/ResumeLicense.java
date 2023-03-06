@@ -13,7 +13,7 @@ public class ResumeLicense {
     private Integer licenseId;
     private String licenseIssuer;
     private Timestamp createdAt;
-    
+
     public ResumeLicense(Integer resumeId, Integer licenseId, String licenseIssuer) {
         this.resumeId = resumeId;
         this.licenseId = licenseId;

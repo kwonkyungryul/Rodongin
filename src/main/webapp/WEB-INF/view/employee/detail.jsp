@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+i<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ include file="../layout/header.jsp" %>
 
     <link rel="stylesheet" href="/css/resumeForm.css" />
@@ -190,9 +190,14 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-2">
-                <a href=""></a>
-                <a href="" onClick="deleteByResumeId(${resume.id})"" class=" my_main_blue_btn" type="submit">삭제</a>
+              <div>
+                <div class="col-sm-2">
+                  <a href=""></a>
+                  <a href="" onClick="deleteByResumeId(${resume.id})" class=" my_main_blue_btn" type="submit">삭제</a>
+                </div>
+                <div class="col-sm-2">
+                  <a href="/resume/${resume.id}/update" class=" my_main_blue_btn">수정</a>
+                </div>
               </div>
             </div>
           </div>
@@ -200,7 +205,7 @@
       </c:forEach>
       <div>
         <div class="button_center d-flex justify-content-center">
-           <a href="/resume/saveForm" class="main_blue_btn">이력서 등록</a>
+          <a href="/resume/saveForm" class="main_blue_btn">이력서 등록</a>
         </div>
       </div>
     </div>
