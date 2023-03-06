@@ -23,7 +23,8 @@ public interface CompanyRepository {
 
     public int insert(CompanyJoinReqDto companyJoinReqDto);
 
-    public int updateById(@Param("id") int id, @Param("companyFullname") String companyFullname, @Param("companyThumbnail") String companyThumbnail, @Param("companyEstablish") Date companyEstablish,
+    public int updateById(@Param("id") int id, @Param("companyFullname") String companyFullname, 
+    @Param("companyThumbnail") String companyThumbnail, @Param("companyEstablish") Date companyEstablish,
     @Param("companySales") BigInteger companySales,
     @Param("companyEmployeesNumber") int companyEmployeesNumber,
     @Param("companyIntroduction")  String companyIntroduction,

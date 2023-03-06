@@ -8,11 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyJoinReqDto;
@@ -102,8 +102,8 @@ public class CompanyController {
     }
 
     @PutMapping("/company/update")
-    public @ResponseBody ResponseEntity<?> update(
-    @RequestBody CompanyDetailRespDto companyDetailRespDto){
+    public ResponseEntity<?> update(MultipartFile profile,
+    @ModelAttribute CompanyDetailRespDto companyDetailRespDto){
         Company comPrincipal = (Company) session.getAttribute("comPrincipal");
         if (comPrincipal == null) {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -123,10 +123,11 @@ public class CompanyController {
         if (companyDetailRespDto.getCompanyVision() == null || companyDetailRespDto.getCompanyVision().isEmpty()) {
             throw new CustomApiException("Vision을 작성해주세요");
         }
+        
+        companyService.기업소개등록(companyDetailRespDto, comPrincipal.getId(), profile);
 
-        companyService.기업소개등록(companyDetailRespDto, comPrincipal.getId());
 
-        return new ResponseEntity<>(new ResponseDto<>(1, "기업소개 수정성공", null), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ResponseDto<>(1, "기업소개 수정성공", null), HttpStatus.OK);
             
         
     }
@@ -159,4 +160,34 @@ public class CompanyController {
     public String companyjoin() {
         return "company/joinForm";
     }
+
+
+    
+    // @PostMapping("/company/update")
+    // public String profileUpdate(MultipartFile profile){
+    //     Company comPrincipal = (Company) session.getAttribute("comPrincipal");
+    //     if (comPrincipal == null) {
+    //         return "redirect:/loginForm";
+    //     }
+
+    //     if(profile.isEmpty()){
+    //         throw new CustomException("사진이 전송되지 않았습니다");
+    //     }
+
+    //     Company CompanyPS = companyService.프로필사진수정(profile, comPrincipal.getId());
+    //     session.setAttribute("principal", CompanyPS);
+
+    //     return "redirect:/company/saveForm";
+    // }
+
+    // @GetMapping("/company/profileUpdateForm")
+    // public String profileUpdateForm(Model model){
+    //     Company comPrincipal = (Company) session.getAttribute("comPrincipal");
+    //     if (comPrincipal == null) {
+    //         return "redirect:/loginForm";
+    //     }
+    //     Company CompanyPS = companyRepository.findById(comPrincipal.getId());
+    //     model.addAttribute("Company", CompanyPS);
+    //     return "company/profileUpdateForm";
+    // }
 }

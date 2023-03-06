@@ -4,14 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shop.mtcoding.rodongin.dto.company.CompanyResp.CompanyDetailRespDto;
+import org.springframework.web.multipart.MultipartFile;
+
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyJoinReqDto;
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyLoginReqDto;
+import shop.mtcoding.rodongin.dto.company.CompanyResp.CompanyDetailRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.company.Company;
 import shop.mtcoding.rodongin.model.company.CompanyRepository;
 import shop.mtcoding.rodongin.util.Encode;
+import shop.mtcoding.rodongin.util.HtmlParser;
+import shop.mtcoding.rodongin.util.PathUtil;
 
 @Service
 public class CompanyService {
@@ -71,14 +75,13 @@ public class CompanyService {
     }
 
     @Transactional
-    public void 기업소개등록(CompanyDetailRespDto companyDetailRespDto, int comPrincipalId ){
-        Company comPrincipal = companyRepository.findById(comPrincipalId);
-        // String thumbnail = HtmlParser.getThumbnail(companyDetailResDto.getCompanyThumbnail());
+    public void 기업소개등록(CompanyDetailRespDto companyDetailRespDto, int comPrincipalId, MultipartFile profile){
         
+        String thumbnail = PathUtil.writeImageFile(profile);
         int result = companyRepository.updateById(
             comPrincipalId,
             companyDetailRespDto.getCompanyFullname(),
-            companyDetailRespDto.getCompanyThumbnail(),
+            thumbnail,
             companyDetailRespDto.getCompanyEstablish(),
             companyDetailRespDto.getCompanySales(),
             companyDetailRespDto.getCompanyEmployeesNumber(),
@@ -89,7 +92,29 @@ public class CompanyService {
         if (result != 1) {
             throw new CustomApiException("기업소개 수정 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        System.out.println("aaa0");
+    }
+
+    @Transactional
+    public Company 프로필사진수정(MultipartFile profile, int comPrincipalId){
+        // 1번 사진을 /static/image에 UUID로 변경해서 저장
+        String uuidImageName = PathUtil.writeImageFile(profile);
         
+        // 2번 저장된 파일의 경로를 DB에 저장
+        Company CompanyPS = companyRepository.findById(comPrincipalId);
+        CompanyPS.setCompanyThumbnail(uuidImageName);
+        companyRepository.updateById(
+            comPrincipalId,
+            CompanyPS.getCompanyFullname(),
+            CompanyPS.getCompanyThumbnail(),
+            CompanyPS.getCompanyEstablish(),
+            null,
+            CompanyPS.getCompanyEmployeesNumber(),
+            CompanyPS.getCompanyIntroduction(),
+            CompanyPS.getCompanyHistory(),
+            CompanyPS.getCompanyVision()
+        );
+        return CompanyPS;
     }
 
 }
