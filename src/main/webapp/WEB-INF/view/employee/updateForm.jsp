@@ -140,8 +140,8 @@
         <div class="AA"></div>
         <span class="my_list">재직기간</span>
         <div class="d-flex my_career_input">
-          <input name="careerStart" id="careerStart" class="form-control" type="date" value="" />
-          <input name="careerEnd" id="careerEnd" class="form-control" type="date" value=""/>
+          <input name="careerStart" id="careerStart" class="form-control" type="date" value="0001-01-01" />
+          <input name="careerEnd" id="careerEnd" class="form-control" type="date" value="0001-01-01"/>
         </div>
       </div>
     </div>
