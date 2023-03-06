@@ -20,14 +20,16 @@
             <c:if test="${comPrincipal == null}" >
           
               <div class="my_buttonsize d-flex align-items-end">
-                <button onclick="subscribe(${isSubscribe}, ${announcement.id})" class="star_box text-center d-flex justify-content-center px-3 ms-5 me-3 btn btn-outline-primary text-center">
                   <div id="starBox" class="">
-                    <i class="${isSubscribe ? "fa-solid" : "fa-regular"} fa-star fs-5"></i>
-                    <p class="m-0">${count}</p>
+                    <button onclick="subscribe(${isSubscribe}, ${announcement.id})" class="star_box text-center d-flex justify-content-center px-3 ms-5 me-3 btn btn-outline-primary text-center">
+                      <div class="">
+                        <i class="${isSubscribe ? "fa-solid" : "fa-regular"} fa-star fs-5"></i>
+                        <p class="m-0">${count}</p>
+                      </div>
+                    </button> 
                   </div>
-                  <input id="isSubscribe" type="hidden" value="${isSubscribe}">
-                  <input id="isSubscribe" type="hidden" value="${announcement.id}">
-                </button>
+                    <input id="isSubscribe" type="hidden" value="${isSubscribe}">
+                    <input id="isSubscribe" type="hidden" value="${announcement.id}">
             <div class="my_d_day">
               <div class="my_ddaybox">
                 <div>D-7</div>

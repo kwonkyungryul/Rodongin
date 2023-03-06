@@ -32,4 +32,19 @@ public class SubscribeService {
             throw new CustomApiException("일시적인 서버 에러입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    public void 구독취소(Integer principalId, Integer announcementId) {
+        Employee principal = employeeRepository.findById(principalId);
+
+        if(principal == null) {
+            throw new CustomApiException("잘못된 요청입니다.");
+        }
+
+        try {
+            subscribeRepository.deleteByEmployeeIdAndAnnouncementId(principalId, announcementId);
+
+        } catch(Exception e) {
+            throw new CustomApiException("일시적인 서버 에러입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

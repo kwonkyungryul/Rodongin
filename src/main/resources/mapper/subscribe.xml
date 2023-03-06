@@ -15,4 +15,8 @@
     <insert id="insert">
         INSERT INTO subscribe (employee_id, announcement_id, created_at) VALUES(#{employeeId}, #{announcementId}, now())
     </insert>
+
+    <delete id="deleteByEmployeeIdAndAnnouncementId">
+        DELETE FROM subscribe WHERE employee_id = #{employeeId} AND announcement_id = #{announcementId}
+    </delete>
 </mapper>

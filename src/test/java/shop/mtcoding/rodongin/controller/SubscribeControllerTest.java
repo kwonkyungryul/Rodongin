@@ -1,10 +1,8 @@
 package shop.mtcoding.rodongin.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.rodongin.model.employee.Employee;
-import shop.mtcoding.rodongin.model.subscribe.Subscribe;
 
 @Transactional // 메서드 실행 직후 롤백!! // auto_increment 초기화
 @AutoConfigureMockMvc
@@ -63,5 +60,19 @@ public class SubscribeControllerTest {
 
         // then
         resultActions.andExpect(status().isCreated());
+    }
+
+    @Test
+    public void delete_test() throws Exception {
+        // given
+        Integer companyId = 1;
+        String responseBody = om.writeValueAsString(companyId);
+
+        // when
+        ResultActions resultActions = mvc.perform(delete("/subscribe")
+        .content(responseBody).contentType(MediaType.APPLICATION_JSON).session(mockSession));
+
+        // then
+        resultActions.andExpect(status().isOk());
     }
 }

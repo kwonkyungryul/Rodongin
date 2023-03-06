@@ -10,4 +10,6 @@ public interface SubscribeRepository {
     public Integer findByAllCount();
 
     public int insert(@Param("employeeId") Integer employeeId, @Param("announcementId") Integer announcementId);
+
+    public int deleteByEmployeeIdAndAnnouncementId(@Param("employeeId") Integer employeeId, @Param("announcementId") Integer announcementId);
 }
