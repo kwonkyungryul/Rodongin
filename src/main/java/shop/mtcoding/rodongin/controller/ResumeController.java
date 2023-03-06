@@ -95,14 +95,6 @@ public class ResumeController {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
 
-        Resume resume = resumeRepository.findById(id);
-        if (resume == null) {
-            throw new CustomApiException("없는 이력서를 수정할 수 없습니다");
-        }
-        if (resume.getEmployeeId() != principal.getId()) {
-            throw new CustomApiException("이력서를 수정할 권한이 없습니다", HttpStatus.FORBIDDEN);
-        }
-
         // 개인정보
         model.addAttribute("empInfo",
                 employeeRepository.findById(principal.getId()));
@@ -115,6 +107,7 @@ public class ResumeController {
         model.addAttribute("licenses", licenses);
         model.addAttribute("stacks", stacks);
         // 이력서
+        Resume resume = resumeRepository.findById(id);
         model.addAttribute("resume", resume);
 
         List<ResumeCareer> resumeCareers = resumeCareerRepository.findByResumeId(id);

@@ -1,5 +1,7 @@
 package shop.mtcoding.rodongin.service.resume;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeSaveDto;
 import shop.mtcoding.rodongin.dto.resume.ResumeReq.ResumeUpdateDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
+import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.resume.Resume;
 import shop.mtcoding.rodongin.model.resume.ResumeCareerRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository;
@@ -17,6 +20,9 @@ import shop.mtcoding.rodongin.model.resume.ResumeStackRepository;
 
 @Service
 public class ResumeService {
+
+    @Autowired
+    private HttpSession session;
 
     @Autowired
     private ResumeRepository resumeRepository;
@@ -65,6 +71,19 @@ public class ResumeService {
     }
 
     public void 이력서수정(int id, ResumeUpdateDto resumeUpdateDto) {
+
+        Employee principal = (Employee) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+
+        Resume resume = resumeRepository.findById(id);
+        if (resume == null) {
+            throw new CustomApiException("없는 이력서를 수정할 수 없습니다");
+        }
+        if (resume.getEmployeeId() != principal.getId()) {
+            throw new CustomApiException("이력서를 수정할 권한이 없습니다", HttpStatus.FORBIDDEN);
+        }
 
         try {
 
