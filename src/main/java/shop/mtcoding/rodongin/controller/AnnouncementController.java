@@ -1,5 +1,6 @@
 package shop.mtcoding.rodongin.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -182,65 +183,49 @@ public class AnnouncementController {
     @GetMapping({ "/", "/announcement" })
     public String list(Model model,
                 @RequestParam(defaultValue = "1") int num,
-                @RequestParam(defaultValue = "empStack") String searchOpt,
-                @RequestParam(defaultValue = "") List<Integer> skills,
                 @RequestParam(defaultValue = "") String content) {
         Employee principal = (Employee) session.getAttribute("principal");
-
+        List<String> skills = new ArrayList<>();
+        List<AnnouncementDetailRespDto> announcementDetailDto;
         int cnt;
-        int skill = 0;
-        if(principal != null && searchOpt.equals("empStack")) {
-            List<EmployeeStack> employeeStackPS = employeeStackRepository.findByEmployeeId(principal.getId());
-            for(int i = 0; i < employeeStackPS.size(); i++) {
-                skills.add(employeeStackPS.get(i).getStackId());
+        if (principal != null) { // 로그인이 되어 있을 때
+            List<EmployeeStack> stacks = employeeStackRepository.findByEmployeeId(principal.getId());
+            for (int i = 0; i < stacks.size(); i++) {
+                skills.add(stacks.get(i).getId().toString());
             }
-            System.out.println(skill);
-            cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
-        } else if (skills.get(0) == 0) {
-            searchOpt = "all";
+            model.addAttribute("stacks", stacks);
+            cnt = announcementRepository.findAnnouncementCount(skills, content);
+        } else { // 비로그인 일 때
             List<StackMaster> stacks = stackMasterRepository.findAll();
-            for(int i = 0; i < stacks.size(); i++) {
-                skills.add(stacks.get(i).getId());
+            for (int i = 0; i < stacks.size(); i++) {
+                skills.add(stacks.get(i).getId().toString());
             }
-            cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
-        } else {
-            searchOpt = "all";
-            for(int i = 0; i < skills.size(); i++) {
-                if (i == 0) {
-                    skill = skills.get(i);
-                }
-            }
-            cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
-
+            model.addAttribute("stacks", stacks);
+            cnt = announcementRepository.findAnnouncementCount(skills, content);
         }
-        if (searchOpt.equals("all")) {
-            cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
-        }
-
+        
         int end = 10; // 한 페이지에 보여줄 게시물 수
 		int pageNum = (int) Math.ceil( (double) cnt / end ); // 페이지 번호
-
+        
 		int start = (num - 1) * end; // 0에서 부터 10개 자르기
-
+        
 		int pageNum_cnt = 10; // 페이지 개수 번호를 10개씩만 출력
-
+        
 		int endPageNum = (int) (Math.ceil((double) num / (double)pageNum_cnt) * pageNum_cnt);
-
+        
 		int startPageNum = endPageNum - ( pageNum_cnt - 1 );
-
+        
 		int lastPageNum = (int) (Math.ceil((double)cnt / (double) pageNum_cnt));
-
+        
 		if( endPageNum > lastPageNum ) {
-			endPageNum = lastPageNum;
+            endPageNum = lastPageNum;
 		}
         
         boolean prev = startPageNum == 1 ? false : true;
 		boolean next = endPageNum * pageNum_cnt >= cnt ? false : true;
-
-        List<AnnouncementDetailRespDto> announcementDetailDto = announcementRepository.findAnnouncementlist(searchOpt, skills, content, start, end);
-        // Integer skill = Integer.parseInt(skills.get(0).toString());
-        // System.out.println(skill);
-        model.addAttribute("listView", announcementDetailDto);
+        
+        announcementDetailDto = announcementRepository.findAnnouncementlist(skills, content, start, end);
+        
         model.addAttribute("prev", prev);
         model.addAttribute("next", next);
         model.addAttribute("pageNum", pageNum);
@@ -248,13 +233,11 @@ public class AnnouncementController {
         model.addAttribute("endPageNum", endPageNum);
         model.addAttribute("select", num);
         model.addAttribute("num", num);
+        model.addAttribute("start", start);
         model.addAttribute("end", end);
-        model.addAttribute("searchOpt", searchOpt);
         model.addAttribute("content", content);
-        model.addAttribute("skill", skill);
 
-        List<StackMaster> stacks = stackMasterRepository.findAll();
-        model.addAttribute("stacks", stacks);
+        model.addAttribute("listView", announcementDetailDto);
 
         return "announcement/list";
     }

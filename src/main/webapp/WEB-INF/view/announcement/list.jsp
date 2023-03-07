@@ -62,29 +62,11 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <!-- 줄과 기술스택 -->
 <hr />
 <!-- 검색바 -->
-<form action="">
-  <div class="d-flex justify-content-between" style="width: 1000px; margin: 0 auto;">
-    <div class="row">
-      <input type="hidden" name="searchOpt" value="all">
-      <div class="mb-3">
-        <label for="stack1" class="form-label">기술스택</label>
-        <select class="form-select" name="skills" id="inputGroupSelect02">
-          <option value="0" selected>전체</option>
-          <c:forEach items="${stacks}" var="stack">
-          <option value="${stack.id}" <c:if test="${skill eq stack.id}">selected</c:if>>${stack.stackName}</option>
-          </c:forEach>
-      </select>
-      </div>
-    </div>
-    <div class="row d-flex justify-content-end">
-      <div class="col-md-6 mb-3">
-        <label for="search" class="form-label">검색어</label>
-        <input type="text" class="form-control" id="search" name="content">
-      </div>
-      <div class="col-md-3 mb-3 mt-2">
-        <label for="submit" class="invisible">검색 버튼</label>
-        <button type="submit" class="btn btn-primary w-100" id="submit">검색</button>
-      </div>
+<form action="/announcement">
+  <div class="" style="width: 1000px; margin: 0 auto;">
+    <div class="input-group">
+      <input type="text" class="form-control" id="search" name="content">
+      <button type="submit" class="btn btn-primary">검색</button>
     </div>
   </div>
 </form>
@@ -105,14 +87,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <div class="accordion">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#collapseOne"
-        aria-expanded="false"
-        aria-controls="collapseOne" 
-      >
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
         <div class="my_cir">
           <strong class="my_sstrong">${list.id}</strong>
         </div>
@@ -120,24 +95,16 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
         <span class="my_span2">${list.companyFullname}</span> 
       </button>
     </h2>
-    <div
-    id="collapseOne"
-      class="accordion-collapse collapse"
-      aria-labelledby="headingOne"
-      data-bs-parent="#accordionExample" 
-    >
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <span>${list.announcementContent}</span>
       </div>
     </div>
     <div class="my_deletebtnanddetail">
     <div class="my_button_ooo">
-
-
     <c:if test="${list.companyId == comPrincipal.id}" >
       <button onclick="deleteById(${list.id})" type="button" class="btn btn-warning">삭제하기</button>
     </c:if>
-
     </div>
     <div class="my_button_ooo" >
       <a href="/announcement/${list.id}" class="btn btn-primary">지원하기</a>
@@ -159,20 +126,20 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <div class="d-flex justify-content-center mb-4">
           <c:if test="${prev}">
 	        	<span class="p-0 page_btn btn-rounded" style="width: 48px;">
-	        		<a href="/announcement?num=${startPageNum - 1}&searchOpt=${searchOpt}&skills=${skill}&content=${content}" class=""><<</a>
+	        		<a href="/announcement?num=${startPageNum - 1}&content=${content}" class=""><<</a>
 	        	</span>
 	        </c:if>
 	        <!-- //이전 -->
 	        <c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
 	        	<c:if test="${select == num}">
 		        	<span class="p-0 page_btn btn-rounded bg_color_main text-center me-1" style="width: 48px;">
-			            <a href="/announcement?num=${num}&searchOpt=${searchOpt}&skills=${skill}&content=${content}" class="select font_color_point text-white fw-bold fs-5 page-number member-page-number dp_in w_40 h_40 clr_w">${num}</a>
+			            <a href="/announcement?num=${num}&content=${content}" class="select font_color_point text-white fw-bold fs-5 page-number member-page-number dp_in w_40 h_40 clr_w">${num}</a>
 		        	</span>
 		        </c:if>
 
 		        <c:if test="${select != num}">
 		        	<span class="p-0 page_btn btn-rounded text-center me-1" style="width: 48px;">
-			            <a href="/announcement?num=${num}&searchOpt=${searchOpt}&skills=${skill}&content=${content}" class="fs-5 fw-bold page-number member-page-number dp_in w_40 h_40">${num}</a>
+			            <a href="/announcement?num=${num}&content=${content}" class="fs-5 fw-bold page-number member-page-number dp_in w_40 h_40">${num}</a>
 		        	</span>
 		        </c:if>
 		    </c:forEach>
@@ -180,7 +147,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 		    <!-- 다음 -->
 		    <c:if test="${next}">
 		       	<span class="p-0 page_btn btn-rounded" style="width: 48px;">
-		       		<a href="/announcement?num=${endPageNum + 1}&searchOpt=${searchOpt}&skills=${skill}&content=${content}" class="">>></a>
+		       		<a href="/announcement?num=${endPageNum + 1}&content=${content}" class="">>></a>
 		       	</span>
 		    </c:if>
         	<!-- //다음 -->
@@ -197,22 +164,19 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     window.location.href = '/announcement/saveForm';
   });
 
+function deleteById(id) {
   
-
- 
- function deleteById(id) {
-  
-        $.ajax({
-            type: "delete",
-            url: "/announcement/" + id,
-            dataType: "json"
-        }).done((res) => { 
-            alert(res.msg);
-            location.href = "/";
-        }).fail((err) => { 
-            alert(err.responseJSON.msg);
-        });
-    }
+    $.ajax({
+        type: "delete",
+        url: "/announcement/" + id,
+        dataType: "json"
+    }).done((res) => { 
+        alert(res.msg);
+        location.href = "/";
+    }).fail((err) => { 
+        alert(err.responseJSON.msg);
+    });
+}
 
 </script>
 
