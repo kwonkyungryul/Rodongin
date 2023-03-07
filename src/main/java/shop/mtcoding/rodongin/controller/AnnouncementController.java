@@ -66,6 +66,7 @@ public class AnnouncementController {
     @Autowired
     private EmployeeStackRepository employeeStackRepository;
 
+   
     // 게시글 수정
     @PutMapping("/announcement/{id}")
     public @ResponseBody ResponseEntity<?> update(@PathVariable int id,
@@ -186,6 +187,7 @@ public class AnnouncementController {
                 @RequestParam(defaultValue = "") List<String> skills,
                 @RequestParam(defaultValue = "") String content) {
         Employee principal = (Employee) session.getAttribute("principal");
+        
 
         int cnt;
         if(principal != null && searchOpt.equals("empStack")) {
@@ -234,10 +236,13 @@ public class AnnouncementController {
         model.addAttribute("end", end);
         model.addAttribute("searchOpt", searchOpt);
         model.addAttribute("content", content);
+        
 
         List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("stacks", stacks);
 
+
+     
         return "announcement/list";
     }
 

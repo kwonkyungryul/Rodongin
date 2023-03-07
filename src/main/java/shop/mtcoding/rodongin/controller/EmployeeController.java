@@ -139,7 +139,8 @@ public class EmployeeController {
 
         }
 
-        employeeService.회원정보수정(principal.getId(), employeeUpdateReq, profile);
+        Employee principall = employeeService.회원정보수정(principal.getId(), employeeUpdateReq, profile);
+        session.setAttribute("principal", principall);
 
         return new ResponseEntity<>(new ResponseDto<>(1, "회원정보 수정 완료!", null), HttpStatus.OK);
     }
