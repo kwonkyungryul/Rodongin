@@ -26,7 +26,9 @@ public class CompanyService {
     @Transactional
     public Company 로그인(CompanyLoginReqDto companyLoginReqDto) {
         Company principalPS = companyRepository.findByCompanyUsername(companyLoginReqDto.getCompanyUsername());
-
+        if (principalPS == null) {
+            throw new CustomException("일치하는 회원 정보가 없습니다.");
+        }
         boolean isCheck;
         try {
             isCheck = Encode.matches(companyLoginReqDto.getCompanyPassword(), principalPS.getCompanyPassword());
@@ -55,8 +57,10 @@ public class CompanyService {
         if (sameEmployee != null) {
             throw new CustomException("동일한 아이디가 존재합니다");
         }
+
         String encodedPassword = "";
         try {
+            
             encodedPassword = Encode.passwordEncode(companyJoinReqDto.getCompanyPassword());
 
         } catch (Exception e) {

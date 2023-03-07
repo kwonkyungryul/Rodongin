@@ -53,12 +53,6 @@ public class CompanyController {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
 
-        Company principal = companyRepository.findByCompanyNameAndPassword(companyLoginReqDto);
-        
-        if (principal == null) {
-            throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
-        }
-
 
         
         if (companyUsername ==  null || companyLoginReqDto.getCompanyUsername().isEmpty()) {
@@ -69,13 +63,15 @@ public class CompanyController {
         if (companyUsername.equals("on")) {
             Cookie cookie = new Cookie("remember", companyLoginReqDto.getCompanyUsername());
             cookie.setMaxAge(60);
-            // cookie.setPath("/");
+            cookie.setPath("/");
             response.addCookie(cookie);
         } else {
             Cookie cookie = new Cookie("remember", "");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
+
+        Company principal = companyService.로그인(companyLoginReqDto);
 
         session.setAttribute("comPrincipal", principal);
         return "redirect:/";
