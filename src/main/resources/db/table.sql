@@ -8,7 +8,7 @@ CREATE TABLE employee (
     employee_gender char(1) not null,
     employee_birth date not null,
     employee_address varchar(255) not null,
-    employee_info_thumbnail longtext,
+    employee_thumbnail longtext,
     created_at timestamp not null
 );
 

@@ -13,11 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
@@ -105,7 +107,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/employee/update")
-    public @ResponseBody ResponseEntity<?> update(@RequestBody EmployeeUpdatdReq employeeUpdateReq) {
+    public @ResponseBody ResponseEntity<?> update(@ModelAttribute EmployeeUpdatdReq employeeUpdateReq,
+            MultipartFile profile) {
 
         Employee principal = (Employee) session.getAttribute("principal");
 
@@ -132,7 +135,11 @@ public class EmployeeController {
             throw new CustomApiException("Address을 작성해주세요");
         }
 
-        employeeService.회원정보수정(employeeUpdateReq, principal.getId());
+        if (profile.isEmpty() || profile == null) {
+
+        }
+
+        employeeService.회원정보수정(principal.getId(), employeeUpdateReq, profile);
 
         return new ResponseEntity<>(new ResponseDto<>(1, "회원정보 수정 완료!", null), HttpStatus.OK);
     }
@@ -181,18 +188,22 @@ public class EmployeeController {
 
     // employee 로그인요청
     @PostMapping("/employee/login")
-    public String login(EmployeeLoginReqDto employeeLoginReqDto, HttpSession session, HttpServletResponse response, 
-    @RequestParam(value = "remember", required = false) String employeName) {
-        System.out.println("테스트"+employeName);
+    public String login(EmployeeLoginReqDto employeeLoginReqDto, HttpSession session, HttpServletResponse response,
+            @RequestParam(value = "remember", required = false) String employeName) {
+
         if (employeeLoginReqDto.getEmployeeName() == null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
             throw new CustomException("username을 입력해주세요", HttpStatus.BAD_REQUEST);
         }
         if (employeeLoginReqDto.getEmployeePassword() == null || employeeLoginReqDto.getEmployeePassword().isEmpty()) {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
-        
 
-        if (employeName ==  null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
+        Employee principal = employeeService.로그인(employeeLoginReqDto);
+        if (principal == null) {
+            return "redirect:/loginForm";
+        }
+
+        if (employeName == null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
             employeName = "";
         }
 
@@ -206,13 +217,9 @@ public class EmployeeController {
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
-        Employee principal = employeeService.로그인(employeeLoginReqDto);
-        if (principal == null) {
-            return "redirect:/loginForm";
-        } 
-        
+
         session.setAttribute("principal", principal);
-        
+
         return "redirect:/";
     }
 
@@ -220,9 +227,9 @@ public class EmployeeController {
     public String detail(Model model) {
 
         Employee principal = (Employee) session.getAttribute("principal");
-        
+
         if (principal == null) {
-          throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);  
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
 
         model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
