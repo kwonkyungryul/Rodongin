@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.announcement.AnnouncementReq.AnnouncementSaveReqDto;
 import shop.mtcoding.rodongin.dto.announcement.AnnouncementReq.AnnouncementUpdateReqDto;
+import shop.mtcoding.rodongin.dto.announcement.AnnouncementResp.AnnouncementDetailRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.announcement.Announcement;
@@ -180,23 +181,60 @@ public class AnnouncementController {
 
     @GetMapping({ "/", "/announcement" })
     public String list(Model model,
+                @RequestParam(defaultValue = "1") int num,
                 @RequestParam(defaultValue = "empStack") String searchOpt,
                 @RequestParam(defaultValue = "") List<String> skills,
                 @RequestParam(defaultValue = "") String content) {
         Employee principal = (Employee) session.getAttribute("principal");
+
+        int cnt;
         if(principal != null && searchOpt.equals("empStack")) {
             List<EmployeeStack> employeeStackPS = employeeStackRepository.findByEmployeeId(principal.getId());
             for(int i = 0; i < employeeStackPS.size(); i++) {
                 skills.add(employeeStackPS.get(i).getStackId().toString());
             }
-            model.addAttribute("listView", announcementRepository.findAnnouncementlist(searchOpt, skills, content));
+            cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
         } else {
-            model.addAttribute("listView", announcementRepository.findAnnouncementlist(searchOpt, skills, content));
+            cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
         }
         if (searchOpt.equals("all")) {
-            model.addAttribute("listView", announcementRepository.findAnnouncementlist(searchOpt, skills, content));
+            cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
         }
+
+        int end = 10; // 한 페이지에 보여줄 게시물 수
+		int pageNum = (int) Math.ceil( (double) cnt / end ); // 페이지 번호
+
+		int start = (num - 1) * end; // 0에서 부터 10개 자르기
+
+		int pageNum_cnt = 10; // 페이지 개수 번호를 10개씩만 출력
+
+		int endPageNum = (int) (Math.ceil((double) num / (double)pageNum_cnt) * pageNum_cnt);
+
+		int startPageNum = endPageNum - ( pageNum_cnt - 1 );
+
+		int lastPageNum = (int) (Math.ceil((double)cnt / (double) pageNum_cnt));
+
+		if( endPageNum > lastPageNum ) {
+			endPageNum = lastPageNum;
+		}
         
+        boolean prev = startPageNum == 1 ? false : true;
+		boolean next = endPageNum * pageNum_cnt >= cnt ? false : true;
+
+        List<AnnouncementDetailRespDto> announcementDetailDto = announcementRepository.findAnnouncementlist(searchOpt, skills, content, start, end);
+
+        model.addAttribute("listView", announcementDetailDto);
+        model.addAttribute("prev", prev);
+        model.addAttribute("next", next);
+        model.addAttribute("pageNum", pageNum);
+        model.addAttribute("startPageNum", startPageNum);
+        model.addAttribute("endPageNum", endPageNum);
+        model.addAttribute("select", num);
+        model.addAttribute("num", num);
+        model.addAttribute("end", end);
+        model.addAttribute("searchOpt", searchOpt);
+        model.addAttribute("content", content);
+
         List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("stacks", stacks);
 
