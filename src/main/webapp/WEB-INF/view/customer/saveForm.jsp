@@ -29,7 +29,7 @@
                     dataType: "json" // default : 응답의 mime 타입으로 유추함
                 }).done((res) => { // 20X 일때
                     alert(res.msg);
-                    location.href = "/customer/" + res.data + "detail";
+                    location.href = "/customer";
                 }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });

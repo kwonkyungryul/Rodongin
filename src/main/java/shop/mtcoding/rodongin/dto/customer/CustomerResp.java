@@ -18,7 +18,7 @@ public class CustomerResp {
     }
 
     @Setter
-    @Getter // detailDto
+    @Getter // updateDto - findCustomerDetail
     public static class CustomerDetailRespDto {
         private Integer id;
         private String customerTitle;

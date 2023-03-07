@@ -6,7 +6,7 @@
 <div class="container my-3">
     <c:if test="${detailDto.employeeId == principal.id}">
         <div class="mb-3">
-            <a href="/board/${detailDto.id}/updateForm" class="btn btn-warning">수정</a>
+            <a href="/customer/${detailDto.id}/updateForm" class="btn btn-warning">수정</a>
             <button onclick="deleteById(${detailDto.id})" class="btn btn-danger">삭제</button>
         </div>
     </c:if>
@@ -32,20 +32,6 @@
         <div>${detailDto.customerContent}</div>
     </div>
     <hr/>
-
-        <i id="heart" class="fa-regular fa-heart my-xl my-cursor" value="no"></i>&nbsp;
-
-    <div class="card">
-        <form action="/reply" method="post">
-                <input type="hidden" name="boardId" value="${detailDto.id}">
-            <div class="card-body">
-                <textarea id="reply-comment" name="comment" class="form-control" rows="1"></textarea>
-            </div>
-            <div class="card-footer">
-                <button type="submit" id="btn-reply-save" class="btn btn-primary">등록</button>
-            </div>
-        </form>
-    </div>
 </div>
 
 <script>
@@ -56,7 +42,7 @@
             dataType: "json"
         }).done((res) => { // 20X일때
             alert(res.msg);
-            location.href = "/";
+            location.href = "/customer/list";
         }).fail((err) => { // 40X, 50X일때
             alert(err.responseJSON.msg);
         });

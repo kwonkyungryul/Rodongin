@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.rodongin.dto.customer.CustomerReq.CustomerSaveReqDto;
+import shop.mtcoding.rodongin.dto.customer.CustomerReq.CustomerUpdateReqDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.customer.Customer;
@@ -17,6 +18,18 @@ public class CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Transactional
+    public void 글수정(int id, int principalId, CustomerUpdateReqDto customerUpdateReqDto) {
+        Customer customerPS = customerRepository.findById(id);
+        if (customerPS == null) {
+            throw new CustomApiException("글이 존재 하지않아 수정이 불가합니다.");
+        }
+        if (customerPS.getEmployeeId() != principalId) {
+            throw new CustomApiException("게시물의 수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
+
+    }
 
     @Transactional
     public void 글쓰기(CustomerSaveReqDto customerSaveReqDto, Integer employeeId) {
@@ -36,7 +49,7 @@ public class CustomerService {
         if (customerPS == null) {
             throw new CustomApiException("없는 게시글을 삭제할 수 없습니다");
         }
-        if (customerPS.getId() != employeeId) { // 만약에 오류나면 이쪽..
+        if (customerPS.getEmployeeId() != employeeId) { // 만약에 오류나면 이쪽..
             throw new CustomApiException("해당 게시글을 삭제할 권한이 없습니다", HttpStatus.FORBIDDEN);
         }
 

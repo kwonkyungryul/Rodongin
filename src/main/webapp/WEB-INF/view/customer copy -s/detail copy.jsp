@@ -39,6 +39,8 @@
                                     d-inline-flex">&nbsp;삭제</button>
                                 </span>
                             </c:if>
+
+                            
                         </div>
 
                     </div>

@@ -42,7 +42,7 @@ public class CompanyController {
         }
 
         Company principal = companyRepository.findByCompanyNameAndPassword(companyLoginReqDto);
-        
+
         if (principal == null) {
             throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
         }
@@ -105,7 +105,6 @@ public class CompanyController {
 
     @GetMapping("/company/{id}")
     public String detail(@PathVariable int id, Model model) {
-        model.addAttribute("detailDto", companyRepository.findById(id));
 
         return "company/detail";
     }
