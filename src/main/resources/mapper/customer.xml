@@ -6,7 +6,7 @@
 <mapper namespace="shop.mtcoding.rodongin.model.customer.CustomerRepository">
 
     <select id="findCustomerDetail" resultType="shop.mtcoding.rodongin.dto.customer.CustomerResp$CustomerDetailRespDto">
-        select cu.id, cu.customer_title, cu.customer_content, em.id, em.employee_name
+        select cu.id, cu.customer_title, cu.customer_content, cu.EMPLOYEE_ID , em.employee_name
         from customer cu
         inner join employee em
         on cu.employee_id = em.id

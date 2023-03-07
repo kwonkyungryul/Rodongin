@@ -4,7 +4,7 @@
 
 
 <div class="container my-3">
-    <c:if test="${detailDto.employeeName == principal.id}">
+    <c:if test="${detailDto.employeeId == principal.id}">
         <div class="mb-3">
             <a href="/board/${detailDto.id}/updateForm" class="btn btn-warning">수정</a>
             <button onclick="deleteById(${detailDto.id})" class="btn btn-danger">삭제</button>
