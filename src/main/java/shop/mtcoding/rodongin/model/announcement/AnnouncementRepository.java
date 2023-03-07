@@ -17,7 +17,7 @@ public interface AnnouncementRepository {
 
     public AnnouncementDetailRespDto findAnnouncementAndCompanyId(int id);
 
-    public List<AnnouncementDetailRespDto> findAnnouncementlist();
+    public List<AnnouncementDetailRespDto> findAnnouncementlist(@Param("searchOpt") String searchOpt, @Param("skills") List<String> skills, @Param("content") String content);
     // public List<AnnouncementDetailReqDto> findByDetailUser(int id);
 
     public List<Announcement> findTopList();

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
@@ -28,6 +29,8 @@ import shop.mtcoding.rodongin.model.announcement.AnnouncementRepository;
 import shop.mtcoding.rodongin.model.company.Company;
 import shop.mtcoding.rodongin.model.company.CompanyRepository;
 import shop.mtcoding.rodongin.model.employee.Employee;
+import shop.mtcoding.rodongin.model.employee.EmployeeStack;
+import shop.mtcoding.rodongin.model.employee.EmployeeStackRepository;
 import shop.mtcoding.rodongin.model.master.StackMaster;
 import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
@@ -58,6 +61,9 @@ public class AnnouncementController {
 
     @Autowired
     private SubscribeRepository subscribeRepository;
+
+    @Autowired
+    private EmployeeStackRepository employeeStackRepository;
 
     // 게시글 수정
     @PutMapping("/announcement/{id}")
@@ -119,7 +125,6 @@ public class AnnouncementController {
             throw new CustomException("인증이 되지 않았당", HttpStatus.UNAUTHORIZED);
         }
         Announcement announcementPS = announcementRepository.findById(id);
-        model.addAttribute("listview", announcementRepository.findAnnouncementlist());
         if (announcementPS == null) {
             throw new CustomException("없는 게시글을 수정할 수 없다.");
         }
@@ -174,10 +179,26 @@ public class AnnouncementController {
     }
 
     @GetMapping({ "/", "/announcement" })
-    public String list(Model model) {
+    public String list(Model model,
+                @RequestParam(defaultValue = "empStack") String searchOpt,
+                @RequestParam(defaultValue = "") List<String> skills,
+                @RequestParam(defaultValue = "") String content) {
+        Employee principal = (Employee) session.getAttribute("principal");
+        if(principal != null && searchOpt.equals("empStack")) {
+            List<EmployeeStack> employeeStackPS = employeeStackRepository.findByEmployeeId(principal.getId());
+            for(int i = 0; i < employeeStackPS.size(); i++) {
+                skills.add(employeeStackPS.get(i).getStackId().toString());
+            }
+            model.addAttribute("listView", announcementRepository.findAnnouncementlist(searchOpt, skills, content));
+        } else {
+            model.addAttribute("listView", announcementRepository.findAnnouncementlist(searchOpt, skills, content));
+        }
+        if (searchOpt.equals("all")) {
+            model.addAttribute("listView", announcementRepository.findAnnouncementlist(searchOpt, skills, content));
+        }
+        
         List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("stacks", stacks);
-        model.addAttribute("listview", announcementRepository.findAnnouncementlist());
 
         return "announcement/list";
     }
@@ -199,11 +220,9 @@ public class AnnouncementController {
 
         model.addAttribute("announcement", announcementRepository.findAnnouncementAndCompanyId(id));
         model.addAttribute("tostack", stackMasterRepository.findById(stackId));
-        model.addAttribute("delete", announcementRepository.findById(id));
-        model.addAttribute("listview", announcementRepository.findAnnouncementlist());
         model.addAttribute("company", companyRepository.findById(id));
         model.addAttribute("isSubscribe", isSubscribe);
-        model.addAttribute("count", subscribeRepository.findByAllCount());
+        model.addAttribute("count", subscribeRepository.findByAnnouncementIdCount(id));
 
         return "announcement/detail";
     }

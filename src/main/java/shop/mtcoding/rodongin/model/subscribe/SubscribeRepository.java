@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 public interface SubscribeRepository {
     public Subscribe findByEmployeeIdAndAnnouncementId(@Param("employeeId") Integer employeeId, @Param("announcementId") Integer announcementId);
 
-    public Integer findByAllCount();
+    public Integer findByAnnouncementIdCount(Integer announcementId);
 
     public int insert(@Param("employeeId") Integer employeeId, @Param("announcementId") Integer announcementId);
 

@@ -62,7 +62,7 @@
                 <c:forEach items="${resumes}" var="resume">
                   <span>${resume.resumeTitle}</span> <input type="radio" name="resumeId" value="${resume.id}" id="">
                   <br />
-                  <input type="hidden" name="announcementId" value="${delete.id}">
+                  <input type="hidden" name="announcementId" value="${announcement.id}">
                 </c:forEach>
               </div>
               <div class="modal-footer">

@@ -43,7 +43,7 @@ public class SubscribeController {
         subscribeService.구독하기(principal.getId(), announcementId);
         
 
-        return new ResponseEntity<>(new ResponseDto<>(1, "구독 성공", subscribeRepository.findByAllCount().toString()), HttpStatus.CREATED);
+        return new ResponseEntity<>(new ResponseDto<>(1, "구독 성공", subscribeRepository.findByAnnouncementIdCount(announcementId).toString()), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/subscribe")
@@ -58,6 +58,6 @@ public class SubscribeController {
         }
 
         subscribeService.구독취소(principal.getId(), announcementId);
-        return new ResponseEntity<>(new ResponseDto<>(1, "구독 취소", subscribeRepository.findByAllCount().toString()), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "구독 취소", subscribeRepository.findByAnnouncementIdCount(announcementId).toString()), HttpStatus.OK);
     }
 }

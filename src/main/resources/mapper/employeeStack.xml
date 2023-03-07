@@ -10,12 +10,16 @@
          VALUES (#{employeeId}, #{employeeStack.stackId}, #{employeeStack.stackAcquisition}, NOW())
     </insert>
 
-     <select id="findById" resultType="shop.mtcoding.rodongin.dto.employee.EmployeeResp$StackRespDto">
+    <select id="findById" resultType="shop.mtcoding.rodongin.dto.employee.EmployeeResp$StackRespDto">
       select es.ID ,es.EMPLOYEE_ID ,es.STACK_ID ,sm.STACK_NAME ,es.STACK_ACQUISITION 
         from EMPLOYEE_STACK es
         inner join STACK_MASTER  sm
         on es.STACK_ID = sm.ID 
         where es.EMPLOYEE_ID = #{employeeId}
+    </select>
+
+    <select id="findByEmployeeId" resultType="shop.mtcoding.rodongin.model.employee.EmployeeStack">
+        SELECT * FROM employee_stack WHERE employee_id = #{employeeId}
     </select>
 
     </mapper>
