@@ -3,109 +3,112 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 
 <link rel="stylesheet" href="/css/announcement.css"/>
 
-<!-- 검색바 -->
-<div class="my_search">
-  <div class="input-group mb-3">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="목요일 저녁, 딸 마고에게 걸려온 부재중전화..."
-      aria-label="Recipient's username"
-      aria-describedby="button-addon2"
-    />
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-      Search
-    </button>
-  </div>
-</div>
-
 <!-- main card -->
 <div class="my_card">
   <div class="card">
     <img
-      src="${listview[0].companyThumbnail}"
+      src="${listView[0].companyThumbnail}"
       class="card-img-top"
       alt="Card image"
     />
 
     <div class="card-body">
-      <h5 class="card-title">${listview[0].announcementTitle}</h5>
-      <p class="card-text">2023 ${listview[0].companyFullname}</p>
-      <a href="/announcement/${listview[0].id}" class="btn btn-primary">지원하기</a>
+      <h5 class="card-title">${listView[0].announcementTitle}</h5>
+      <p class="card-text">2023 ${listView[0].companyFullname}</p>
+      <a href="/announcement/${listView[0].id}" class="btn btn-primary">지원하기</a>
     </div>
   </div>
   <div class="card">
     <img
-      src="${listview[1].companyThumbnail}"
+      src="${listView[1].companyThumbnail}"
       class="card-img-top"
       alt="sk"
     />
 
     <div class="card-body">
-      <h5 class="card-title">${listview[1].announcementTitle}</h5>
-      <p class="card-text">2023 ${listview[1].companyFullname}</p>
-      <a href="/announcement/${listview[1].id}" class="btn btn-primary">지원하기</a>
+      <h5 class="card-title">${listView[1].announcementTitle}</h5>
+      <p class="card-text">2023 ${listView[1].companyFullname}</p>
+      <a href="/announcement/${listView[1].id}" class="btn btn-primary">지원하기</a>
     </div>
   </div>
   <div class="card">
     <img
-      src="${listview[2].companyThumbnail}"
+      src="${listView[2].companyThumbnail}"
       class="card-img-top"
       alt="samsung"
     />
 
     <div class="card-body">
-      <h5 class="card-title">${listview[2].announcementTitle}</h5>
-      <p class="card-text">2023 ${listview[2].companyFullname}</p>
-      <a href="/announcement/${listview[2].id}" class="btn btn-primary">지원하기</a>
+      <h5 class="card-title">${listView[2].announcementTitle}</h5>
+      <p class="card-text">2023 ${listView[2].companyFullname}</p>
+      <a href="/announcement/${listView[2].id}" class="btn btn-primary">지원하기</a>
     </div>
   </div>
   <div class="card">
     <img
-      src="${listview[3].companyThumbnail}"
+      src="${listView[3].companyThumbnail}"
       class="card-img-top"
       alt="kakao"
     />
 
     <div class="card-body">
-      <h5 class="card-title">${listview[3].announcementTitle}</h5>
-      <p class="card-text">2023 ${listview[3].companyFullname}</p>
-      <a href="/announcement/${listview[3].id}" class="btn btn-primary">지원하기</a>
+      <h5 class="card-title">${listView[3].announcementTitle}</h5>
+      <p class="card-text">2023 ${listView[3].companyFullname}</p>
+      <a href="/announcement/${listView[3].id}" class="btn btn-primary">지원하기</a>
     </div>
   </div>
 </div>
 
 <!-- 줄과 기술스택 -->
 <hr />
-<br />
-<div class="my_hr">
-  <div class="input-group mb-3">
-    <select class="form-select" id="inputGroupSelect02">
-      <option selected>Choose...</option>
-      <c:forEach items="${stacks}" var="stack">
-      <option value="${stack.id}">${stack.stackName}</option>
-      </c:forEach>
-    </select>
-    <label
-      class="input-group-text"
-      style="background: rgb(255, 230, 104); color: white"
-      for="inputGroupSelect03"
-      >기술스택</label
-    >
+<!-- 검색바 -->
+<form action="">
+  <div class="d-flex justify-content-between" style="width: 1000px; margin: 0 auto;">
+    <div class="row">
+      <input type="hidden" name="searchOpt" value="all">
+      <div class="mb-3">
+        <label for="stack1" class="form-label">기술스택</label>
+        <select class="form-select" name="skills" id="inputGroupSelect02">
+          <option value="0" selected>전체</option>
+          <c:forEach items="${stacks}" var="stack">
+          <option value="${stack.id}">${stack.stackName}</option>
+          </c:forEach>
+      </select>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-end">
+      <div class="col-md-6 mb-3">
+        <label for="search" class="form-label">검색어</label>
+        <input type="text" class="form-control" id="search" name="content">
+      </div>
+      <div class="col-md-3 mb-3 mt-2">
+        <label for="submit" class="invisible">검색 버튼</label>
+        <button type="submit" class="btn btn-primary w-100" id="submit">검색</button>
+      </div>
+    </div>
   </div>
-</div>
+</form>
+<br />
+
 <!-- -->
 
 <!--  -->
 
-<c:forEach items="${listview}" var="list">
+<c:if test="${principal != null}" >
+  <div class="d-flex justify-content-center">
+    <h3 class="font_color_main">
+      <span style="color: #000; font-weight: bold; font-size: 32px;">${principal.employeeFullname} </span><span style="color: #949494; font-weight: normal;">님을 위한 맞춤 공고</span>
+    </h3>
+  </div>
+</c:if>
+<c:forEach items="${listView}" var="list">
 <div class="accordion">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button
         class="accordion-button collapsed"
         type="button"
-         data-bs-toggle="collapse"
+        data-bs-toggle="collapse"
         data-bs-target="#collapseOne"
         aria-expanded="false"
         aria-controls="collapseOne" 
@@ -118,7 +121,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
       </button>
     </h2>
     <div
-     id="collapseOne"
+    id="collapseOne"
       class="accordion-collapse collapse"
       aria-labelledby="headingOne"
       data-bs-parent="#accordionExample" 
@@ -136,7 +139,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     </c:if>
 
     </div>
-     <div class="my_button_ooo" >
+    <div class="my_button_ooo" >
       <a href="/announcement/${list.id}" class="btn btn-primary">지원하기</a>
     </div>
     </div>
@@ -156,12 +159,13 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 
 
 <script>
- let data = {
-            id: $("#id").val()}
+  let data = {
+    id: $("#id").val()
+  }
   
   $('#savebtn').click(function() {
       
-          window.location.href = '/announcement/saveForm';
+    window.location.href = '/announcement/saveForm';
   });
 
   

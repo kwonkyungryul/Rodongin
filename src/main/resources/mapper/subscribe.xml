@@ -8,8 +8,8 @@
         SELECT * FROM subscribe WHERE employee_id = #{employeeId} AND announcement_id = #{announcementId}
     </select>
 
-    <select id="findByAllCount" resultType="int">
-        SELECT COUNT(*) FROM subscribe
+    <select id="findByAnnouncementIdCount" resultType="int">
+        SELECT COUNT(*) FROM subscribe WHERE announcement_id = #{announcementId}
     </select>
 
     <insert id="insert">

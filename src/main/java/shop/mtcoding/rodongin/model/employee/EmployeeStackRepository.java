@@ -14,5 +14,7 @@ public interface EmployeeStackRepository {
 
     public List<StackRespDto> findById(int employeeId);
 
+    public List<EmployeeStack> findByEmployeeId(Integer employeeId);
+
 
 }
