@@ -120,9 +120,10 @@
   justify-content: end;
 }
 
-.btn {
+.page_btn {
   background-color: transparent;
   border: 1px solid rgb(255, 230, 104);
+  border-radius: 5px;
 }
 
 .select {

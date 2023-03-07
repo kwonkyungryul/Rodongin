@@ -71,7 +71,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
         <select class="form-select" name="skills" id="inputGroupSelect02">
           <option value="0" selected>전체</option>
           <c:forEach items="${stacks}" var="stack">
-          <option value="${stack.id}">${stack.stackName}</option>
+          <option value="${stack.id}" <c:if test="${skill eq stack.id}">selected</c:if>>${stack.stackName}</option>
           </c:forEach>
       </select>
       </div>
@@ -158,30 +158,29 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <!-- 페이징 -->
 <div class="d-flex justify-content-center mb-4">
           <c:if test="${prev}">
-	        	<span class="p-0 btn btn-rounded" style="width: 48px;">
-	        		<a href="/announcement?num=${startPageNum - 1}&searchOpt=${searchOpt}&content=${content}" class=""><<</a>
+	        	<span class="p-0 page_btn btn-rounded" style="width: 48px;">
+	        		<a href="/announcement?num=${startPageNum - 1}&searchOpt=${searchOpt}&skills=${skill}&content=${content}" class=""><<</a>
 	        	</span>
 	        </c:if>
 	        <!-- //이전 -->
 	        <c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
 	        	<c:if test="${select == num}">
-		        	<span class="p-0 btn btn-rounded bg_color_main text-center me-1" style="width: 48px;">
-			            <a href="/announcement?num=${num}&searchOpt=${searchOpt}&content=${content}" class="select font_color_point text-white fw-bold fs-5 page-number member-page-number dp_in w_40 h_40 clr_w">${num}</a>
+		        	<span class="p-0 page_btn btn-rounded bg_color_main text-center me-1" style="width: 48px;">
+			            <a href="/announcement?num=${num}&searchOpt=${searchOpt}&skills=${skill}&content=${content}" class="select font_color_point text-white fw-bold fs-5 page-number member-page-number dp_in w_40 h_40 clr_w">${num}</a>
 		        	</span>
 		        </c:if>
-	
-		        
+
 		        <c:if test="${select != num}">
-		        	<span class="p-0 btn btn-rounded text-center me-1" style="width: 48px;">
-			            <a href="/announcement?num=${num}&searchOpt=${searchOpt}&content=${content}" class="fs-5 fw-bold page-number member-page-number dp_in w_40 h_40">${num}</a>
+		        	<span class="p-0 page_btn btn-rounded text-center me-1" style="width: 48px;">
+			            <a href="/announcement?num=${num}&searchOpt=${searchOpt}&skills=${skill}&content=${content}" class="fs-5 fw-bold page-number member-page-number dp_in w_40 h_40">${num}</a>
 		        	</span>
 		        </c:if>
 		    </c:forEach>
 		    
 		    <!-- 다음 -->
 		    <c:if test="${next}">
-		       	<span class="p-0 btn btn-rounded" style="width: 48px;">
-		       		<a href="/announcement?num=${endPageNum + 1}&searchOpt=${searchOpt}&content=${content}" class="">>></a>
+		       	<span class="p-0 page_btn btn-rounded" style="width: 48px;">
+		       		<a href="/announcement?num=${endPageNum + 1}&searchOpt=${searchOpt}&skills=${skill}&content=${content}" class="">>></a>
 		       	</span>
 		    </c:if>
         	<!-- //다음 -->

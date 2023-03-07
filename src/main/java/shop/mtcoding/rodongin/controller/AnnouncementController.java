@@ -183,19 +183,35 @@ public class AnnouncementController {
     public String list(Model model,
                 @RequestParam(defaultValue = "1") int num,
                 @RequestParam(defaultValue = "empStack") String searchOpt,
-                @RequestParam(defaultValue = "") List<String> skills,
+                @RequestParam(defaultValue = "") List<Integer> skills,
                 @RequestParam(defaultValue = "") String content) {
         Employee principal = (Employee) session.getAttribute("principal");
 
         int cnt;
+        int skill = 0;
         if(principal != null && searchOpt.equals("empStack")) {
             List<EmployeeStack> employeeStackPS = employeeStackRepository.findByEmployeeId(principal.getId());
             for(int i = 0; i < employeeStackPS.size(); i++) {
-                skills.add(employeeStackPS.get(i).getStackId().toString());
+                skills.add(employeeStackPS.get(i).getStackId());
+            }
+            System.out.println(skill);
+            cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
+        } else if (skills.get(0) == 0) {
+            searchOpt = "all";
+            List<StackMaster> stacks = stackMasterRepository.findAll();
+            for(int i = 0; i < stacks.size(); i++) {
+                skills.add(stacks.get(i).getId());
             }
             cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
         } else {
+            searchOpt = "all";
+            for(int i = 0; i < skills.size(); i++) {
+                if (i == 0) {
+                    skill = skills.get(i);
+                }
+            }
             cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
+
         }
         if (searchOpt.equals("all")) {
             cnt = announcementRepository.findAnnouncementCount(searchOpt, skills, content);
@@ -222,7 +238,8 @@ public class AnnouncementController {
 		boolean next = endPageNum * pageNum_cnt >= cnt ? false : true;
 
         List<AnnouncementDetailRespDto> announcementDetailDto = announcementRepository.findAnnouncementlist(searchOpt, skills, content, start, end);
-
+        // Integer skill = Integer.parseInt(skills.get(0).toString());
+        // System.out.println(skill);
         model.addAttribute("listView", announcementDetailDto);
         model.addAttribute("prev", prev);
         model.addAttribute("next", next);
@@ -234,6 +251,7 @@ public class AnnouncementController {
         model.addAttribute("end", end);
         model.addAttribute("searchOpt", searchOpt);
         model.addAttribute("content", content);
+        model.addAttribute("skill", skill);
 
         List<StackMaster> stacks = stackMasterRepository.findAll();
         model.addAttribute("stacks", stacks);
