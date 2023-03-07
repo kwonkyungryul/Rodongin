@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
     <%@ include file="../layout/header.jsp" %>
+        <link rel="stylesheet" href="/css/customer.css" />
 
-        
         <div class="container my-3">
             <form>
                 <div class="form-group">
@@ -15,7 +15,8 @@
                     ${updatedDto.customerContent}
                 </textarea>
                 </div>
-                <button onclick="updateById(${updatedDto.employeeId})" type="button" class="btn btn-primary">글수정</button>
+                <button onclick="updateById(${updatedDto.employeeId})" type="button"
+                    class="main_yellow_label_customer; float: right; ">글수정</button>
             </form>
         </div>
 

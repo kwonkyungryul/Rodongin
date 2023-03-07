@@ -9,11 +9,11 @@
                     <div class="mb-2" style="width: 70%;">
                         <div class="form-group mb-2">
                             <label for="username" class="form-label">아이디</label>
-                            <input type="text" class="form-control" id="username" name="employeeName" required>
+                            <input type="text" class="form-control" id="username" name="employeeName" value="${employee.employeeName}" readonly="readonly">
                         </div>
                         <div class="form-group mb-2">
                             <label for="email" class="form-label">이메일</label>
-                            <input type="text" class="form-control" id="email" name="employeeEmail" required>
+                            <input type="text" class="form-control" id="email" name="employeeEmail" value="${employee.employeeEmail}" readonly="readonly">
                         </div>
                         <div class="form-group">
                             <label for="title" class="form-label">제목</label>

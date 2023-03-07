@@ -13,23 +13,14 @@
         where cu.id = #{id}
     </select> 
 
-    <!-- public static class CustomerDetailRespDto {
-        private Integer id;
-        private String customerTitle;
-        private String customerContent;
-        private Integer employeeId;
-        private String employeeName;
-        private Timestamp createdAt; -->
-
-
-
     <select id="findCustomerList" resultType="shop.mtcoding.rodongin.dto.customer.CustomerResp$CustomerListRespDto">
         SELECT cu.id, cu.customer_title, em.employee_name, cu.created_at
         FROM customer cu 
         INNER JOIN employee em ON cu.employee_id = em.id
         ORDER BY cu.id DESC
-        <!-- LIMIT 0, 7 -->
+        LIMIT 0, 7
     </select>
+    <!-- 페이징 연습해보기 -->
 
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.customer.Customer">
         select * from customer
