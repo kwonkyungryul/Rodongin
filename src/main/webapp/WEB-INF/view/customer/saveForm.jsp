@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control summernote" rows="5" name="customerContent" id="customerContent"></textarea>
+                    <textarea class="form-control" rows="5" name="customerContent" id="customerContent"></textarea>
                 </div>
                 <button onclick="save()" type="button" class="btn btn-primary">글쓰기</button>
             </form>
@@ -23,7 +23,7 @@
                 };
                 $.ajax({
                     type: "post", //명시적으로 적어야함!
-                    url: "/customer/save", //접속하겠다.
+                    url: "/customer/", //접속하겠다.
                     data: JSON.stringify(data), //서버로 전송해야 하는 data는 
                     contentType: "application/json; charset=utf-8",
                     dataType: "json" // default : 응답의 mime 타입으로 유추함

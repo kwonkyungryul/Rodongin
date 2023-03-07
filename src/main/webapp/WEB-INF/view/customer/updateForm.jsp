@@ -2,6 +2,7 @@
 
     <%@ include file="../layout/header.jsp" %>
 
+        
         <div class="container my-3">
             <form>
                 <div class="form-group">
@@ -10,13 +11,14 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control" rows="5" id="customerContent" name="customerContent">
+                    <textarea class="form-control summernote" rows="5" id="customerContent" name="customerContent">
                     ${updatedDto.customerContent}
                 </textarea>
                 </div>
-                <button onclick="updateById(${updatedDto.id})" type="button" class="btn btn-primary">글수정</button>
+                <button onclick="updateById(${updatedDto.employeeId})" type="button" class="btn btn-primary">글수정</button>
             </form>
         </div>
+
 
 
         <script>
@@ -33,11 +35,17 @@
                     dataType: "json" // default : 응답의 mime 타입으로 유추함
                 }).done((res) => { // 20X 일때
                     alert(res.msg);
-                    location.href = "/customer/" + id;
+                    location.href = "/customer"
                 }).fail((err) => { // 40X, 50X 일때
                     alert(err.responseJSON.msg);
                 });
             }
+        </script>
+        <script>
+            $('.summernote').summernote({
+                tabsize: 2,
+                height: 400
+            });
         </script>
 
         <%@ include file="../layout/footer.jsp" %>

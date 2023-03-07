@@ -21,6 +21,7 @@ import shop.mtcoding.rodongin.dto.customer.CustomerReq.CustomerSaveReqDto;
 import shop.mtcoding.rodongin.dto.customer.CustomerReq.CustomerUpdateReqDto;
 import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
+import shop.mtcoding.rodongin.model.customer.Customer;
 import shop.mtcoding.rodongin.model.customer.CustomerRepository;
 import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.service.customer.CustomerService;
@@ -40,22 +41,23 @@ public class CustomerController {
     @PutMapping("/customer/{id}")
     public @ResponseBody ResponseEntity<?> update(@PathVariable int id,
             @RequestBody CustomerUpdateReqDto customerUpdateReqDto) {
+
         Employee principal = (Employee) session.getAttribute("principal");
+
         if (principal == null) {
-            throw new CustomApiException("인증이 되지 않습니다", HttpStatus.UNAUTHORIZED);
+            throw new CustomException("인증이 되지 않습니다", HttpStatus.UNAUTHORIZED);
         }
+
         if (customerUpdateReqDto.getCustomerTitle() == null ||
                 customerUpdateReqDto.getCustomerTitle().isEmpty()) {
-            throw new CustomApiException("title을 작성해주세요");
+            throw new CustomException("title을 작성해주세요");
         }
         if (customerUpdateReqDto.getCustomerContent() == null ||
                 customerUpdateReqDto.getCustomerContent().isEmpty()) {
-            throw new CustomApiException("content를 작성해주세요");
+            throw new CustomException("content를 작성해주세요");
         }
-        // customerService.글수정(id, principal.getId(), customerUpdateReqDto);
-        // customerService.글수정(id, principal.getId(), customerUpdateReqDto);
-        return new ResponseEntity<>(new ResponseDto<>(1, "수정성공", null),
-                HttpStatus.OK);
+        customerService.글수정(id, principal.getId(), customerUpdateReqDto);
+        return new ResponseEntity<>(new ResponseDto<>(1, "수정성공", null), HttpStatus.OK);
     }
 
     @DeleteMapping("/customer/{id}")
@@ -110,22 +112,23 @@ public class CustomerController {
 
     @GetMapping("/customer/{id}/updateForm")
     public String updateForm(@PathVariable int id, Model model) {
-
-        model.addAttribute("updatedDto", customerRepository.findCustomerDetail(id));
+        Employee principal = (Employee) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        }
+        Customer customerPS = customerRepository.findById(id);
+        if (customerPS == null) {
+            throw new CustomException("없는 게시글을 수정할 수 없습니다");
+        }
+        if (customerPS.getEmployeeId() != principal.getId()) {
+            throw new CustomException("게시글을 수정할 권한이 없습니다", HttpStatus.FORBIDDEN);
+        }
+        // model.addAttribute("updatedDto", customerRepository.findCustomerDetail(id));
+        model.addAttribute("updatedDto", customerPS);
         return "customer/updateForm";
     }
 
 }
-// Employee principal = (Employee) session.getAttribute("principal");
-// if (principal == null) {
-// throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
-// }
-// Customer customerPS = customerRepository.findById(id);
-// if (customerPS == null) {
-// throw new CustomException("없는 게시글을 수정할 수 없습니다");
-// }
-// if (customerPS.getEmployeeId() != principal.getId()) {
-// throw new CustomException("게시글을 수정할 권한이 없습니다", HttpStatus.FORBIDDEN);
-// }
+
 // model.addAttribute("updatedDto", customerRepository.findCustomerDetail(id));
 // return "customer/updateForm";

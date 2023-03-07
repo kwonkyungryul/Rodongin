@@ -8,7 +8,7 @@ import lombok.Setter;
 public class CustomerResp {
 
     @Setter
-    @Getter // listDto
+    @Getter // listDto - findCustomerList
     public static class CustomerListRespDto {
         private Integer id;
         private String customerTitle;

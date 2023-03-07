@@ -32,7 +32,7 @@ public class CustomerService {
     }
 
     @Transactional
-    public void 글쓰기(CustomerSaveReqDto customerSaveReqDto, Integer employeeId) {
+    public void 글쓰기(CustomerSaveReqDto customerSaveReqDto, int employeeId) {
 
         int result = customerRepository.insert(
                 customerSaveReqDto.getCustomerTitle(),
