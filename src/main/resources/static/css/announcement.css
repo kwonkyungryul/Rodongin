@@ -119,3 +119,20 @@
   display: flex;
   justify-content: end;
 }
+
+.btn {
+  background-color: transparent;
+  border: 1px solid rgb(255, 230, 104);
+}
+
+.select {
+  color: #fff !important;
+}
+
+.btn a {
+  color: #949494;
+}
+
+.btn:hover {
+  border: 1px solid rgb(255, 230, 104);
+}

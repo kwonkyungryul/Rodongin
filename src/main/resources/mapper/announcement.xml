@@ -47,6 +47,14 @@
     inner join company c
     on a.company_id = c.id
     <include refid="search"></include>
+    LIMIT #{start}, #{end}
+    </select>
+
+    <select id="findAnnouncementCount" resultType="int">
+        select COUNT(*) from announcement a
+        inner join company c
+        on a.company_id = c.id
+        <include refid="search"></include>
     </select>
 
     <select id="findById" resultType="shop.mtcoding.rodongin.model.announcement.Announcement">
