@@ -2,6 +2,9 @@ package shop.mtcoding.rodongin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
@@ -178,18 +181,42 @@ public class EmployeeController {
 
     // employee 로그인요청
     @PostMapping("/employee/login")
-    public String login(EmployeeLoginReqDto employeeLoginReqDto) {
+    public String login(EmployeeLoginReqDto employeeLoginReqDto, HttpSession session, HttpServletResponse response, 
+    @RequestParam(value = "remember", required = false) String employeName) {
+        System.out.println("테스트"+employeName);
         if (employeeLoginReqDto.getEmployeeName() == null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
             throw new CustomException("username을 입력해주세요", HttpStatus.BAD_REQUEST);
         }
         if (employeeLoginReqDto.getEmployeePassword() == null || employeeLoginReqDto.getEmployeePassword().isEmpty()) {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
+        
+        
+        
+        
 
+        if (employeName ==  null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
+            employeName = "";
+        }
+
+        if (employeName.equals("on")) {
+            Cookie cookie = new Cookie("remember", employeName);
+            // cookie.setMaxAge(60);
+            System.out.println("테스트1");
+            response.addCookie(cookie);
+            System.out.println("테스트2");
+        } else {
+            Cookie cookie = new Cookie("remember", "");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
         Employee principal = employeeService.로그인(employeeLoginReqDto);
-
+        if (principal == null) {
+            return "redirect:/loginForm";
+        } 
+        
         session.setAttribute("principal", principal);
-
+        
         return "redirect:/";
     }
 
@@ -243,7 +270,18 @@ public class EmployeeController {
     }
 
     @GetMapping("/loginForm")
-    public String loginForm() {
+    public String loginForm(HttpServletRequest request) {
+        String employeName = "";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            System.out.println("쿠키확인 : " + cookie.getName()); 
+            if (cookie.getName().equals("remember")) {
+                employeName = cookie.getValue();
+            }
+        }
+        System.out.println("확인 : " + employeName);
+        request.setAttribute("remember", employeName);
+        System.out.println("쿠키확인 : " + cookies);
         return "loginForm";
     }
 
