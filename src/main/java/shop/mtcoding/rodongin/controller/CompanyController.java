@@ -1,5 +1,8 @@
 package shop.mtcoding.rodongin.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
@@ -38,7 +42,8 @@ public class CompanyController {
 
     // company 로그인요청
     @PostMapping("/company/login")
-    public String login(CompanyLoginReqDto companyLoginReqDto) {
+    public String login(CompanyLoginReqDto companyLoginReqDto, HttpSession session, HttpServletResponse response, 
+    @RequestParam(value = "remember", required = false) String companyUsername) {
         // System.out.println(companyLoginReqDto.getCompanyUsername());
         // System.out.println(companyLoginReqDto.getCompanyPassword());
         if (companyLoginReqDto.getCompanyUsername() == null || companyLoginReqDto.getCompanyUsername().isEmpty()) {
@@ -53,6 +58,25 @@ public class CompanyController {
         if (principal == null) {
             throw new CustomException("아이디 혹은 비번이 틀렸습니다", HttpStatus.BAD_REQUEST);
         }
+
+
+        
+        if (companyUsername ==  null || companyLoginReqDto.getCompanyUsername().isEmpty()) {
+            companyUsername = "";
+            
+        }
+
+        if (companyUsername.equals("on")) {
+            Cookie cookie = new Cookie("remember", companyLoginReqDto.getCompanyUsername());
+            cookie.setMaxAge(60);
+            // cookie.setPath("/");
+            response.addCookie(cookie);
+        } else {
+            Cookie cookie = new Cookie("remember", "");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+
         session.setAttribute("comPrincipal", principal);
         return "redirect:/";
     }
@@ -157,7 +181,17 @@ public class CompanyController {
     }
 
     @GetMapping("/company/joinForm")
-    public String companyjoin() {
+    public String companyjoin(HttpServletRequest request) {
+
+        String companyUsername = "";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("remember")) {
+                companyUsername = cookie.getValue();
+            }
+        }
+        request.setAttribute("remember", companyUsername);
+    
         return "company/joinForm";
     }
 }

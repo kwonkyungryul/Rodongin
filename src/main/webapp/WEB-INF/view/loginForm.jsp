@@ -69,7 +69,7 @@
                                         <div class="tab-pane fade show active" id="" aria-labelledby="company_tab">
                                             <div class="mb-3">
                                                 <label for="company_id"><b>기업아이디</b></label>
-                                                <input type="text" class="form-control" name="companyUsername"
+                                                <input type="text" class="form-control" name="companyUsername" value="${remember}"
                                                     placeholder="아이디를 입력해주세요">
                                             </div>
                                             <div class="mb-3">
@@ -78,8 +78,8 @@
                                                     placeholder="비밀번호를 입력해주세요">
                                             </div>
                                             <div class="mb-3">
-                                                <input class="form-check-input" type="checkbox" name="remember">
-                                                <label class="form-check-label" for="company-remember">
+                                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                                <label class="form-check-label" for="company-remember" name="remember" id="remember">
                                                     아이디 저장
                                                 </label>
                                             </div>

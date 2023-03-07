@@ -191,20 +191,16 @@ public class EmployeeController {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
         
-        
-        
-        
 
         if (employeName ==  null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
             employeName = "";
         }
 
         if (employeName.equals("on")) {
-            Cookie cookie = new Cookie("remember", employeName);
-            // cookie.setMaxAge(60);
-            System.out.println("테스트1");
+            Cookie cookie = new Cookie("remember", employeeLoginReqDto.getEmployeeName());
+            cookie.setMaxAge(60);
+            cookie.setPath("/");
             response.addCookie(cookie);
-            System.out.println("테스트2");
         } else {
             Cookie cookie = new Cookie("remember", "");
             cookie.setMaxAge(0);
@@ -274,14 +270,11 @@ public class EmployeeController {
         String employeName = "";
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
-            System.out.println("쿠키확인 : " + cookie.getName()); 
             if (cookie.getName().equals("remember")) {
                 employeName = cookie.getValue();
             }
         }
-        System.out.println("확인 : " + employeName);
         request.setAttribute("remember", employeName);
-        System.out.println("쿠키확인 : " + cookies);
         return "loginForm";
     }
 
