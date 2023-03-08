@@ -5,56 +5,50 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.announcement.AnnouncementRepository">
 
-    <sql id="search">
-		<choose>
-			<when test="searchOpt == 'empStack'">
-                WHERE 1 = 1
-                <foreach collection="skills" item="skill" index="index" open="AND (" separator=" OR " close=")">
-                    stack_id LIKE CONCAT( '%', #{skill}, '%' )
-                </foreach>
-			</when>
-
-			<otherwise>
-                WHERE 1 = 1
-                <foreach collection="skills" item="skill" index="index" open="AND (" separator=" OR " close=")">
-                    stack_id LIKE CONCAT( '%', #{skill}, '%' )
-                </foreach>
-				AND (company_fullname LIKE CONCAT( '%', #{content}, '%' )
-				OR announcement_title LIKE CONCAT( '%', #{content}, '%' )
-				OR company_vision LIKE CONCAT( '%', #{content}, '%' )
-				OR announcement_hire_type LIKE CONCAT( '%', #{content}, '%' )
-                OR announcement_salary LIKE CONCAT( '%', #{content}, '%' )
-                OR announcement_area LIKE CONCAT( '%', #{content}, '%' )
-                OR announcement_carrer LIKE CONCAT( '%', #{content}, '%' ))
-			</otherwise>
-		</choose>
-	</sql>
-
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.announcement.Announcement">
         SELECT * FROM announcement
     </select>
 
 
     <select id="findAnnouncementAndCompanyId" resultType="shop.mtcoding.rodongin.dto.announcement.AnnouncementResp$AnnouncementDetailRespDto">
-        select * from announcement a
-    inner join company c
-    on a.company_id = c.id
-    where a.id = #{id}
+      select * from announcement a
+      inner join company c
+      on a.company_id = c.id
+      where a.id = #{id}
     </select>
     
     <select id="findAnnouncementlist" resultType="shop.mtcoding.rodongin.dto.announcement.AnnouncementResp$AnnouncementDetailRespDto">
     select * from announcement a
     inner join company c
     on a.company_id = c.id
-    <include refid="search"></include>
-    LIMIT #{start}, #{end}
+    WHERE company_fullname LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_title LIKE CONCAT( '%', #{content}, '%' )
+    OR company_vision LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_hire_type LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_salary LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_area LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_carrer LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_content LIKE CONCAT( '%', #{content}, '%' )
+    ORDER BY stack_id IN
+    <foreach item="stackId" collection="skills" open="(" separator="," close=")">
+    #{stackId}
+    </foreach>
+    DESC
+    LIMIT 1, 10
     </select>
 
     <select id="findAnnouncementCount" resultType="int">
         select COUNT(*) from announcement a
-        inner join company c
-        on a.company_id = c.id
-        <include refid="search"></include>
+    inner join company c
+    on a.company_id = c.id
+    WHERE company_fullname LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_title LIKE CONCAT( '%', #{content}, '%' )
+    OR company_vision LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_hire_type LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_salary LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_area LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_carrer LIKE CONCAT( '%', #{content}, '%' )
+    OR announcement_content LIKE CONCAT( '%', #{content}, '%' )
     </select>
 
     <select id="findById" resultType="shop.mtcoding.rodongin.model.announcement.Announcement">
