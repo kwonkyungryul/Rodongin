@@ -80,7 +80,7 @@
                             <div class="main_yellow_label mb-1">기업 주소</div>
                             <div>
                                 <input class="form-control mb-2 d-inline-flex" style="width: 73.5%;" type=" text"
-                                    id="company_address" placeholder="주소를 입력하세요"  name="companyAddress" value="${companyAddress}" required>
+                                    id="companyAddress" placeholder="주소를 입력하세요"  name="companyAddress" value="${companyAddress}" required>
 
                                 <button type="button" class="main_gray_btn" onclick="execPostCode();" style="width: 25%">주소찾기
                                 </button>
@@ -88,7 +88,7 @@
                             </div>
                             <div>
                                 <input class=" form-control mb-2" type="text" id="employee_address_add" rf
-                                    placeholder="상세주소를 입력하세요" name="companyAddress2" required>
+                                    placeholder="상세주소를 입력하세요" name="companyAddress" required>
                             </div>
                         </div>
 
@@ -205,7 +205,7 @@
                 
                 
                 $("[name=addr1]").val(data.zonecode);
-                $("[name=companyAddress]").val(fullRoadAddr);
+                $("[id=companyAddress]").val(fullRoadAddr);
                 
                 /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
