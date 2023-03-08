@@ -65,4 +65,9 @@ public class ApplyController {
 
         return "redirect:/announcement/" + announcementId;
     }
+
+    // @PostMapping("/apply/sendEmail")
+    // public String sendEmail() {
+        
+    // }
 }
