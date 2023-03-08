@@ -5,21 +5,25 @@
 
         <div class="container my-3">
             <form>
+                <div>수정하기
+
+                </div>
+
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter title" name="customerTitle"
                         id="customerTitle" value="${updatedDto.customerTitle}">
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control summernote" rows="5" id="customerContent" name="customerContent">
+                    <textarea class="form-control mb-2" rows="10" id="customerContent" name="customerContent">
                     ${updatedDto.customerContent}
                 </textarea>
                 </div>
-                <button onclick="updateById(${updatedDto.employeeId})" type="button"
-                    class="main_yellow_label_customer; float: right; ">글수정</button>
+                <button onclick="updateById(${updatedDto.employeeId})" type="button" class="main_blue_btn_customer "
+                    style="border: none; ">글수정</button>
             </form>
         </div>
-
+        <!-- float: right; -->
 
 
         <script>

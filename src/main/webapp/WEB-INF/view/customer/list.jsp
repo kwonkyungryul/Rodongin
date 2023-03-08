@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
-    <link rel="stylesheet" href="/css/customer.css" />
+        <link rel="stylesheet" href="/css/customer.css" />
 
         <div class=" d-flex justify-content-center" style="width: 100%;">
             <div class="slider">
@@ -55,8 +55,8 @@
             </c:when>
             <c:otherwise>
                 <div class="d-flex justify-content-center mt-3 mb-5">
-                    <button type="button" class="main_yellow_label_customer me-2" style="border:none; float: right">
-                    <a href="/customer/saveForm">글쓰기</a></button>
+                    <button type="button" class="btnn main_yellow_label_customer"
+                        style="border: none; text-align:center"><a href=" /customer/saveForm">글쓰기</a></button>
                 </div>
             </c:otherwise>
         </c:choose>
