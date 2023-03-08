@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +37,6 @@ import shop.mtcoding.rodongin.model.master.StackMasterRepository;
 import shop.mtcoding.rodongin.model.resume.Resume;
 import shop.mtcoding.rodongin.model.resume.ResumeCareer;
 import shop.mtcoding.rodongin.model.resume.ResumeCareerRepository;
-import shop.mtcoding.rodongin.model.resume.ResumeGraduate;
 import shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeLicenseRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
@@ -138,12 +136,15 @@ public class ResumeController {
     @GetMapping("/resume/{id}/detail")
     public String resume(@PathVariable int id, Model model) {
         Employee principal = (Employee) session.getAttribute("principal");
-
-        if (principal == null) {
-            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        Resume resume = resumeRepository.findById(id);
+        if (resume == null) {
+            throw new CustomException("존재하지 않는 이력서입니다.");
         }
+        // if (principal == null) {
+        //     throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
+        // }
 
-        model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
+        model.addAttribute("empInfo", employeeRepository.findById(resume.getId()));
 
         List<ResumeCareer> resumeCareers = resumeCareerRepository.findByResumeId(id);
         model.addAttribute("resumeCareers", resumeCareers);

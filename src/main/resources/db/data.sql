@@ -15,7 +15,7 @@ VALUES
 -- 개인 유저 테이블
 INSERT INTO employee (employee_name, employee_password, employee_fullname, employee_email, employee_tel, employee_gender, employee_birth, employee_address, employee_thumbnail, created_at)
 VALUES
-('ssar', '78db05bd4765f2abafb9669399eadfdc$d120c70a2ff6b7575f3b12140ee949be057bcd72eea0f65884fb53d201f0c2a8', '홍길동', 'ssar@ssar.com', '01011111111', 'M', '1990-01-01', '서울특별시 강남구', NULL, NOW()),
+('ssar', '78db05bd4765f2abafb9669399eadfdc$d120c70a2ff6b7575f3b12140ee949be057bcd72eea0f65884fb53d201f0c2a8', '홍길동', 'kkr0787@naver.com', '01011111111', 'M', '1990-01-01', '서울특별시 강남구', NULL, NOW()),
 ('cos', '84031705c61df2d8a182caf478ab6c24$7f358ad8682c3b834d3cb5bde7dd2a3a5b5311f420dfad73594b5b9448bd0967', '최성훈', 'cos@cos.com', '01022222222', 'M', '1991-01-01', '서울특별시 강북구', NULL, NOW()),
 ('love', 'feee1180d275736672a16b2d720def12$73ec7f273f789f0583cb42a085a38a3417eb0a3d20bc862afc93b885dcc4bae0', '장보고', 'love@love.com', '01033333333', 'M', '1992-01-01', '서울특별시 강서구', NULL, NOW()),
 ('toby', 'cf7fba096c1061b8a9aef23d7f830082$cfee922a2d142ffda2aab6d087f0c3ba24c48c3b001d890fdf6d756007246f8a', '김동훈', 'toby@toby.com', '01044444444', 'M', '1993-01-01', '서울특별시 강동구', NULL, NOW()),

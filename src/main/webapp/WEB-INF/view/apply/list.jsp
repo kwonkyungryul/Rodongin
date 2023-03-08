@@ -61,7 +61,7 @@
                             </div>
                             <div style="height: 90px;"></div>
                             <div>
-                                <a href="/resume/${apply.resumeId}" class="my_main_yellow_btn">이력서보기</a>
+                                <a href="/resume/${apply.resumeId}/detail" class="my_main_yellow_btn">이력서보기</a>
                             </div>
                         </div>
                     </div>
@@ -71,4 +71,4 @@
     </div>
 </div>
 
-         <%@ include file="../layout/footer.jsp" %>
+<%@ include file="../layout/footer.jsp" %>

@@ -20,5 +20,5 @@ public interface ApplyRepository {
 
     public int deleteById(int id);
 
-    public List<ApplyListRespDto> findByCompanyId(int companyId);
+    public List<ApplyListRespDto> findByCompanyId(int announcmentId);
 }

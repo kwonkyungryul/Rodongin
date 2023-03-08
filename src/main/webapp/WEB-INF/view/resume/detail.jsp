@@ -5,9 +5,37 @@
 
 
         <div class="my_info_insert">
-            <div class="my_title">
-                <h2>${resume.resumeTitle}</h2>
+            <div class="d-flex justify-content-between">
+                <div class="my_title">
+                    <h2>${resume.resumeTitle}</h2>
+                </div>
+                <div class="">
+                    <button type="button" onclick="sendMail(${resume.employeeId}, ${comPrincipal.id}, 1);">합격</button> <button type="button" onclick="sendMail(${resume.employeeId}, ${comPrincipal.id}, 0);">불합격</button>
+                </div>    
             </div>
+
+            <script>
+                function sendMail(employeeId, companyId, status) {
+                    let data = {
+                        employeeId: employeeId,
+                        companyId: companyId,
+                        status: status
+                    }
+
+                    $.ajax({
+                    type: "post",
+                    url: "/apply/sendEmail",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json" // default : 응답의 mime 타입으로 유추함
+                    }).done((res) => { // 20X 일때
+                        alert(res.msg);
+                    }).fail((err) => { // 40X, 50X 일때
+                        alert(err.responseJSON.msg);
+                    });
+                }
+            </script>
+
             <div class="my_yellow_box mb-5">
                 <div class="my_info_box_margin">
                     <div>
