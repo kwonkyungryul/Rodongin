@@ -11,10 +11,10 @@ public class ResumeResp {
     @Setter
     public static class ResumeListRespDto {
         private Integer id;
+        private Integer resumeId;
         private Integer employeeId;
         private String resumeTitle;
         private String resumeSalary;
-        private Integer resumeId;
         private Integer schoolId;
         private String schoolGradute;
         private String schoolName;
@@ -33,6 +33,7 @@ public class ResumeResp {
         private Integer resumeId;
         private Integer schoolId;
         private String schoolName;
+        private String schoolGraduate;
     }
 
     @Getter

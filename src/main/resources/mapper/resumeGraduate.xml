@@ -5,7 +5,8 @@
 
 <mapper namespace="shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository">
     <insert id="insert">
-        INSERT INTO resume_graduate(resume_id, school_id, school_graduate, created_at) VALUES(#{resumeId}, #{schoolId}, #{schoolGraduate}, now())
+        INSERT INTO resume_graduate (resume_id, school_id, school_graduate, created_at) VALUES
+        (#{resumeId}, #{schoolId}, #{schoolGraduate}, NOW())
     </insert>
     
     <select id="findAll" resultType="shop.mtcoding.rodongin.model.resume.ResumeGraduate">
@@ -17,12 +18,19 @@
     </select>
 
     <select id="findByResumeId" resultType="shop.mtcoding.rodongin.dto.resume.ResumeResp$ResumeGraduateRespDto">
-            select rg.RESUME_ID , rg.SCHOOL_ID , sm.SCHOOL_NAME 
+            select rg.RESUME_ID , rg.SCHOOL_ID , sm.SCHOOL_NAME, rg.SCHOOL_GRADUATE 
             from RESUME_GRADUATE rg
             inner join SCHOOL_MASTER sm
             on rg.SCHOOL_ID =sm.ID 
             where rg.RESUME_ID = #{resumeId}
             GROUP BY SCHOOL_ID 
     </select>
+    <update id="updateByResumeId">
+        update resume_graduate
+        set school_id = #{schoolId}
+        , school_graduate = #{schoolGraduate}
+        where resume_id = #{resumeId}
+    </update>
 
+    
 </mapper>

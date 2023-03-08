@@ -4,13 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyJoinReqDto;
 import shop.mtcoding.rodongin.dto.company.CompanyReq.CompanyLoginReqDto;
+import shop.mtcoding.rodongin.dto.company.CompanyResp.CompanyDetailRespDto;
+import shop.mtcoding.rodongin.handler.ex.CustomApiException;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
 import shop.mtcoding.rodongin.model.company.Company;
 import shop.mtcoding.rodongin.model.company.CompanyRepository;
 import shop.mtcoding.rodongin.util.Encode;
+import shop.mtcoding.rodongin.util.HtmlParser;
+import shop.mtcoding.rodongin.util.PathUtil;
 
 @Service
 public class CompanyService {
@@ -21,7 +26,9 @@ public class CompanyService {
     @Transactional
     public Company 로그인(CompanyLoginReqDto companyLoginReqDto) {
         Company principalPS = companyRepository.findByCompanyUsername(companyLoginReqDto.getCompanyUsername());
-
+        if (principalPS == null) {
+            throw new CustomException("일치하는 회원 정보가 없습니다.");
+        }
         boolean isCheck;
         try {
             isCheck = Encode.matches(companyLoginReqDto.getCompanyPassword(), principalPS.getCompanyPassword());
@@ -50,8 +57,10 @@ public class CompanyService {
         if (sameEmployee != null) {
             throw new CustomException("동일한 아이디가 존재합니다");
         }
+
         String encodedPassword = "";
         try {
+            
             encodedPassword = Encode.passwordEncode(companyJoinReqDto.getCompanyPassword());
 
         } catch (Exception e) {
@@ -69,4 +78,24 @@ public class CompanyService {
 
     }
 
+    @Transactional
+    public void 기업소개등록(CompanyDetailRespDto companyDetailRespDto, int comPrincipalId, MultipartFile profile){
+        
+        String thumbnail = PathUtil.writeImageFile(profile);
+        int result = companyRepository.updateById(
+            comPrincipalId,
+            companyDetailRespDto.getCompanyFullname(),
+            thumbnail,
+            companyDetailRespDto.getCompanyEstablish(),
+            companyDetailRespDto.getCompanySales(),
+            companyDetailRespDto.getCompanyEmployeesNumber(),
+            companyDetailRespDto.getCompanyIntroduction(),
+            companyDetailRespDto.getCompanyHistory(),
+            companyDetailRespDto.getCompanyVision()
+        );
+        if (result != 1) {
+            throw new CustomApiException("기업소개 수정 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        System.out.println("aaa0");
+    }
 }

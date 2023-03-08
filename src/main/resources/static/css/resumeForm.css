@@ -187,3 +187,28 @@
 .my_end {
   align-items: flex-end;
 }
+
+.main_select_box_school {
+  display: inline-block;
+  padding: 1px, 5px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  width: 90%;
+  margin-right: 5px;
+}
+
+.main_select_box_title {
+  display: inline-block;
+  padding: 1px, 5px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  width: 100%;
+  height: 38px;
+
+}
+
+.my_career_input {
+  width: 936.58px;
+}

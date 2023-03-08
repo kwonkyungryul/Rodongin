@@ -27,8 +27,26 @@
     <select id="findByEmployeeId" resultType="shop.mtcoding.rodongin.model.resume.Resume">
         SELECT * FROM resume WHERE employee_id = #{employeeId}
     </select>
+
+    <select id="findByResumeId" resultType="shop.mtcoding.rodongin.model.resume.Resume">
+        SELECT * FROM resume WHERE id = #{id}
+    </select>
     
     <delete id="deleteById">
         DELETE FROM resume WHERE id = #{id}
     </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="resumeSaveDto.id">
+        INSERT INTO resume (employee_id, resume_title, resume_salary, CV, created_at) VALUES
+        (#{employeeId}, #{resumeSaveDto.resumeTitle}, #{resumeSaveDto.resumeSalary}, #{resumeSaveDto.CV}, NOW())
+    </insert>
+    <update id="updateById">
+        update resume
+        set resume_title = #{resumeUpdateDto.resumeTitle}
+        ,resume_salary = #{resumeUpdateDto.resumeSalary}
+        ,CV = #{resumeUpdateDto.CV}
+        where id = #{id}
+    </update>
+
 </mapper>
+

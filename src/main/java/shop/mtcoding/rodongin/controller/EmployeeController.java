@@ -2,6 +2,9 @@ package shop.mtcoding.rodongin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.rodongin.dto.ResponseDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
@@ -101,7 +107,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/employee/update")
-    public ResponseEntity<?> update(@RequestBody EmployeeUpdatdReq employeeUpdateReq) {
+    public @ResponseBody ResponseEntity<?> update(@ModelAttribute EmployeeUpdatdReq employeeUpdateReq,
+            MultipartFile profile) {
 
         Employee principal = (Employee) session.getAttribute("principal");
 
@@ -128,7 +135,12 @@ public class EmployeeController {
             throw new CustomApiException("Address을 작성해주세요");
         }
 
-        employeeService.회원정보수정(employeeUpdateReq, principal.getId());
+        if (profile.isEmpty() || profile == null) {
+
+        }
+
+        Employee principall = employeeService.회원정보수정(principal.getId(), employeeUpdateReq, profile);
+        session.setAttribute("principal", principall);
 
         return new ResponseEntity<>(new ResponseDto<>(1, "회원정보 수정 완료!", null), HttpStatus.OK);
     }
@@ -177,7 +189,9 @@ public class EmployeeController {
 
     // employee 로그인요청
     @PostMapping("/employee/login")
-    public String login(EmployeeLoginReqDto employeeLoginReqDto) {
+    public String login(EmployeeLoginReqDto employeeLoginReqDto, HttpSession session, HttpServletResponse response,
+            @RequestParam(value = "remember", required = false) String employeName) {
+
         if (employeeLoginReqDto.getEmployeeName() == null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
             throw new CustomException("username을 입력해주세요", HttpStatus.BAD_REQUEST);
         }
@@ -186,6 +200,24 @@ public class EmployeeController {
         }
 
         Employee principal = employeeService.로그인(employeeLoginReqDto);
+        if (principal == null) {
+            return "redirect:/loginForm";
+        }
+
+        if (employeName == null || employeeLoginReqDto.getEmployeeName().isEmpty()) {
+            employeName = "";
+        }
+
+        if (employeName.equals("on")) {
+            Cookie cookie = new Cookie("remember", employeeLoginReqDto.getEmployeeName());
+            cookie.setMaxAge(60);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+        } else {
+            Cookie cookie = new Cookie("remember", "");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
 
         session.setAttribute("principal", principal);
 
@@ -196,8 +228,9 @@ public class EmployeeController {
     public String detail(Model model) {
 
         Employee principal = (Employee) session.getAttribute("principal");
+
         if (principal == null) {
-          throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);  
+            throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
 
         model.addAttribute("empInfo", employeeRepository.findById(principal.getId()));
@@ -241,7 +274,15 @@ public class EmployeeController {
     }
 
     @GetMapping("/loginForm")
-    public String loginForm() {
+    public String loginForm(HttpServletRequest request) {
+        String employeName = "";
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("remember")) {
+                employeName = cookie.getValue();
+            }
+        }
+        request.setAttribute("remember", employeName);
         return "loginForm";
     }
 

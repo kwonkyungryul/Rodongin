@@ -13,11 +13,11 @@ import shop.mtcoding.rodongin.dto.announcement.AnnouncementResp.AnnouncementDeta
 // 명사가 뒤 동사가 앞으로
 @Mapper
 public interface AnnouncementRepository {
-
+    public int findAnnouncementCount(@Param("skills") List<String> skills, @Param("content") String content);
 
     public AnnouncementDetailRespDto findAnnouncementAndCompanyId(int id);
 
-    public List<AnnouncementDetailRespDto> findAnnouncementlist();
+    public List<AnnouncementDetailRespDto> findAnnouncementlist(@Param("skills") List<String> skills, @Param("content") String content, @Param("start") Integer start, @Param("end") Integer end);
     // public List<AnnouncementDetailReqDto> findByDetailUser(int id);
 
     public List<Announcement> findTopList();

@@ -11,7 +11,7 @@
 }
 
 .my_info_thumbnail {
-  /* border: 1px solid rgb(255, 230, 104); */
+  border: 1px solid rgb(255, 230, 104);
   width: 166px;
   height: 200px;
 }

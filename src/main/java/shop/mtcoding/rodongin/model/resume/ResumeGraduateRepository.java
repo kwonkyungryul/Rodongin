@@ -3,25 +3,29 @@ package shop.mtcoding.rodongin.model.resume;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduateRespDto;
+import org.apache.ibatis.annotations.Param;
 
+import shop.mtcoding.rodongin.dto.resume.ResumeResp.ResumeGraduateRespDto;
 
 @Mapper
 public interface ResumeGraduateRepository {
-    public int insert(ResumeGraduate resumeGraduate);
 
-    public List<ResumeGraduate> findAll();
+        public List<ResumeGraduateRespDto> findByResumeId(int resumeId);
 
-    public ResumeGraduate findById(int id);
+        public void insert(@Param("resumeId") int resumeId, @Param("schoolId") int schoolId,
+                        @Param("schoolGraduate") String schoolGraduate);
 
-    public int updateById(int id, ResumeGraduate apply);
+        public List<ResumeGraduate> findAll();
 
-    public int deleteById(int id);
+        public ResumeGraduate findById(int id);
 
-    public List<ResumeGraduate> findByResumeId(Integer resumeId);
-    
-    public List<ResumeGraduateRespDto> findByResumeId(int resumeId);
+        public int updateById(int id, ResumeGraduate apply);
 
-    // public GraduateResp findById(int employeeId);
+        public int deleteById(int id);
+
+        public void updateByResumeId(@Param("resumeId") int resumeId, @Param("schoolId") int schoolId,
+                        @Param("schoolGraduate") String schoolGraduate);
+
+        // public GraduateResp findById(int employeeId);
 
 }

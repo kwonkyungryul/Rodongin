@@ -40,8 +40,8 @@
                                             aria-labelledby="employee_tab">
                                             <div class="mb-3">
                                                 <label for="employee_id"><b>개인아이디</b></label>
-                                                <input type="text" class="form-control" name="employeeName" id=""
-                                                    placeholder="아이디를 입력해주세요">
+                                                <input type="text" class="form-control" name="employeeName" value="${remember}"
+                                                    placeholder="아이디를 입력해주세요" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password"><b>비밀번호</b></label>
@@ -49,8 +49,8 @@
                                                     placeholder="비밀번호를 입력해주세요">
                                             </div>
                                             <div class="mb-3">
-                                                <input class="form-check-input" type="checkbox" id="employee-remember">
-                                                <label class="form-check-label" for="employee-remember">
+                                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                                <label class="form-check-label" for="employee-remember" name="remember" id="remember">
                                                     아이디 저장
                                                 </label>
                                             </div>
@@ -69,7 +69,7 @@
                                         <div class="tab-pane fade show active" id="" aria-labelledby="company_tab">
                                             <div class="mb-3">
                                                 <label for="company_id"><b>기업아이디</b></label>
-                                                <input type="text" class="form-control" name="companyUsername"
+                                                <input type="text" class="form-control" name="companyUsername" value="${remember}"
                                                     placeholder="아이디를 입력해주세요">
                                             </div>
                                             <div class="mb-3">
@@ -78,8 +78,8 @@
                                                     placeholder="비밀번호를 입력해주세요">
                                             </div>
                                             <div class="mb-3">
-                                                <input class="form-check-input" type="checkbox" id="company-remember">
-                                                <label class="form-check-label" for="company-remember">
+                                                <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                                                <label class="form-check-label" for="company-remember" name="remember" id="remember">
                                                     아이디 저장
                                                 </label>
                                             </div>
