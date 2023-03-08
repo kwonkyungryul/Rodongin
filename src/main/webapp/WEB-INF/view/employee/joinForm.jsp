@@ -95,7 +95,7 @@
 
                             <div>
                                 <input class="form-control mb-1 d-inline-flex" style="width: 73.5%;" type=" text"
-                                    id="employee_address" placeholder="주소를 입력하세요"  name="addr2" value="${address2}" required>
+                                    id="employee_address" placeholder="주소를 입력하세요"  name="employeeAddress" value="${employeeAddress}" required>
                                 <button type="button"  onclick="execPostCode();" class="main_gray_btn" style="width: 25%">주소찾기
                                 </button>
 
@@ -187,7 +187,7 @@
                 
                 
                 $("[name=addr1]").val(data.zonecode);
-                $("[name=addr2]").val(fullRoadAddr);
+                $("[name=employeeAddress]").val(fullRoadAddr);
                 
                 /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
