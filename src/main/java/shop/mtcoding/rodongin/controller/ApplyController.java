@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.rodongin.dto.apply.ApplyResp.ApplyListRespDto;
 import shop.mtcoding.rodongin.handler.ex.CustomException;
@@ -21,24 +22,28 @@ import shop.mtcoding.rodongin.model.employee.Employee;
 import shop.mtcoding.rodongin.model.resume.ResumeGraduateRepository;
 import shop.mtcoding.rodongin.model.resume.ResumeRepository;
 import shop.mtcoding.rodongin.service.apply.ApplyService;
+import shop.mtcoding.rodongin.util.SendMail;
 
 @Controller
 public class ApplyController {
     // employeeFullname, employee_address, resume_title,
     @Autowired
-    ApplyRepository applyRepository;
+    private ApplyRepository applyRepository;
 
     @Autowired
-    ResumeRepository resumeRepository;
+    private ResumeRepository resumeRepository;
 
     @Autowired
-    ResumeGraduateRepository resumeGraduateRepository;
+    private ResumeGraduateRepository resumeGraduateRepository;
 
     @Autowired
-    ApplyService applyService;
+    private ApplyService applyService;
 
     @Autowired
-    HttpSession session;
+    private HttpSession session;
+
+    @Autowired
+    private SendMail sm;
 
     @GetMapping("/apply/{companyId}/list")
     public String applyList(@PathVariable int companyId, Model model) {
@@ -66,8 +71,9 @@ public class ApplyController {
         return "redirect:/announcement/" + announcementId;
     }
 
-    // @PostMapping("/apply/sendEmail")
-    // public String sendEmail() {
-        
-    // }
+    @PostMapping("/apply/sendEmail")
+    public @ResponseBody String sendEmail() {
+        // sm.sendMail("kkr0787@naver.com", "제목테스트", "내용 테스트");
+        return "";
+    }
 }
