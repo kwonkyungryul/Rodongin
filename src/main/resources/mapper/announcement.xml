@@ -33,22 +33,23 @@
     <foreach item="stackId" collection="skills" open="(" separator="," close=")">
     #{stackId}
     </foreach>
-    DESC
-    LIMIT 1, 10
+    DESC,
+    a.id DESC
+    LIMIT #{start}, #{end}
     </select>
 
     <select id="findAnnouncementCount" resultType="int">
         select COUNT(*) from announcement a
-    inner join company c
-    on a.company_id = c.id
-    WHERE company_fullname LIKE CONCAT( '%', #{content}, '%' )
-    OR announcement_title LIKE CONCAT( '%', #{content}, '%' )
-    OR company_vision LIKE CONCAT( '%', #{content}, '%' )
-    OR announcement_hire_type LIKE CONCAT( '%', #{content}, '%' )
-    OR announcement_salary LIKE CONCAT( '%', #{content}, '%' )
-    OR announcement_area LIKE CONCAT( '%', #{content}, '%' )
-    OR announcement_carrer LIKE CONCAT( '%', #{content}, '%' )
-    OR announcement_content LIKE CONCAT( '%', #{content}, '%' )
+        inner join company c
+        on a.company_id = c.id
+        WHERE company_fullname LIKE CONCAT( '%', #{content}, '%' )
+        OR announcement_title LIKE CONCAT( '%', #{content}, '%' )
+        OR company_vision LIKE CONCAT( '%', #{content}, '%' )
+        OR announcement_hire_type LIKE CONCAT( '%', #{content}, '%' )
+        OR announcement_salary LIKE CONCAT( '%', #{content}, '%' )
+        OR announcement_area LIKE CONCAT( '%', #{content}, '%' )
+        OR announcement_carrer LIKE CONCAT( '%', #{content}, '%' )
+        OR announcement_content LIKE CONCAT( '%', #{content}, '%' )
     </select>
 
     <select id="findById" resultType="shop.mtcoding.rodongin.model.announcement.Announcement">
@@ -56,14 +57,14 @@
     </select>
 
     <insert id="insert">
-   insert into announcement (company_id, stack_id,
+        insert into announcement (company_id, stack_id,
         announcement_title, 
         announcement_content, announcement_carrer, 
-         announcement_hire_type, announcement_rec_num,
-          announcement_salary, announcement_area, created_at ) 
-          values(#{companyId}, #{stackId}, #{announcementTitle}, 
-          #{announcementContent},#{announcementCarrer},#{announcementHireType},
-          #{announcementRecNum},#{announcementSalary},#{announcementArea},now())
+        announcement_hire_type, announcement_rec_num,
+        announcement_salary, announcement_area, created_at ) 
+        values(#{companyId}, #{stackId}, #{announcementTitle}, 
+        #{announcementContent},#{announcementCarrer},#{announcementHireType},
+        #{announcementRecNum},#{announcementSalary},#{announcementArea},now())
     </insert>
 
     <delete id="deleteById">

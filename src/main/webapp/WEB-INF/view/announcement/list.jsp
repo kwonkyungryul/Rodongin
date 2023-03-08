@@ -89,7 +89,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
         <div class="my_cir">
-          <strong class="my_sstrong">${status.index + 1}</strong>
+          <strong class="my_sstrong">${10*(num-1) + status.index + 1}</strong>
         </div>
 
           <div class="my_louuuijs">
