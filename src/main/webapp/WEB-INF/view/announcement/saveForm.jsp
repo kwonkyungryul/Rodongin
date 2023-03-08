@@ -39,13 +39,13 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
         </div>
       </div>
    
-
+  
   
      
       <div class="my_inputbigflex">
       <div class="my_inputflex">
       <div class="input-group input-group-lg">
-        <span class="input-group-text" id="inputGroup-sizing-lg">경력사항</span>
+        <span class="main_yellow_label input-group-text" id="inputGroup-sizing-lg">경력사항</span>
         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="announcementCarrer" id="announcementCarrer">
       </div>
       <div class="input-group input-group-lg">

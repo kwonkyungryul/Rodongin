@@ -200,7 +200,7 @@
                 </div>
             </div>
             <div class="my_sub_title_form">
-                <div class="d-flex mb-3">
+                <%-- <div class="d-flex mb-3">
                     <span class="main_yellow_label">파일등록</span>
                 </div>
                 <div class="my_yellow_box">
@@ -211,7 +211,7 @@
                     <div class="my_file_comment">
                         <span>등록할 파일을 선택해 주세요 (최대 1개, 10MB)</span>
                     </div>
-                </div>
+                </div> --%>
 
                 <div>
                     <div class="button_center d-flex justify-content-center">

@@ -19,14 +19,16 @@
                         <div class="mb-2">
                             &nbsp;&nbsp;<b>번호</b> : <span id="${detailDto.id}">${detailDto.id}
                                 </span>&nbsp;&nbsp;&nbsp;<b>작성자</b> :
-                            <span class="me-3">${detailDto.employeeId}</span>
+                            <span class="me-3">${detailDto.employeeName}</span>
                         </div>
 
 
-                        <div class="border border-1 p-3 mb-3"
-                            style="border-radius: 10px; border-color: rgb(94, 94, 94); height: 200px; overflow:auto">
+                            <hr/>
+                        <div class=""
+                            style="height: 200px; overflow:auto">
                             ${detailDto.customerContent}
                         </div>
+                            <hr/>
 
                         <div style="text-align: right;">
                             <c:if test="${detailDto.employeeId == principal.id}">
