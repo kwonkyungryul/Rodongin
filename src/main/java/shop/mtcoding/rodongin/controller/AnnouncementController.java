@@ -67,6 +67,7 @@ public class AnnouncementController {
     @Autowired
     private EmployeeStackRepository employeeStackRepository;
 
+   
     // 게시글 수정
     @PutMapping("/announcement/{id}")
     public @ResponseBody ResponseEntity<?> update(@PathVariable int id,
@@ -187,6 +188,7 @@ public class AnnouncementController {
         Employee principal = (Employee) session.getAttribute("principal");
         List<String> skills = new ArrayList<>();
         List<AnnouncementDetailRespDto> announcementDetailDto;
+
         int cnt;
         if (principal != null) { // 로그인이 되어 있을 때
             List<EmployeeStack> stacks = employeeStackRepository.findByEmployeeId(principal.getId());
@@ -236,9 +238,12 @@ public class AnnouncementController {
         model.addAttribute("start", start);
         model.addAttribute("end", end);
         model.addAttribute("content", content);
+        
 
         model.addAttribute("listView", announcementDetailDto);
 
+
+     
         return "announcement/list";
     }
 

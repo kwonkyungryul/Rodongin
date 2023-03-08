@@ -37,12 +37,13 @@
     </delete>
 
     <update id="updateById">
-        update employee
-        set employee_password = #{employeeUpdatdReq.employeePassword}
-        ,employee_email = #{employeeUpdatdReq.employeeEmail}
-        ,employee_birth = #{employeeUpdatdReq.employeeBirth}
-        ,employee_tel = #{employeeUpdatdReq.employeeTel}
-        ,employee_address= #{employeeUpdatdReq.employeeAddress}
+        update employee set
+        employee_password        = #{employeeUpdatdReq.employeePassword}
+        ,employee_email          = #{employeeUpdatdReq.employeeEmail}
+        ,employee_birth          = #{employeeUpdatdReq.employeeBirth}
+        ,employee_tel            = #{employeeUpdatdReq.employeeTel}
+        ,employee_address        = #{employeeUpdatdReq.employeeAddress}
+        ,employee_thumbnail      = #{employeeThumbnail}
         where id = #{id}
     </update>
 </mapper>

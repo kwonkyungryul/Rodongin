@@ -26,16 +26,17 @@ public class EmployeeReq {
         private String employeeGender;
         private String employeeAddress;
     }
-    
+
     @Getter
     @Setter
     public static class EmployeeUpdatdReq {
+        private Integer id;
         private String employeePassword;
         private String employeeEmail;
         private Date employeeBirth;
         private String employeeTel;
         private String employeeAddress;
-        private String employeeInfoThumbnail;
+        // private String employeeThumbnail;
 
     }
 }
