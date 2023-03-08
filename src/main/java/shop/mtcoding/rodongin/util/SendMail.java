@@ -11,11 +11,14 @@ public class SendMail {
     @Autowired
     private JavaMailSender emailSender;
 
+    private final String from = "kkr0787@gmail.com";
+
+    
     public void sendMail(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage(); 
-        message.setFrom("kkr0787@gmail.com");
+        message.setFrom(from);
         message.setTo(to); 
-        message.setSubject(subject); 
+        message.setSubject(subject);
         message.setText(text);
         emailSender.send(message);
     }

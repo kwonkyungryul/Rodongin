@@ -42,7 +42,7 @@
 
                        <c:when test="${not empty comPrincipal}">
                         <div class="buttons pe-2">
-                            <img src="${listView.companyThumbnail == null ? '/images/profile.png' : listView.companyThumbnail}" style="border-radius: 50%; width: 30px; height: 30px;">
+                            <img src="${comPrincipal.companyThumbnail == null ? '/images/profile.png' : comPrincipal.companyThumbnail}" style="border-radius: 50%; width: 30px; height: 30px;">
                         </div>
                         <div class="buttons pe-3"><a href="/company/${comPrincipal.id}">${comPrincipal.companyFullname}</a></div>
                         <div class="buttons"><a href="/logout"><b>로그아웃</b></a></div>
