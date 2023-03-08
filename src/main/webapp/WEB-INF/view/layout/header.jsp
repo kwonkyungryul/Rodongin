@@ -50,18 +50,35 @@
                     
                        <c:otherwise>
                         <div class="buttons pe-3"><a href="/loginForm"><b>로그인</b></a></div>
-                        <div class="buttons"><a href="/employee/joinForm"><b>회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a></div>
+                        <div class="buttons"><a href="/employee/joinForm"><b>개인/</b></a></div>
+                        <div class="buttons"><a href="/company/joinForm"><b>기업 </b></a> 회원가입&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
                        </c:otherwise>
                     </c:choose>
                 </div>
             </div>
+            
             <nav class="d-flex justify-content-center mt-auto pt-3 pb-1">
                 <ul class="nav my_nav">
-                    <li class="nav-item active"><a class="nav-link fw-bold font1" href="#">채용공고</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" href="#">공고조회</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" href="#">기업 리스트</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" href="#">이력서 리스트</a></li>
+                 <c:choose>
+                       <c:when test="${not empty principal}">
+                            <li class="nav-item active"><a class="nav-link fw-bold font1" href="/">채용공고</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="/empolyee/detail">개인정보</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="/customer/list">고객센터</a></li>
+                    </c:when>
+                    <c:when test="${not empty comPrincipal}">
+                            <li class="nav-item active"><a class="nav-link fw-bold font1" href="/">채용공고</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="#">기업 리스트</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="#">이력서 리스트</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="/customer/list">고객센터</a></li>
+                    </c:when>
+
+                    <c:otherwise>
+                        <!-- 비로그인 메뉴 -->
+                        <li class="nav-item active"><a class="nav-link fw-bold font1" href="/">채용공고</a></li>
+                        <li class="nav-item"><a class="nav-link fw-bold" href="/customer/list">고객센터</a></li>
+                    </c:otherwise>
+                </c:choose>
                     <!-- <li class="nav-item"><a class="nav-link fw-bold" href="#">취업난에 지친 구직자들을 위한 쉼터😘</a></li> -->
                 </ul>
             </nav>

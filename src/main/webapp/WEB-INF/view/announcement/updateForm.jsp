@@ -105,6 +105,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <!--주소  -->
     <div class="my_formclass">
         <input class="form-control" type="text" placeholder="주소입력" aria-label="default input example" id="announcementArea"name="addr2" value="${address2}">
+        <input class="form-control" type="text" placeholder="주소입력" aria-label="default input example" id="announcementArea"name="addr1" value="${address1}">
         <button type="button" onclick="execPostCode();" class="btn btn-primary">주소찾기</button>
     </div>
       

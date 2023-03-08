@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ include file="../layout/header.jsp" %>
-    
+
         <link rel="stylesheet" href="/css/joinForm.css">
-        
+
         <br />
         <br />
         <div class="d-flex justify-content-center" style="width: 100%;">
@@ -30,8 +30,8 @@
                                     placeholder="비밀번호를 입력하세요" name="employeePassword" required>
                             </div>
                             <div class="mb-2">
-                                <input class="form-control" type="password" id="employee_repassword" placeholder="비밀번호 확인"
-                                    required>
+                                <input class="form-control" type="password" id="employee_repassword"
+                                    placeholder="비밀번호 확인" required>
                             </div>
                         </div>
 
@@ -40,7 +40,8 @@
                             <div class="my_flex mb-2">
                                 <input class="form-control d-inline-flex" style="width: 60%;" type="text"
                                     id="employeeEmail" placeholder="이메일을 입력하세요" name="employeeEmail" required>
-                                <select id="email_class" name="employeeEmail" class="main_select_box p-1" style="width: 38.8%">
+                                <select id="email_class" name="employeeEmail" class="main_select_box p-1"
+                                    style="width: 38.8%">
                                     <option value="@naver.com">naver.com</option>
                                     <option value="@nate.com">nate.com</option>
                                     <option value="@gmail.com">gmail.com</option>
@@ -57,11 +58,13 @@
 
                         <div class="mb-1">
                             <div class="main_yellow_label mb-1">생일</div>
-                            <input class="form-control mb-2" type="date" id="employee_birth" name="employeeBirth"></label>
+                            <input class="form-control mb-2" type="date" id="employee_birth"
+                                name="employeeBirth"></label>
                         </div>
                         <div class="mb-1">
                             <div class="main_yellow_label mb-1">연락처</div><br />
-                            <select name="employeeTel" id="employee_tel_first" class="main_select_box me-1 p-1" style="width: 25%">
+                            <select name="employeeTel" id="employee_tel_first" class="main_select_box me-1 p-1"
+                                style="width: 25%">
                                 <option value="010">010</option>
                                 <option value="016">016</option>
                                 <option value="011">011</option>
@@ -89,16 +92,18 @@
                         </div>
                         <div class="">
                             <div class="main_yellow_label mb-1">주소</div> <br />
+
                             <div>
                                 <input class="form-control mb-1 d-inline-flex" style="width: 73.5%;" type=" text"
                                     id="employee_address" placeholder="주소를 입력하세요"  name="addr2" value="${address2}" required>
                                 <button type="button"  onclick="execPostCode();" class="main_gray_btn" style="width: 25%">주소찾기
                                 </button>
+
                             </div>
 
                             <div>
-                                <input class=" form-control mb-2" type="text" id="employee_address_add"
-                                    placeholder="상세주소를 입력하세요" name="employeeAddress" required>
+                                <input class=" form-control mb-2 mt-1" type="text" id="employee_address_add"
+                                    placeholder="상세주소를 입력하세요" name="employeeAddress2" required>
                             </div>
                         </div>
 
@@ -144,8 +149,7 @@
                 </form>
             </div>
         </div>
-
-
+        
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="/resources/js/addressapi.js"></script>
 <script>
@@ -191,6 +195,5 @@
             }
          }).open();
      }
-
      </script>
         <%@ include file="../layout/footer.jsp" %>
