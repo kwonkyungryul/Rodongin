@@ -83,13 +83,13 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     </h3>
   </div>
 </c:if>
-<c:forEach items="${listView}" var="list">
+<c:forEach items="${listView}" var="list" varStatus="status">
 <div class="accordion">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
         <div class="my_cir">
-          <strong class="my_sstrong">${list.id}</strong>
+          <strong class="my_sstrong">${10*(num-1) + status.index + 1}</strong>
         </div>
 
           <div class="my_louuuijs">

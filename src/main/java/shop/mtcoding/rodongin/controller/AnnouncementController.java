@@ -228,6 +228,7 @@ public class AnnouncementController {
         
         announcementDetailDto = announcementRepository.findAnnouncementlist(skills, content, start, end);
         
+        System.out.println(num);
         model.addAttribute("prev", prev);
         model.addAttribute("next", next);
         model.addAttribute("pageNum", pageNum);
