@@ -5,12 +5,17 @@
 
 
         <div class="my_info_insert">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
                 <div class="my_title">
                     <h2>${resume.resumeTitle}</h2>
                 </div>
                 <div class="">
-                    <button type="button" onclick="sendMail(${resume.employeeId}, ${comPrincipal.id}, 1);">합격</button> <button type="button" onclick="sendMail(${resume.employeeId}, ${comPrincipal.id}, 0);">불합격</button>
+                <c:if test="${not empty comPrincipal}" >
+                <div class="btn-group" role="group" aria-label="합격 불합격 선택">
+                    <button type="button" onclick="sendMail(${resume.employeeId}, ${comPrincipal.id}, 1);" class="btn btn-success">합격</button>
+                    <button type="button" onclick="sendMail(${resume.employeeId}, ${comPrincipal.id}, 0);" class="btn btn-danger">불합격</button>
+                </div>
+                </c:if>
                 </div>    
             </div>
 

@@ -68,7 +68,7 @@
                     </c:when>
                     <c:when test="${not empty comPrincipal}">
                             <li class="nav-item"><a class="nav-link fw-bold font1" href="/">채용공고</a></li>
-                            <li class="nav-item"><a class="nav-link fw-bold" href="#">이력서 리스트</a></li>
+                            <li class="nav-item"><a class="nav-link fw-bold" href="/apply/${comPrincipal.id}/list">이력서 리스트</a></li>
                             <li class="nav-item"><a class="nav-link fw-bold" href="/customer/list">고객센터</a></li>
                     </c:when>
 
