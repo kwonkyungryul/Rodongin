@@ -15,7 +15,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <div class="card-body">
       <h5 class="card-title">${listView[0].announcementTitle}</h5>
       <p class="card-text">2023 ${listView[0].companyFullname}</p>
-      <a href="/announcement/${listView[0].id}" class="btn btn-primary">지원하기</a>
+      <a href="/announcement/${listView[0].id}" class="btn btn-primary" style="background-color: rgb(51, 80, 200)">지원하기</a>
     </div>
   </div>
   <div class="card">
@@ -28,7 +28,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <div class="card-body">
       <h5 class="card-title">${listView[1].announcementTitle}</h5>
       <p class="card-text">2023 ${listView[1].companyFullname}</p>
-      <a href="/announcement/${listView[1].id}" class="btn btn-primary">지원하기</a>
+      <a href="/announcement/${listView[1].id}" class="btn btn-primary" style="background-color: rgb(51, 80, 200)">지원하기</a>
     </div>
   </div>
   <div class="card">
@@ -41,7 +41,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <div class="card-body">
       <h5 class="card-title">${listView[2].announcementTitle}</h5>
       <p class="card-text">2023 ${listView[2].companyFullname}</p>
-      <a href="/announcement/${listView[2].id}" class="btn btn-primary">지원하기</a>
+      <a href="/announcement/${listView[2].id}" class="btn btn-primary" style="background-color: rgb(51, 80, 200)">지원하기</a>
     </div>
   </div>
   <div class="card">
@@ -54,7 +54,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <div class="card-body">
       <h5 class="card-title">${listView[3].announcementTitle}</h5>
       <p class="card-text">2023 ${listView[3].companyFullname}</p>
-      <a href="/announcement/${listView[3].id}" class="btn btn-primary">지원하기</a>
+      <a href="/announcement/${listView[3].id}" class="btn btn-primary" style="background-color: rgb(51, 80, 200)">지원하기</a>
     </div>
   </div>
 </div>
@@ -66,7 +66,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
   <div class="" style="width: 1000px; margin: 0 auto;">
     <div class="input-group">
       <input type="text" class="form-control" id="search" name="content">
-      <button type="submit" class="btn btn-primary">검색</button>
+      <button type="submit" class="btn btn-primary" tyle="background-color: rgb(51, 80, 200)">검색</button>
     </div>
   </div>
 </form>
@@ -83,13 +83,13 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     </h3>
   </div>
 </c:if>
-<c:forEach items="${listView}" var="list">
+<c:forEach items="${listView}" var="list" varStatus="status">
 <div class="accordion">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
         <div class="my_cir">
-          <strong class="my_sstrong">${list.id}</strong>
+          <strong class="my_sstrong">${status.index + 1}</strong>
         </div>
 
           <div class="my_louuuijs">
@@ -106,11 +106,11 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <div class="my_deletebtnanddetail">
     <div class="my_button_ooo">
     <c:if test="${list.companyId == comPrincipal.id}" >
-      <button onclick="deleteById(${list.id})" type="button" class="btn btn-warning">삭제하기</button>
+      <button onclick="deleteById(${list.id})" type="button" class="btn btn-warning" style="background-color: rgb(51, 80, 200)">삭제하기</button>
     </c:if>
     </div>
     <div class="my_button_ooo" >
-      <a href="/announcement/${list.id}" class="btn btn-primary">지원하기</a>
+      <a href="/announcement/${list.id}" class="btn btn-primary" style="background-color: rgb(51, 80, 200)">지원하기</a>
     </div>
     </div>
   </div>
@@ -120,7 +120,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
 <div class="my_lastbuttonbig">
 <div class="my_lastbutton">
 <c:if test="${comPrincipal.id != null}" >
-<button id="savebtn" type="button" class="btn btn-primary ">공고등록하기</button>
+<button id="savebtn" type="button" class="btn btn-primary " style="background-color: rgb(51, 80, 200)">공고등록하기</button>
 </c:if>
 </div>
 </div>

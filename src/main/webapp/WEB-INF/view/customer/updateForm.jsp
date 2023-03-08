@@ -18,8 +18,8 @@
                     <textarea class="form-control summernote mb-2" rows="10" id="customerContent"
                         name="customerContent">${updatedDto.customerContent}</textarea>
                 </div>
-                <button onclick="updateById(${updatedDto.id})" type="button" class="main_blue_btn_customer "
-                    style="border: none; ">글수정</button>
+                <button onclick="updateById(${updatedDto.id})" type="button" class="main_blue_btn_customer mt-3"
+                    style="border: none; margin-left:95%">수 정</button>
             </form>
         </div>
         <!-- float: right; -->
