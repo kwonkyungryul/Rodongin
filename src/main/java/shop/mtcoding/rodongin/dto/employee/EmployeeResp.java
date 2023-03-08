@@ -41,5 +41,5 @@ public class EmployeeResp {
         private String resumeSalary;
         private String careerCompany;
     }
-    
+
 }

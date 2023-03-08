@@ -110,31 +110,38 @@
                         <div class="">
                             <div class=" main_yellow_label mb-1">약&nbsp;관
                             </div>
-                            <div class="border border-1" style="border-radius: 10px;">
-
+                            <div class="checkall border border-1" style="border-radius: 10px;">
                                 <div class="ms-3 me-3 mt-3 mb-3">
+                                    <!-- <div class="black-3"> 이걸로 설정시에는 약관의 패딩이 없어짐-->
                                     <div class="h6" style="color: rgb(94, 94, 94);">
-                                        <input type="checkbox" id="check-all">
+                                        <input type='checkbox' name='check' value='selectall' id="checkbox"
+                                            onclick='selectAll(this)'>
                                         <b>&nbsp;전체동의</b>
                                     </div>
-
                                     <div>
-                                        <input type='checkbox' name='check' />&nbsp;(필수) 사업자회원 약관에 동의<br />
+                                        <input type='checkbox' name='check' value='check_1' />&nbsp;(필수) 개인회원
+                                        약관에
+                                        동의<br />
                                         <textarea name="" id="" cols="30" rows="3" class="mt-1"
                                             style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을 이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스 회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
                                     </div>
                                     <div>
-                                        <input type='checkbox' name='check' />&nbsp;(필수) 사업자회원 약관에 동의<br />
+                                        <input type='checkbox' name='check' value='check_1' />&nbsp;(필수) 개인회원 약관에
+                                        동의<br />
                                         <textarea name="" id="" cols="30" rows="3" class="mt-1"
                                             style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을 이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스 회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
                                     </div>
                                     <div>
-                                        <input type='checkbox' name='check' />&nbsp;(필수) 사업자회원 약관에 동의<br />
-                                        <textarea name="" id="" cols="30" rows="3" class="mt-1"
-                                            style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을 이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스 회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
+                                        <input type='checkbox' name='check' value='select_2' />&nbsp;(필수) 개인회원 약관에
+                                        동의<br />
+                                        <textarea name="" id="" cols=" 30" rows="3" class="mt-1"
+                                            style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을
+                                        이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스
+                                        회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
                                     </div>
                                     <div>
-                                        <input type='checkbox' name='check' />&nbsp;(필수) 사업자회원 약관에 동의<br />
+                                        <input type='checkbox' name='check' value="select_3" />&nbsp;(필수) 개인회원 약관에
+                                        동의<br />
                                         <textarea name="" id="" cols="30" rows="3" class="mt-1"
                                             style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을 이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스 회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
                                     </div>
@@ -142,7 +149,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-center mt-3 mb-5">
                         <button class="main_blue_btn" type="submit" style="border:none;">
                             회원가입
@@ -151,4 +157,17 @@
                 </form>
             </div>
         </div>
+
+        <script>
+            function selectAll(selectAll) {
+                const checkboxes
+                    = document.getElementsByName('check');
+
+                checkboxes.forEach((checkbox) => {
+                    checkbox.checked = selectAll.checked;
+                })
+            }
+
+        </script>
+
         <%@ include file="../layout/footer.jsp" %>

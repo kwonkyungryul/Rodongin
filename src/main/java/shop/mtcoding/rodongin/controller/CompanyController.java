@@ -52,8 +52,6 @@ public class CompanyController {
         if (companyLoginReqDto.getCompanyPassword() == null || companyLoginReqDto.getCompanyPassword().isEmpty()) {
             throw new CustomException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
         }
-
-
         
         if (companyUsername ==  null || companyLoginReqDto.getCompanyUsername().isEmpty()) {
             companyUsername = "";
@@ -173,7 +171,6 @@ public class CompanyController {
     @GetMapping("/company/{id}")
     public String detail(@PathVariable int id, Model model) {
         model.addAttribute("detailDto", companyRepository.findById(id));
-
         return "company/detail";
     }
 
