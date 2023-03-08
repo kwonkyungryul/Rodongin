@@ -20,7 +20,7 @@
   border-left: none;
   border-bottom: none;
   width: 250px;
-  height: 330px;
+  height: 350px;
   margin-left: 10px;
   box-shadow: 3px 3px 10px gray;
 }
@@ -89,13 +89,17 @@
 }
 
 .my_span {
-  display: inline-block;
-  margin-left: 20%;
-  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .my_span2 {
-  display: inline-block;
-  margin-left: 40%;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.my_louuuijs {
+  margin-left: 50px;
 }
 
 .my_button_ooo {

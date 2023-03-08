@@ -91,8 +91,11 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
         <div class="my_cir">
           <strong class="my_sstrong">${list.id}</strong>
         </div>
-        <span class="my_span">${list.announcementTitle}</span>
-        <span class="my_span2">${list.companyFullname}</span> 
+
+          <div class="my_louuuijs">
+        <span class="my_span2" style="">${list.companyFullname} ${list.announcementTitle}</span> 
+        </div>
+      
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">

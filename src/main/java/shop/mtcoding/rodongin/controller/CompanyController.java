@@ -146,6 +146,7 @@ public class CompanyController {
         
         companyService.기업소개등록(companyDetailRespDto, comPrincipal.getId(), profile);
 
+        session.setAttribute("comPrincipal", comPrincipal);
 
         return new ResponseEntity<>(new ResponseDto<>(1, "기업소개 수정성공", null), HttpStatus.OK);
             
