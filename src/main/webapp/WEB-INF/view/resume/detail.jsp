@@ -153,6 +153,12 @@
                         <p>${resume.CV}</p>
                     </div>
                 </div>
+                <c:if test="${not empty principal}">
+                <div class="button_center d-flex justify-content-center">
+                    <a href="/employee/detail" class="main_blue_btn">개인정보</a>
+                </div>
+                </c:if>
+
             </div>
         </div>
     </div>

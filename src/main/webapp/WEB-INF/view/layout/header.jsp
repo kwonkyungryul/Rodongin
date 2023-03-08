@@ -61,7 +61,7 @@
                     <li class="nav-item active"><a class="nav-link fw-bold font1" href="#">채용공고</a></li>
                     <li class="nav-item"><a class="nav-link fw-bold" href="#">공고조회</a></li>
                     <li class="nav-item"><a class="nav-link fw-bold" href="#">기업 리스트</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" href="#">이력서 리스트</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#">고객센터</a></li>
                     <!-- <li class="nav-item"><a class="nav-link fw-bold" href="#">취업난에 지친 구직자들을 위한 쉼터😘</a></li> -->
                 </ul>
             </nav>
