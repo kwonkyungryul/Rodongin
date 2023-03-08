@@ -1,9 +1,12 @@
 package shop.mtcoding.rodongin.service.employee;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeJoinReqDto;
 import shop.mtcoding.rodongin.dto.employee.EmployeeReq.EmployeeLoginReqDto;
@@ -21,6 +24,7 @@ import shop.mtcoding.rodongin.model.employee.EmployeeRepository;
 import shop.mtcoding.rodongin.model.employee.EmployeeStack;
 import shop.mtcoding.rodongin.model.employee.EmployeeStackRepository;
 import shop.mtcoding.rodongin.util.Encode;
+import shop.mtcoding.rodongin.util.PathUtil;
 
 @Service
 public class EmployeeService {
@@ -39,6 +43,8 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeStackRepository employeeStackRepository;
+    @Autowired
+    private HttpSession session;
 
     @Transactional
     public void 회원가입(EmployeeJoinReqDto employeeJoinReqDto) {
@@ -96,17 +102,24 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void 회원정보수정(EmployeeUpdatdReq employeeUpdatdReq, int principalId) {
-        // String thumbnail =
-        // HtmlParser.getThumbnail(employeeUpdatdReq.getEmployeeInfoThumbnail());
+    public Employee 회원정보수정(int principalId, EmployeeUpdatdReq employeeUpdatdReq, MultipartFile profile) {
+
+        String thumbnail = PathUtil.writeImageFile(profile);
+        
+
+        if (profile==null || profile.isEmpty()) {
+            thumbnail = employeeRepository.findById(principalId).getEmployeeThumbnail();
+        }
 
         try {
-            employeeRepository.updateById(principalId, employeeUpdatdReq);
-
+            employeeRepository.updateById(principalId, employeeUpdatdReq, thumbnail);
+            
         } catch (Exception e) {
             throw new CustomApiException("회원정보 수정에 실패하였습니다", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
+        
+        Employee principal = employeeRepository.findById(principalId);
+        return principal;
     }
 
     @Transactional

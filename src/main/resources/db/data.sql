@@ -1,5 +1,5 @@
 -- 개인 유저 테이블
-INSERT INTO employee (employee_name, employee_password, employee_fullname, employee_email, employee_tel, employee_gender, employee_birth, employee_address, employee_info_thumbnail, created_at)
+INSERT INTO employee (employee_name, employee_password, employee_fullname, employee_email, employee_tel, employee_gender, employee_birth, employee_address, employee_thumbnail, created_at)
 VALUES
 ('ssar', '78db05bd4765f2abafb9669399eadfdc$d120c70a2ff6b7575f3b12140ee949be057bcd72eea0f65884fb53d201f0c2a8', '홍길동', 'ssar@ssar.com', '01011111111', 'M', '1990-01-01', '서울특별시 강남구', NULL, NOW()),
 ('cos', '84031705c61df2d8a182caf478ab6c24$7f358ad8682c3b834d3cb5bde7dd2a3a5b5311f420dfad73594b5b9448bd0967', '최성훈', 'cos@cos.com', '01022222222', 'M', '1991-01-01', '서울특별시 강북구', NULL, NOW()),
