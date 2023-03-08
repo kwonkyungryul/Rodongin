@@ -28,7 +28,12 @@ public class CustomerService {
         if (customerPS.getEmployeeId() != principalId) {
             throw new CustomApiException("게시물의 수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
-
+        try {
+            int result = customerRepository.updateById(id, customerUpdateReqDto.getCustomerTitle(),
+                    customerUpdateReqDto.getCustomerContent());
+        } catch (Exception e) {
+            throw new CustomApiException("서버의 문제로 글수정에 실패하였습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Transactional

@@ -15,11 +15,10 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control mb-2" rows="10" id="customerContent" name="customerContent">
-                    ${updatedDto.customerContent}
-                </textarea>
+                    <textarea class="form-control summernote mb-2" rows="10" id="customerContent"
+                        name="customerContent">${updatedDto.customerContent}</textarea>
                 </div>
-                <button onclick="updateById(${updatedDto.employeeId})" type="button" class="main_blue_btn_customer "
+                <button onclick="updateById(${updatedDto.id})" type="button" class="main_blue_btn_customer "
                     style="border: none; ">글수정</button>
             </form>
         </div>

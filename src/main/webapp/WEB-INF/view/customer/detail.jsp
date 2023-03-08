@@ -35,12 +35,11 @@
                                     class="btn main_yellow_label_customer">수정</a>
                                 </span>
                                 <span>
-                                    <button onclick="deleteById" ${detailDto.id}" class="btn main_gray_btn_customer 
+                                    <button onclick="deleteById(${detailDto.id})" class="btn main_gray_btn_customer 
                                     d-inline-flex">&nbsp;삭제</button>
                                 </span>
                             </c:if>
 
-                            
                         </div>
 
                     </div>

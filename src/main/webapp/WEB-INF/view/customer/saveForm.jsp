@@ -4,11 +4,6 @@
 
         <div class="container my-3">
             <form class="mb-1">
-                <div class="form-gtoup mb-2">
-                    <label for="username" class="form-label">아이디</label>
-                    <input type="text" class="form-control" id="username" name="username"
-                        value="${employee.employeeName}">
-                </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="customerTitle" id="customerTitle"
                         placeholder="제목을 입력해 주세요">
@@ -42,6 +37,12 @@
                 });
                 console.log(data);
             }
+        </script>
+        <script>
+            $('.summernote').summernote({
+                tabsize: 2,
+                height: 400
+            });
         </script>
 
         <%@ include file="../layout/footer.jsp" %>

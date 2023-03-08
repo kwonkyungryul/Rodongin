@@ -25,9 +25,8 @@ public interface CustomerRepository {
                         @Param("customerContent") String customerContent,
                         @Param("employeeId") Integer employeeId);
 
-        public int updateById(@Param("customerTitle") String customerTitle,
-                        @Param("customerContent") String customerContent,
-                        @Param("employeeId") Integer employeeId);
+        public int updateById(@Param("id") Integer id, @Param("customerTitle") String customerTitle,
+                        @Param("customerContent") String customerContent);
 
         public int deleteById(int id);
 }

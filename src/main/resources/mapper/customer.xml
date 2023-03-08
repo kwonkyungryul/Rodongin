@@ -18,7 +18,7 @@
         FROM customer cu 
         INNER JOIN employee em ON cu.employee_id = em.id
         ORDER BY cu.id DESC
-        LIMIT 0, 7
+        <!-- LIMIT 0, 7 -->
     </select>
     <!-- 페이징 연습해보기 -->
 

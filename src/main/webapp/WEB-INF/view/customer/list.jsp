@@ -61,12 +61,12 @@
             </c:otherwise>
         </c:choose>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <%-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <ul class="pagination mt-3 d-flex justify-content-center">
             <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
+        </ul> --%>
         <script>
             let slideIndex = 0;
             showSlides();

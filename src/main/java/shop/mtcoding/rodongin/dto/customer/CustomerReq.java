@@ -17,5 +17,6 @@ public class CustomerReq {
     public static class CustomerUpdateReqDto {
         private String customerTitle;
         private String customerContent;
+
     }
 }
