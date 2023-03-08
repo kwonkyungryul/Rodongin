@@ -55,33 +55,33 @@
             </c:when>
             <c:otherwise>
                 <div class="d-flex justify-content-center mt-3 mb-5">
-                    <button type="button" class="btnn main_yellow_label_customer"
-                        style="border: none; text-align:center"><a href=" /customer/saveForm">글쓰기</a></button>
+                    <button type="button" class="main_yellow_label_customer" style="border: none; text-align:center;"><a
+                            href="/customer/saveForm"><b>글쓰기</b></a></button>
                 </div>
             </c:otherwise>
         </c:choose>
 
         <%-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        <ul class="pagination mt-3 d-flex justify-content-center">
-            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul> --%>
-        <script>
-            let slideIndex = 0;
-            showSlides();
+            <ul class="pagination mt-3 d-flex justify-content-center">
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul> --%>
+            <script>
+                let slideIndex = 0;
+                showSlides();
 
-            function showSlides() {
-                let slides = document.getElementsByClassName("mySlides");
-                for (let i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
+                function showSlides() {
+                    let slides = document.getElementsByClassName("mySlides");
+                    for (let i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    slideIndex++;
+                    if (slideIndex > slides.length) {
+                        slideIndex = 1;
+                    }
+                    slides[slideIndex - 1].style.display = "block";
+                    setTimeout(showSlides, 2000);
                 }
-                slideIndex++;
-                if (slideIndex > slides.length) {
-                    slideIndex = 1;
-                }
-                slides[slideIndex - 1].style.display = "block";
-                setTimeout(showSlides, 2000);
-            }
-        </script>
-        <%@ include file="../layout/footer.jsp" %>
+            </script>
+            <%@ include file="../layout/footer.jsp" %>

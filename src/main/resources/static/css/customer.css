@@ -29,9 +29,9 @@ input:focus {
     padding: 6px;
     background-color: rgb(255, 238, 150);
     border-radius: 7px;
-    color: rgb(94, 94, 94);
+    color: black;
+    font-weight: bolder;
     font-size: 13px;
-    font-weight: bold;
     height: 37.5px;
     width: 50px;
 }

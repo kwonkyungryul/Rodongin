@@ -10,10 +10,14 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control summernote" rows="5" name="customerContent" id="customerContent"
+                    <textarea class="form-control summernote" name="customerContent" id="customerContent"
                         placeholder=""></textarea>
                 </div>
-                <button onclick="save()" type="button" class="btn btn-primary">글쓰기</button>
+
+                <div>
+                    <button onclick="save()" type="button" class="btn btn-primary mt-3"
+                        style="margin-left: 90%;">글쓰기</button>
+                </div>
             </form>
         </div>
 

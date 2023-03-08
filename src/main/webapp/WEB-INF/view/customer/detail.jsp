@@ -19,13 +19,15 @@
                         <div class="mb-2">
                             &nbsp;&nbsp;<b>번호</b> : <span id="${detailDto.id}">${detailDto.id}
                                 </span>&nbsp;&nbsp;&nbsp;<b>작성자</b> :
-                            <span class="me-3">${detailDto.employeeId}</span>
+                            <span class="me-3">${detailDto.employeeName}</span>
                         </div>
 
 
-                        <div class="border border-1 p-3 mb-3"
-                            style="border-radius: 10px; border-color: rgb(94, 94, 94); height: 200px; overflow:auto">
+                        <div class="p-3 mb-3">
+                            <%-- style="border-radius: 10px; border-color: rgb(94, 94, 94); height: 200px; overflow:auto"> --%>
+                            <hr/>
                             ${detailDto.customerContent}
+                            <hr/>
                         </div>
 
                         <div style="text-align: right;">
@@ -47,19 +49,19 @@
             </div>
         </div>
         </div>
-<script>
-    function deleteById(id) {
-        $.ajax({
-            type: "delete",
-            url: "/customer/" + id,
-            dataType: "json"
-        }).done((res) => { // 20X일때
-            alert(res.msg);
-            location.href = "/customer/list";
-        }).fail((err) => { // 40X, 50X일때
-            alert(err.responseJSON.msg);
-        });
-    }
-</script>
+        <script>
+            function deleteById(id) {
+                $.ajax({
+                    type: "delete",
+                    url: "/customer/" + id,
+                    dataType: "json"
+                }).done((res) => { // 20X일때
+                    alert(res.msg);
+                    location.href = "/customer/list";
+                }).fail((err) => { // 40X, 50X일때
+                    alert(err.responseJSON.msg);
+                });
+            }
+        </script>
 
         <%@ include file="../layout/footer.jsp" %>
