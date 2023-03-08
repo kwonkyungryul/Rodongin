@@ -66,7 +66,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
   <div class="" style="width: 1000px; margin: 0 auto;">
     <div class="input-group">
       <input type="text" class="form-control" id="search" name="content">
-      <button type="submit" class="btn btn-primary" tyle="background-color: rgb(51, 80, 200)">검색</button>
+      <button type="submit" class="btn btn-primary" style="background-color: rgb(51, 80, 200)">검색</button>
     </div>
   </div>
 </form>

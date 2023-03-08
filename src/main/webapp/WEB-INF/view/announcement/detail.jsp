@@ -34,7 +34,7 @@
               <div class="my_ddaybox">
                 <div>D-7</div>
               </div>
-              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="applyBtn">
+              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="applyBtn"  >
                 지원하기
               </button>
             </c:if>
@@ -93,13 +93,13 @@
     <div class="my_inputboxsixa">
       <div class="my_inputboxsix">
         <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-sm">경력사항</span>
-          <span style="font-weight: bold;">${announcement.announcementCarrer}</span>
+          <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">경력사항</span>
+          <span class="m-1 ms-2" style="font-weight: bold;">${announcement.announcementCarrer}</span>
 
         </div>
         <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-sm">급여사항</span>
-          <span style="font-weight: bold;">${announcement.announcementSalary}</span>
+          <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">급여사항</span>
+          <span class="m-1 ms-2" style="font-weight: bold;">${announcement.announcementSalary}</span>
         </div>
       </div>
     </div>
@@ -109,12 +109,12 @@
     <div class="my_inputboxsixa">
       <div class="my_inputboxsix">
         <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-sm">근무형태</span>
-          <span style="font-weight: bold;">${announcement.announcementHireType}</span>
+          <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">근무형태</span>
+          <span class="m-1 ms-2" style="font-weight: bold;">${announcement.announcementHireType}</span>
         </div>
         <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-sm">기술스택</span>
-          <span style="font-weight: bold;">${tostack.stackName}</span>
+          <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">기술스택</span>
+          <span class="m-1 ms-2" style="font-weight: bold;">${tostack.stackName}</span>
 
         </div>
       </div>
@@ -123,12 +123,12 @@
     <div class="my_inputboxsixa">
       <div class="my_inputboxsix">
         <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-sm">근무지역</span>
-          <span style="font-weight: bold;">${announcement.announcementArea}</span>
+          <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">근무지역</span>
+          <span class="m-1 ms-2" style="font-weight: bold;">${announcement.announcementArea}</span>
         </div>
         <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-sm">모집인원</span>
-          <span style="font-weight: bold;">${announcement.announcementRecNum}</span>
+          <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">모집인원</span>
+          <span class="m-1 ms-2" style="font-weight: bold;">${announcement.announcementRecNum}</span>
 
         </div>
       </div>
@@ -167,25 +167,25 @@
         <div class="my_inputboxsixadown">
           <div class="my_inputboxsixdown">
             <div class="input-group input-group-sm mb-3">
-              <span class="input-group-text" id="inputGroup-sizing-sm">대표자명</span>
-              <div style="font-weight: bold; ">${announcement.companyCeoName}</div>
+              <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">대표자명</span>
+              <div class="m-1 ms-2" style="font-weight: bold ;">${announcement.companyCeoName}</div>
             </div>
-            <div class="input-group input-group-sm mb-3">
-              <span class="input-group-text" id="inputGroup-sizing-sm">설립일</span>
-              <div style="font-weight: bold; ">${announcement.companyEstablish}</div>
+            <div class="input-group input-group-sm mb-3" style="width: 400px;">
+              <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">설립일</span>
+              <div class="m-1 ms-2" style="font-weight: bold; ">${announcement.companyEstablish}</div>
             </div>
           </div>
         </div>
 
         <div class="my_inputboxsixadown">
           <div class="my_inputboxsixdown">
-            <div class="input-group input-group-sm mb-3">
-              <span class="input-group-text" id="inputGroup-sizing-sm">기업주소</span>
-              <div style="font-weight: bold; ">${announcement.companyAddress}</div>
+            <div class="input-group input-group-sm mb-3" ">
+              <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">기업주소</span>
+              <div class="m-1 ms-2" style="font-weight: bold; ">${announcement.companyAddress}</div>
             </div>
-            <div class="input-group input-group-sm mb-3">
-              <span class="input-group-text" id="inputGroup-sizing-sm">사원수</span>
-              <div style="font-weight: bold; ">${announcement.announcementRecNum}</div>
+            <div class="input-group input-group-sm mb-3"style="width: 400px;">
+              <span class="input-group-text main_yellow_label" id="inputGroup-sizing-sm">사원수</span>
+              <div class="m-1 ms-2" style="font-weight: bold; ">${announcement.announcementRecNum}</div>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@
 
       </div>
       <div class="my_lastbutton">
-        <a href="/company/${announcement.companyId}" class="btn btn-primary ">기업정보 ></a>
+        <a href="/company/${announcement.companyId}" class="btn btn-primary " style="background-color: rgb(51, 80, 200)">기업정보 </a>
       </div>
 
     </div>
