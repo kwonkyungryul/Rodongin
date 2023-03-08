@@ -170,7 +170,7 @@ public class CompanyController {
 
     @GetMapping("/company/{id}")
     public String detail(@PathVariable int id, Model model) {
-
+        model.addAttribute("detailDto", companyRepository.findById(id));
         return "company/detail";
     }
 
