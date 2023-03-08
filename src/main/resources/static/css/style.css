@@ -67,10 +67,10 @@ li {
     color: rgb(94, 94, 94);
     font-size: 13px;
     font-weight: bold;
-  }
+}
 
-  /* 메인 블루 버튼 (a태그) */
-  .main_blue_btn {
+/* 메인 블루 버튼 (a태그) */
+.main_blue_btn {
     display: inline-block;
     border: solid 1px transparent;
     padding: 8px 30px;
@@ -80,21 +80,21 @@ li {
     font-size: 15px;
     font-weight: bold;
     text-decoration: none;
-  }
+}
 
-  .main_blue_btn:hover {
+.main_blue_btn:hover {
     color: #fff;
-  }
+}
 
-  /* 메인 셀렉트 박스 */
-  .main_select_box {
+/* 메인 셀렉트 박스 */
+.main_select_box {
     display: inline-block;
     padding: 1px 5px;
     border: 1px solid #ccc;
     border-radius: 7px;
-  }
+}
 
-  .form-control:focus {
+.form-control:focus {
     border-color: #ced4da;
     box-shadow: none;
-  }
+}

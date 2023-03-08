@@ -8,7 +8,8 @@
         <div class="d-flex my-4 justify-content-between">
             <div class="d-flex">
                 <div class="p-2 me-3" style="border-radius: 20px; box-shadow: 2px 2px 5px;">
-                    <img src="/images/kakao.jpg" width="80" height="80" alt="company logo">
+                    <img
+          src="${detailDto.companyThumbnail}"  width="80" height="80" alt="company logo">
                 </div>
                 <div class="d-flex align-items-end" >
 

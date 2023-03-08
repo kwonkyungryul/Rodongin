@@ -82,6 +82,11 @@ public class CompanyService {
     public void 기업소개등록(CompanyDetailRespDto companyDetailRespDto, int comPrincipalId, MultipartFile profile){
         
         String thumbnail = PathUtil.writeImageFile(profile);
+
+        if (profile == null || profile.isEmpty()) {
+            thumbnail = companyRepository.findById(comPrincipalId).getCompanyThumbnail();
+        }
+        
         int result = companyRepository.updateById(
             comPrincipalId,
             companyDetailRespDto.getCompanyFullname(),
@@ -93,9 +98,10 @@ public class CompanyService {
             companyDetailRespDto.getCompanyHistory(),
             companyDetailRespDto.getCompanyVision()
         );
+
+
         if (result != 1) {
             throw new CustomApiException("기업소개 수정 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        System.out.println("aaa0");
     }
 }

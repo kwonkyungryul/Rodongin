@@ -80,10 +80,11 @@
                             <div class="main_yellow_label mb-1">기업 주소</div>
                             <div>
                                 <input class="form-control mb-2 d-inline-flex" style="width: 73.5%;" type=" text"
-                                    id="company_address" placeholder="주소를 입력하세요" name="companyAddress" required>
+                                    id="company_address" placeholder="주소를 입력하세요"  name="addr2" value="${address2}" required>
 
-                                <button type="button" class="main_gray_btn" style="width: 25%">주소찾기
+                                <button type="button" class="main_gray_btn" onclick="execPostCode();" style="width: 25%">주소찾기
                                 </button>
+                                <%-- name="companyAddress"  --%>
                             </div>
                             <div>
                                 <input class=" form-control mb-2" type="text" id="employee_address_add" rf
@@ -110,31 +111,38 @@
                         <div class="">
                             <div class=" main_yellow_label mb-1">약&nbsp;관
                             </div>
-                            <div class="border border-1" style="border-radius: 10px;">
-
+                            <div class="checkall border border-1" style="border-radius: 10px;">
                                 <div class="ms-3 me-3 mt-3 mb-3">
+                                    <!-- <div class="black-3"> 이걸로 설정시에는 약관의 패딩이 없어짐-->
                                     <div class="h6" style="color: rgb(94, 94, 94);">
-                                        <input type="checkbox" id="check-all">
+                                        <input type='checkbox' name='check' value='selectall' id="checkbox"
+                                            onclick='selectAll(this)'>
                                         <b>&nbsp;전체동의</b>
                                     </div>
-
                                     <div>
-                                        <input type='checkbox' name='check' />&nbsp;(필수) 사업자회원 약관에 동의<br />
+                                        <input type='checkbox' name='check' value='check_1' />&nbsp;(필수) 개인회원
+                                        약관에
+                                        동의<br />
                                         <textarea name="" id="" cols="30" rows="3" class="mt-1"
                                             style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을 이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스 회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
                                     </div>
                                     <div>
-                                        <input type='checkbox' name='check' />&nbsp;(필수) 사업자회원 약관에 동의<br />
+                                        <input type='checkbox' name='check' value='check_1' />&nbsp;(필수) 개인회원 약관에
+                                        동의<br />
                                         <textarea name="" id="" cols="30" rows="3" class="mt-1"
                                             style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을 이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스 회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
                                     </div>
                                     <div>
-                                        <input type='checkbox' name='check' />&nbsp;(필수) 사업자회원 약관에 동의<br />
-                                        <textarea name="" id="" cols="30" rows="3" class="mt-1"
-                                            style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을 이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스 회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
+                                        <input type='checkbox' name='check' value='select_2' />&nbsp;(필수) 개인회원 약관에
+                                        동의<br />
+                                        <textarea name="" id="" cols=" 30" rows="3" class="mt-1"
+                                            style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을
+                                        이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스
+                                        회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
                                     </div>
                                     <div>
-                                        <input type='checkbox' name='check' />&nbsp;(필수) 사업자회원 약관에 동의<br />
+                                        <input type='checkbox' name='check' value="select_3" />&nbsp;(필수) 개인회원 약관에
+                                        동의<br />
                                         <textarea name="" id="" cols="30" rows="3" class="mt-1"
                                             style="text-align: left; width: 100%;">여러분을 환영합니다. 로동인 서비스 및 제품(이하 '서비스')을 이용해 주셔서 갑사합니다. 본 약관은 다양한 로동인 서비스의 이용과 관련하여 로동인 서비스를 제공하는 로동인과 이를 이용하는 로동인 서비스 회원또는 비회원, 기업회원과의 관계를 설명하며, 아울러 여러분의 로동인 서비스 이용에 도움이 될 수 있는 이용 약관입니다.</textarea>
                                     </div>
@@ -142,7 +150,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="d-flex justify-content-center mt-3 mb-5">
                         <button class="main_blue_btn" type="submit" style="border:none;">
                             회원가입
@@ -151,4 +158,65 @@
                 </form>
             </div>
         </div>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="/resources/js/addressapi.js"></script>
+
+        <script>
+            function selectAll(selectAll) {
+                const checkboxes
+                    = document.getElementsByName('check');
+
+                checkboxes.forEach((checkbox) => {
+                    checkbox.checked = selectAll.checked;
+                })
+            }
+
+   function execPostCode() {
+         new daum.Postcode({
+             oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+ 
+                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+ 
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                if(fullRoadAddr !== ''){
+                    fullRoadAddr += extraRoadAddr;
+                }
+ 
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                console.log(data.zonecode);
+                console.log(fullRoadAddr);
+                
+                
+                $("[name=addr1]").val(data.zonecode);
+                $("[name=addr2]").val(fullRoadAddr);
+                
+                /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
+                document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
+            }
+         }).open();
+     }
+
+
+
+
+        </script>
+
         <%@ include file="../layout/footer.jsp" %>

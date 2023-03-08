@@ -49,7 +49,7 @@
                 </div>
               </div>
               <div class="my_info_thumbnail">
-                <img src="${empInfo.employeeThumbnail == null ? '/images/kakao.jpg' : empInfo.employeeThumbnail}"
+                <img src="${empInfo.employeeThumbnail == null ? '/images/profile.png' : empInfo.employeeThumbnail}"
                   alt="Current Photo" class="img-fluid" id="imagePreview" />
               </div>
             </div>

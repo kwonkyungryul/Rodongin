@@ -23,7 +23,7 @@ public interface EmployeeRepository {
     public Employee findById(int id);
 
     public int insert(EmployeeJoinReqDto employeejoinReqDto);
-
+    
     public int updateById(@Param("id") int id, @Param("employeeUpdatdReq") EmployeeUpdatdReq employeeUpdatdReq,
             @Param("employeeThumbnail") String employeeThumbnail);
 
