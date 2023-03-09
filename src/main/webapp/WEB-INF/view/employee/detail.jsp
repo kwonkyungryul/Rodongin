@@ -214,6 +214,10 @@
 
     <script>
       function deleteByResumeId(resumeId) {
+
+        if(!confirm("정말 삭제하시겠습니까 ?")) {
+          return;
+        }
         $.ajax({
           type: "delete",
           url: "/resume/" + resumeId,

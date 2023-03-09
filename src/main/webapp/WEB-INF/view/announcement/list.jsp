@@ -106,11 +106,16 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     <div class="my_deletebtnanddetail">
     <div class="my_button_ooo">
     <c:if test="${list.companyId == comPrincipal.id}" >
-      <button onclick="deleteById(${list.id})" type="button" class="btn btn-warning" style="background-color: rgb(51, 80, 200)">삭제하기</button>
+      <button onclick="deleteById(${list.id})" type="button" class="btn btn-warning" style="">삭제하기</button>
     </c:if>
     </div>
     <div class="my_button_ooo" >
+    <c:if test="${not empty principal}" >
       <a href="/announcement/${list.id}" class="btn btn-primary" style="background-color: rgb(51, 80, 200)">지원하기</a>
+    </c:if>
+    <c:if test="${not empty comPrincipal}" >
+      <a href="/announcement/${list.id}" class="btn btn-primary" style="background-color: rgb(51, 80, 200)">상세보기</a>
+    </c:if>
     </div>
     </div>
   </div>
@@ -168,12 +173,15 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
   });
 
 function deleteById(id) {
+  if(!confirm("정말 삭제하시겠습니까 ?")) {
+    return;
+  }
   
     $.ajax({
         type: "delete",
         url: "/announcement/" + id,
         dataType: "json"
-    }).done((res) => { 
+    }).done((res) => {
         alert(res.msg);
         location.href = "/";
     }).fail((err) => { 

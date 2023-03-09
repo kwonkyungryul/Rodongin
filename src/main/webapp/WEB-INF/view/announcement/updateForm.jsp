@@ -121,7 +121,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
   <textarea id="summernote" > Hello Summernote</textarea>
 </form>
 <div class="my_summernotebtn">
-<button onclick="updateId(${announcement.id})" type="button"  class="btn btn-primary">등록하기</button>
+<button onclick="updateId(${announcement.id})" type="button"  class="btn btn-primary">수정하기</button>
 </div>
 </form>
 </form>

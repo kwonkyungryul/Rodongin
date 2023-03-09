@@ -192,17 +192,16 @@ public class AnnouncementController {
         int cnt;
         if (principal != null) { // 로그인이 되어 있을 때
             List<EmployeeStack> stacks = employeeStackRepository.findByEmployeeId(principal.getId());
+            // throw new CustomException("aa");
             for (int i = 0; i < stacks.size(); i++) {
-                skills.add(stacks.get(i).getId().toString());
+                skills.add(stacks.get(i).getStackId().toString());
             }
-            model.addAttribute("stacks", stacks);
             cnt = announcementRepository.findAnnouncementCount(skills, content);
         } else { // 비로그인 일 때
-            List<StackMaster> stacks = stackMasterRepository.findAll();
-            for (int i = 0; i < stacks.size(); i++) {
-                skills.add(stacks.get(i).getId().toString());
+            List<StackMaster> stackMasters = stackMasterRepository.findAll();
+            for (int i = 0; i < stackMasters.size(); i++) {
+                skills.add(stackMasters.get(i).getId().toString());
             }
-            model.addAttribute("stacks", stacks);
             cnt = announcementRepository.findAnnouncementCount(skills, content);
         }
         

@@ -13,7 +13,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
       <div class="my_hrname">
       <h2>채용공고 제목</h1>
         <div class="my_hrsmlname">
-      <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp채용공고 제목에 모집 내용을 잘 기재할수록, 적합한 인제를 채용할 수 있습니다.</span>
+      <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp채용공고 제목에 모집 내용을 잘 기재할수록, 적합한 인재를 채용할 수 있습니다.</span>
       </div>
     </div>
     <div class="my_hrclass">
@@ -109,7 +109,7 @@ pageEncoding="UTF-8" %> <%@ include file="../layout/header.jsp" %>
     </div>
       
 </div>
-<div class="my_formclass2">
+<div class="my_formclass2" style="margin-right: 100px">
 <input class="form-control" type="text" placeholder="상세주소" aria-label="default input example" name="announcementArea" id="announcementArea">
 </div>
 </div>
