@@ -144,7 +144,7 @@ public class ResumeController {
         //     throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         // }
 
-        model.addAttribute("empInfo", employeeRepository.findById(resume.getId()));
+        model.addAttribute("empInfo", employeeRepository.findById(resume.getEmployeeId()));
 
         List<ResumeCareer> resumeCareers = resumeCareerRepository.findByResumeId(id);
         model.addAttribute("resumeCareers", resumeCareers);

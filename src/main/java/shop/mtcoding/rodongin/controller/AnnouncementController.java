@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -224,8 +225,9 @@ public class AnnouncementController {
         
         boolean prev = startPageNum == 1 ? false : true;
 		boolean next = endPageNum * pageNum_cnt >= cnt ? false : true;
-        
-        announcementDetailDto = announcementRepository.findAnnouncementlist(skills, content, start, end);
+
+
+        announcementDetailDto = announcementRepository.findAnnouncementlist(skills.size() == 0 ? null : skills, content, start, end);
         
         System.out.println(num);
         model.addAttribute("prev", prev);

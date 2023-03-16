@@ -29,12 +29,20 @@
     OR announcement_area LIKE CONCAT( '%', #{content}, '%' )
     OR announcement_carrer LIKE CONCAT( '%', #{content}, '%' )
     OR announcement_content LIKE CONCAT( '%', #{content}, '%' )
-    ORDER BY stack_id IN
-    <foreach item="stackId" collection="skills" open="(" separator="," close=")">
-    #{stackId}
-    </foreach>
-    DESC,
-    a.id DESC
+    ORDER BY
+    <choose>
+        <when test="skills == null">
+            1 DESC
+        </when>
+
+        <otherwise>
+            <foreach item="stackId" collection="skills" open="(" separator="," close=")">
+                #{stackId}
+                DESC
+            </foreach>
+
+        </otherwise>
+    </choose>
     LIMIT #{start}, #{end}
     </select>
 
