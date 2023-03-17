@@ -38,8 +38,8 @@
         <otherwise>
             <foreach item="stackId" collection="skills" open="(" separator="," close=")">
                 #{stackId}
-                DESC
             </foreach>
+            DESC
 
         </otherwise>
     </choose>

@@ -226,7 +226,9 @@ public class AnnouncementController {
         boolean prev = startPageNum == 1 ? false : true;
 		boolean next = endPageNum * pageNum_cnt >= cnt ? false : true;
 
-
+        for (int i = 0; i < skills.size(); i++) {
+            System.out.println(skills.get(i));
+        }
         announcementDetailDto = announcementRepository.findAnnouncementlist(skills.size() == 0 ? null : skills, content, start, end);
         
         System.out.println(num);
