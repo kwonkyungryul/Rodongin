@@ -17,7 +17,7 @@
         MAX(rst.STACK_ACQUISITION)
         FROM RESUME re
         LEFT OUTER JOIN RESUME_CAREER rc ON re.ID = rc.RESUME_ID
-        LEFT OUTER JOIN RESUME_GRADUATE rg ON re.ID = rg.RESUME_ID 
+        LEFT OUTER JOIN RESUME_GRADUATE rg ON re.ID = rg.RESUME_ID
         LEFT OUTER JOIN RESUME_LICENSE rl ON re.ID = rl.RESUME_ID 
         LEFT OUTER JOIN RESUME_STACK rst ON re.ID = rst.RESUME_ID
         WHERE re.employee_id = #{emplopyeeId}
