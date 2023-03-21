@@ -1,0 +1,148 @@
+.my_title {
+  margin-top: 40px;
+  margin-left: 25%;
+  margin-bottom: 30px;
+}
+
+.my_yellow_box {
+  margin-left: 25%;
+  margin-right: 25%;
+  border: 2px solid rgb(255, 230, 104);
+}
+
+.my_info_thumbnail {
+  border: 1px solid rgb(255, 230, 104);
+  width: 166px;
+  height: 200px;
+}
+
+.my_info_update_margin {
+  margin: 3%;
+}
+
+.my_info_insert {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.my_info_update_span {
+  width: 100px;
+  margin-left: 15px;
+  display: inline-block;
+  text-align: left;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.my_info_update_input {
+  width: 350px;
+}
+
+.button_center {
+  width: 100px;
+  margin: auto;
+  display: block;
+}
+
+.my_career_input {
+  width: 936.58px;
+}
+
+.my_sub_title_form {
+  display: inline-block;
+  margin-left: 25%;
+  margin-right: 20%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.AA {
+  border: 1px solid black;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: black;
+  margin-right: 10px;
+}
+
+.my_list {
+  width: 120px;
+}
+
+.main_yellow_label {
+  display: inline-block;
+  padding: 6px;
+  /* width: 60px; */
+  /* height: 30px; */
+  background-color: rgb(255, 238, 150);
+  border-radius: 7px;
+  color: rgb(94, 94, 94);
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.my_check {
+  margin-left: 30px;
+  margin-top: 4px;
+}
+
+.main_blue_btn {
+  display: inline-block;
+  padding: 8px 30px;
+  /* width: 60px; */
+  /* height: 30px; */
+  background-color: rgb(51, 80, 200);
+  border-radius: 7px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+
+  text-decoration: none;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.main_select_box {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  /* font-size: 13px; */
+  /* font-weight: bold; */
+}
+
+.main_select_box_school {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  width: 90%;
+  margin-right: 5px;
+}
+
+.main_select_box_title {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+  width: 100%;
+  height: 38px;
+}
+
+.my_tek {
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  color: #000;
+}
+
+.form-control:focus {
+  border-color: #ced4da;
+  box-shadow: none;
+}
+
+.my_license {
+  width: 100%;
+}
