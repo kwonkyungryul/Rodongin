@@ -39,7 +39,7 @@
 - 합격, 불합격 통보
 ---
 ### 발표자료
-[3조 발표.pdf](..%2F..%2F..%2FUsers%2Fkkr07%2FOneDrive%2F%EB%B0%94%ED%83%95%20%ED%99%94%EB%A9%B4%2F3%EC%A1%B0%20%EB%B0%9C%ED%91%9C.pdf)
+[3조 발표.pptx](3%EC%A1%B0%20%EB%B0%9C%ED%91%9C.pptx)
 
 ### 프로젝트 시연영상
 https://www.youtube.com/watch?v=MzU9COMnIYo
