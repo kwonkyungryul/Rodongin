@@ -38,6 +38,9 @@
 ### 5단계 **( ~ 03/04)**
 - 합격, 불합격 통보
 ---
+프로젝트 시연영상
+https://www.youtube.com/watch?v=MzU9COMnIYo
+
 사용자 시나리오
 ![image](https://user-images.githubusercontent.com/68271830/233270113-64f0b75b-89a0-4284-9f16-acf76ef3df45.png)
 
